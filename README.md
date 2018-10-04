@@ -1,5 +1,4 @@
-bara
-====
+# bara
 
 Created to create any system with the power of words.
 
@@ -12,11 +11,15 @@ Created to create any system with the power of words.
 [![License](https://img.shields.io/npm/l/bara.svg)](https://github.com/nampdn/bara/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
-<!-- tocstop -->
+
+- [Usage](#usage)
+- [Commands](#commands)
+  <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g bara
 $ bara COMMAND
@@ -28,19 +31,23 @@ USAGE
   $ bara COMMAND
 ...
 ```
-<!-- usagestop -->
-# Commands
-<!-- commands -->
-* [`bara hello [FILE]`](#bara-hello-file)
-* [`bara help [COMMAND]`](#bara-help-command)
 
-## `bara hello [FILE]`
+<!-- usagestop -->
+
+# Commands
+
+<!-- commands -->
+
+- [`bara [FILE]`](#bara--file)
+- [`bara help [COMMAND]`](#bara-help-command)
+
+## `bara [FILE]`
 
 describe the command here
 
 ```
 USAGE
-  $ bara hello [FILE]
+  $ bara  [FILE]
 
 OPTIONS
   -f, --force
@@ -48,11 +55,11 @@ OPTIONS
   -n, --name=name  name to print
 
 EXAMPLE
-  $ bara hello
-  hello world from ./src/hello.ts!
+  $ bara
+   world from ./src/.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/nampdn/bara/blob/v0.0.1/src/commands/hello.ts)_
+_See code: [src/commands/.ts](https://github.com/nampdn/bara/blob/v0.0.1/src/commands/.ts)_
 
 ## `bara help [COMMAND]`
 
@@ -70,4 +77,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.ts)_
+
 <!-- commandsstop -->
