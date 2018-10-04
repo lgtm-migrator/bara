@@ -11,43 +11,40 @@ Created to create any system with the power of words.
 [![License](https://img.shields.io/npm/l/bara.svg)](https://github.com/nampdn/bara/blob/master/package.json)
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
-  <!-- tocstop -->
+* [bara](#bara)
+* [Usage](#usage)
+* [Commands](#commands)
+<!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g bara
 $ bara COMMAND
 running command...
 $ bara (-v|--version|version)
-bara/0.0.1 darwin-x64 node-v10.9.0
+bara/0.1.0 darwin-x64 node-v10.9.0
 $ bara --help [COMMAND]
 USAGE
   $ bara COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`bara backend [FILE]`](#bara-backend-file)
+* [`bara help [COMMAND]`](#bara-help-command)
 
-- [`bara [FILE]`](#bara--file)
-- [`bara help [COMMAND]`](#bara-help-command)
+## `bara backend [FILE]`
 
-## `bara [FILE]`
-
-describe the command here
+Create a backend service
 
 ```
 USAGE
-  $ bara  [FILE]
+  $ bara backend [FILE]
 
 OPTIONS
   -f, --force
@@ -55,11 +52,11 @@ OPTIONS
   -n, --name=name  name to print
 
 EXAMPLE
-  $ bara
-   world from ./src/.ts!
+  $ bara backend
+  create backend service
 ```
 
-_See code: [src/commands/.ts](https://github.com/nampdn/bara/blob/v0.0.1/src/commands/.ts)_
+_See code: [src/commands/backend.ts](https://github.com/nampdn/bara/blob/v0.1.0/src/commands/backend.ts)_
 
 ## `bara help [COMMAND]`
 
@@ -77,5 +74,4 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.ts)_
-
 <!-- commandsstop -->
