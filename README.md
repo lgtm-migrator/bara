@@ -22,7 +22,7 @@ $ npm install -g bara
 $ bara COMMAND
 running command...
 $ bara (-v|--version|version)
-bara/0.0.0 darwin-x64 node-v10.9.0
+bara/0.0.1 darwin-x64 node-v10.9.0
 $ bara --help [COMMAND]
 USAGE
   $ bara COMMAND
@@ -52,7 +52,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/nampdn/bara/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/hello.ts](https://github.com/nampdn/bara/blob/v0.0.1/src/commands/hello.ts)_
 
 ## `bara help [COMMAND]`
 

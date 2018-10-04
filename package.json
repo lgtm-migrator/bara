@@ -1,7 +1,7 @@
 {
   "name": "bara",
   "description": "Created to create any system with the power of words.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "nampdn @nampdn",
   "bin": {
     "bara": "./bin/run"
