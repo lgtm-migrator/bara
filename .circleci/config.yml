@@ -13,8 +13,11 @@ jobs:
       - run:
           name: Install dependencies
           command: yarn
-      - run: .bin/bara --version
-      - run: .bin/bara --help
+      - run:
+          name: Link packages
+          command: yarn link
+      - run: ./node_modules/.bin/bara --version
+      - run: ./node_modules/.bin/bara --help
       - run:
           name: Testing
           command: yarn test
