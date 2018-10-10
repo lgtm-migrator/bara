@@ -1,10 +1,9 @@
----
 version: 2
 jobs:
   node-latest: &test
     docker:
       - image: node:latest
-    working_directory: ~/cli
+    working_directory: ~/packages/cli
     steps:
       - checkout
       - restore_cache: &restore_cache
@@ -44,7 +43,7 @@ jobs:
 
 workflows:
   version: 2
-  "bara":
+  'bara':
     jobs:
       - node-latest
       - node-8
