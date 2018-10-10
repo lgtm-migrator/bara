@@ -13,8 +13,8 @@ jobs:
       - run:
           name: Install dependencies
           command: yarn
-      - run: ./bin/run --version
-      - run: ./bin/run --help
+      - run: .bin/bara --version
+      - run: .bin/bara --help
       - run:
           name: Testing
           command: yarn test
