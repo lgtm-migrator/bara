@@ -1,12 +1,13 @@
 {
-  "name": "bara",
-  "version": "1.0.0",
   "description": "Created for creating!",
   "main": "index.js",
   "repository": "git@github.com:nampdn/bara.git",
   "author": "nampdn <nampdn@protonmail.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "yarn workspace bara test"
+  },
   "workspaces": [
     "packages/*"
   ],
@@ -20,7 +21,7 @@
     "proseWrap": "never",
     "singleQuote": true,
     "trailingComma": "all",
-    "semi": true
+    "semi": false
   },
   "devDependencies": {
     "lerna": "^3.4.3"
