@@ -15,8 +15,13 @@ export enum BARA_MODE {
   MODULE_MODE,
 }
 
+/**
+ * List of Bara's options used when creating new Bara instance.
+ */
 export interface BaraOptions {
-  streams: BaraStream[];
+  id?: string;
+  name?: string;
+  streams?: BaraStream[];
   mode?: BARA_MODE;
 }
 
@@ -25,15 +30,26 @@ export interface BaraOptions {
  *
  */
 export class Bara {
-  public streams: BaraStream[] = [];
+  public id?: string;
+
+  public name?: string;
+
+  private streams: BaraStream[] = [];
 
   private mode: BARA_MODE = BARA_MODE.RUNTIME_MODE;
 
   constructor(options?: BaraOptions) {
     if (options !== undefined) {
-      this.streams = options.streams;
+      this.streams = options.streams!;
       this.mode = options.mode || this.mode;
     }
+  }
+
+  /**
+   * Retrieve all of the registed streams.
+   */
+  public getStreams(): BaraStream[] {
+    return this.streams;
   }
 
   /**
