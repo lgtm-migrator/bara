@@ -1,0 +1,10 @@
+{
+  "generator-vlib": {
+    "pkg": "@bara/core",
+    "description": "BaraJS core operators",
+    "githubUsername": "BaraJS",
+    "repoName": "bara",
+    "name": "nampdn",
+    "email": "nampdn@protonmail.com"
+  }
+}
