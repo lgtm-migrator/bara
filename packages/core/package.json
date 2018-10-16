@@ -26,11 +26,11 @@
     "lint": "tslint -p tsconfig.json",
     "prebuild": "rimraf lib",
     "build:prod": "NODE_ENV=production babel src --out-dir lib",
-    "build": "run-s build:tsc build:parcel test",
+    "build": "run-s test build:tsc build:parcel",
     "clean": "rimraf build dist",
     "test": "jest",
-    "dev": "echo $PATH",
     "test:watch": "jest --watch",
+    "dev": "echo $PATH",
     "test:prod": "npm run lint && npm run test -- --coverage --no-cache",
     "docs:clean": "rimraf docs",
     "docs:create": "typedoc --out './docs' --readme './README.md' --module 'commonjs'",
@@ -41,7 +41,6 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
-    "callbag-basics": "^3.0.0",
     "callbag-observe": "^1.0.0",
     "callbag-subject": "^1.0.2",
     "ramda": "^0.25.0"
