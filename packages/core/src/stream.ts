@@ -1,17 +1,22 @@
 import * as makeSubject from 'callbag-subject';
 import * as observe from 'callbag-observe';
 
-interface StreamRef {
-  (action: number, payload: any): void;
+export interface StreamEventPayload {
+  eventType: string;
+  payload?: any;
 }
 
-interface BaraStreamEmitter {
+export interface StreamRef {
+  (action: number, payload: StreamEventPayload): void;
+}
+
+export interface BaraStreamEmitter {
   (eventType: string, payload?: any): void;
 }
 
-interface BaraStreamMethods {
+export interface BaraStreamMethods {
   init: (emit: BaraStreamEmitter, options?: any) => void;
-  onEvent: (eventType: string, payload?: any) => void;
+  onEvent: (eventPayload: StreamEventPayload) => void;
 }
 
 export interface StreamOptions {
