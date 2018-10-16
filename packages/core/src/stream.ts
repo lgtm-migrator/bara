@@ -1,4 +1,9 @@
 import * as makeSubject from 'callbag-subject';
+import * as observe from 'callbag-observe';
+
+interface StreamRef {
+  (action: number, payload: any): void;
+}
 
 interface BaraStreamEmitter {
   (eventType: string, payload?: any): void;
@@ -6,7 +11,7 @@ interface BaraStreamEmitter {
 
 interface BaraStreamMethods {
   init: (emit: BaraStreamEmitter, options?: any) => void;
-  onEvent?: (eventType: string, payload?: any) => void;
+  onEvent: (eventType: string, payload?: any) => void;
 }
 
 export interface StreamOptions {
@@ -45,13 +50,21 @@ export class BaraStream {
    */
   public config?: any;
 
+  /**
+   * Stream reference for subcribing/emitting list of events over the time.
+   */
   private stream$: any;
+
+  /**
+   * Flag to check whether the stream has been initialized or not.
+   */
   private initialized: boolean = false;
 
   constructor(public options: StreamOptions) {
     this.id = options.id;
     this.name = options.name;
     this.methods = options.methods;
+    this.config = options.config;
   }
 
   /**
@@ -60,10 +73,25 @@ export class BaraStream {
    */
   init(): void {
     if (!this.initialized) {
+      // Create a subject stream that is emittable.
       this.stream$ = makeSubject();
-      this.methods.init(this.emit, this.config);
+
+      // Invoke init method to setup the stream.
+      this.methods.init(this.emit.bind(this), this.config);
+
+      // Observe on the stream event emitted by the consumer.
+      observe(this.methods.onEvent)(this.stream$);
+      
+      // Mark stream as initialized.
       this.initialized = true;
     }
+  }
+
+  /**
+   * Get the stream reference for the sake of combination with other reactive operators.
+   */
+  public getStream(): StreamRef {
+    return this.stream$;
   }
 
   /**
@@ -71,7 +99,7 @@ export class BaraStream {
    * @param {string} eventType Type of the event defined as string.
    * @param {any|option} payload The data emit to the stream.
    */
-  public emit(eventType: string, payload?: any) {
+  public emit(eventType: string, payload?: any): void {
     this.stream$(1, {eventType, payload});
   }
 }
@@ -81,7 +109,9 @@ export class BaraStream {
  * to listen on specific event.
  *
  * The event type can be anything you imaging.
+ * @param {StreamOptions} options Required options to create new BaraStream.
+ * @return {BaraStream}
  */
-export const createStream = (options: StreamOptions) => {
+export const createStream = (options: StreamOptions): BaraStream => {
   return new BaraStream(options);
 };
