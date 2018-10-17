@@ -41,6 +41,7 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "callbag-basics": "^3.0.0",
     "callbag-observe": "^1.0.0",
     "callbag-subject": "^1.0.2",
     "ramda": "^0.25.0"
