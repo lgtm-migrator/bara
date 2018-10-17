@@ -41,15 +41,24 @@ export class BaraEvent {
    * and only link with the specify Stream's `id` or stream's `name` registered by this BaraEvent.
    */
   public connect(streams: BaraStream[]): void {
-    const streamFilter = (stream: BaraStream) => R.contains([stream.id])([this.streamIds]);
+    const streamFilter = (stream: BaraStream) => R.contains(stream.id, this.streamIds);
     R.pipe(
       // Filter all of the streams declared in `streamIds` options when creating the BaraEvent.
-      (streams: BaraStream[]) => R.filter(streamFilter)(streams),
-      // Connect each filtered stream with this BaraEvent..
+      (streams: BaraStream[]) => R.filter(streamFilter, streams),
+
+      // Connect each filtered stream with this BaraEvent.
       R.forEach((stream: BaraStream) => {
         this.connectStream(stream);
       }),
     )(streams);
+  }
+
+  /**
+   * Get list of connected streams.
+   * @return {BaraStream[]}
+   */
+  public getStreams(): BaraStream[] {
+    return this.streams;
   }
 
   /**
