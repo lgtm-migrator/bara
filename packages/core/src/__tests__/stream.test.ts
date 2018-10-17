@@ -2,7 +2,7 @@ import {createStream} from '../stream';
 
 let stream = null;
 
-const config = {
+export const config = {
   id: 'org.barajs.stream.file',
   name: 'Stream File',
 };
