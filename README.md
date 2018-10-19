@@ -16,19 +16,26 @@ Created for creating! Exactly what it says, you can build anything you can imagi
 
 <!-- usage -->
 
+## Getting Started
+
 ```sh-session
 $ npm install -g bara
-$ bara COMMAND
-running command...
+$ bara init
+Initializing Bara project...
+
 $ bara (-v|--version|version)
 bara/0.1.0 darwin-x64 node-v10.9.0
+
 $ bara --help [COMMAND]
 USAGE
-  $ bara COMMAND
+  $ bara init : init new Bara project.
+  $ bara gen (stream|trigger|event|condition|action) : generate Bara specs.
+  $ bara start : start Bara main application.
 ...
 ```
 
 <!-- usagestop -->
+
 
 # Commands
 
