@@ -1,7 +1,7 @@
 import {createTrigger, BaraTrigger} from '../trigger';
 import {createStream, BaraStream} from '../stream';
 import {createEvent, BaraEvent} from '../event';
-import {mockStreamOptions, mockEventOptions} from './helpers';
+import {mockStreamOptions, mockEventOptions} from '../helpers';
 
 const appStreams: BaraStream[] = [];
 let trigger: BaraTrigger;

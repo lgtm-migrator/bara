@@ -1,5 +1,6 @@
 import {createEvent, BaraEventOptions} from '../event';
 import {createStream} from '../stream';
+import {mockEventOptions} from '../helpers';
 
 let config: BaraEventOptions;
 
@@ -45,4 +46,11 @@ describe('BaraEvent', () => {
     event.connect(streams);
     expect(event.getStreams()).toHaveLength(2);
   });
+
+  it('register transform event named function', () => {
+    const options = mockEventOptions('transform', []);
+    const event = createEvent({...options, transforms: [
+
+    ]});
+  })
 });
