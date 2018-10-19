@@ -1,9 +1,20 @@
 import * as R from 'ramda';
 import {BaraStream} from './stream';
 
+export interface BaraTransformEvent {
+  eventType: string;
+  refName: string;
+  funcName: string;
+}
+
+export interface BaraTransformFunc {
+  (args?: any): any;
+}
+
 export interface BaraEventOptions {
   id: string;
   name?: string;
+  transforms?: BaraTransformEvent[];
   streamIds: string[];
 }
 
@@ -28,11 +39,32 @@ export class BaraEvent {
 
   private streams: BaraStream[] = [];
   private streamIds: string[] = [];
+  private transforms: BaraTransformEvent[] = [];
+
+  /**
+   * Use refs to store user events reference data.
+   * This help the Event maker define custom event function to retrieve the ref.
+   * The refs always store latest emitted value of an event.
+   */
+  private refs: any = {};
+
+  /**
+   * Getter function to retrieve ref by event type.
+   */
+  private refFuncs: {[key: string]: BaraTransformFunc} = {};
 
   constructor(options: BaraEventOptions) {
     this.id = options.id;
-    this.name = options.name;
+    this.name = options.name || 'Unnamed Event';
+    this.transforms = options.transforms || [];
     this.streamIds = options.streamIds;
+  }
+
+  /**
+   * Get event references named data.
+   */
+  public getRef(eventType: string): any | undefined {
+    return R.prop(eventType, this.refs);
   }
 
   /**
@@ -51,6 +83,7 @@ export class BaraEvent {
         this.connectStream(stream);
       }),
     )(streams);
+    this.registerTransforms();
   }
 
   /**
@@ -67,6 +100,21 @@ export class BaraEvent {
   private connectStream(stream: BaraStream): void {
     this.streams.push(stream);
     console.log(`Registered stream ${stream.name} with event: ${this.name}`);
+  }
+
+  private registerTransforms(): void {
+    this.refFuncs = R.reduce(
+      (acc: any, transform: BaraTransformEvent) =>
+        R.assoc(
+          transform.funcName,
+          (eventType: string) => {
+            return this.getRef(eventType);
+          },
+          acc,
+        ),
+      this.refFuncs,
+      this.transforms,
+    );
   }
 }
 
