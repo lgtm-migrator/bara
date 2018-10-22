@@ -44,11 +44,13 @@
     "callbag-basics": "^3.0.0",
     "callbag-observe": "^1.0.0",
     "callbag-subject": "^1.0.2",
+    "change-case": "^3.0.2",
     "ramda": "^0.25.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.1.2",
     "@commitlint/config-conventional": "^7.1.2",
+    "@types/change-case": "^2.3.1",
     "@types/jest": "^23.3.2",
     "@types/node": "^10.11.0",
     "@types/ramda": "^0.25.39",
