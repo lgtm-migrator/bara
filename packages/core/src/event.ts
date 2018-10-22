@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import {BaraStream} from './stream';
+import {camelCase} from 'change-case';
 
 export interface BaraTransformEvent {
   eventType: string;
@@ -73,6 +74,10 @@ export class BaraEvent {
    * and only link with the specify Stream's `id` or stream's `name` registered by this BaraEvent.
    */
   public connect(streams: BaraStream[]): void {
+    // Register event transfomer before connect any stream to watch all of the events.
+    this.registerTransforms();
+
+    // Define the stream filter function to take advantage of user's registered event only.
     const streamFilter = (stream: BaraStream) => R.contains(stream.id, this.streamIds);
     R.pipe(
       // Filter all of the streams declared in `streamIds` options when creating the BaraEvent.
@@ -83,7 +88,6 @@ export class BaraEvent {
         this.connectStream(stream);
       }),
     )(streams);
-    this.registerTransforms();
   }
 
   /**
@@ -99,14 +103,14 @@ export class BaraEvent {
    */
   private connectStream(stream: BaraStream): void {
     this.streams.push(stream);
-    console.log(`Registered stream ${stream.name} with event: ${this.name}`);
+    console.log(`[BaraEvent] Registered stream ${stream.name} with event: ${this.name}`);
   }
 
   private registerTransforms(): void {
     this.refFuncs = R.reduce(
       (acc: any, transform: BaraTransformEvent) =>
         R.assoc(
-          transform.funcName,
+          camelCase(transform.funcName),
           (eventType: string) => {
             return this.getRef(eventType);
           },
