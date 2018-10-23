@@ -42,7 +42,8 @@ describe('Bara', () => {
     app.init();
   });
 
-  it('init each Stream in RUNTIME_MODE', done => {
+  it('init each Stream in RUNTIME_MODE', () => {
+    jest.useFakeTimers();
     const handleEvent = jest.fn();
     const app = bara();
     const stream = createStream(mockStreamOptions('counter', 3));
@@ -50,10 +51,8 @@ describe('Bara', () => {
     app.init();
     const source = app.getSource();
     observe(handleEvent)(source);
-    setTimeout(() => {
-      expect(handleEvent).toBeCalledTimes(1);
-      done();
-    }, 2000);
+    jest.advanceTimersByTime(3500);
+    expect(handleEvent).toBeCalledWith([]);
   });
 
 });
