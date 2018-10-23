@@ -49,8 +49,16 @@ describe('BaraEvent', () => {
 
   it('register transform event named function', () => {
     const options = mockEventOptions('transform', []);
-    const event = createEvent({...options, transforms: [
-
-    ]});
-  })
+    const event = createEvent({
+      ...options,
+      transforms: [
+        {
+          eventType: 'FILE_CHANGED',
+          refName: 'fileChanged',
+          funcName: 'getChangedFile',
+        },
+      ],
+    });
+    expect(event.getRef('FILE_CHANGED')).toBeUndefined();
+  });
 });
