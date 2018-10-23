@@ -6,7 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "test": "yarn workspace bara test"
+    "test": "lerna run test",
+    "test:watch": "lerna run test:watch --stream"
   },
   "workspaces": [
     "packages/*"
@@ -15,13 +16,6 @@
     "*": [
       "packages/*/src"
     ]
-  },
-  "prettier": {
-    "bracketSpacing": false,
-    "proseWrap": "never",
-    "singleQuote": true,
-    "trailingComma": "all",
-    "semi": false
   },
   "devDependencies": {
     "lerna": "^3.4.3"

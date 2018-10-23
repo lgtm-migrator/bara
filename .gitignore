@@ -1,7 +1,10 @@
+.DS_Store
 *-debug.log
 *-error.log
 /.nyc_output
 /dist
+/build
+/coverage
 /lib
 /package-lock.json
 /tmp
