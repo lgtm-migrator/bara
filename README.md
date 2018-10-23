@@ -12,19 +12,19 @@ Created for creating! Exactly what it says, you can build anything you can imagi
 
 <!-- toc -->
 
-- [Usage](#usage)
+- [Installation](#Installation)
 - [Commands](#commands)
   <!-- tocstop -->
 
-# Usage
+# Installation
 
-<!-- usage -->
+<!-- installation -->
 
 ## Getting Started
 
 ```sh-session
 $ npm install -g bara
-$ bara init
+$ bara init my-app
 Initializing Bara project...
 
 $ bara (-v|--version|version)
@@ -38,51 +38,4 @@ USAGE
 ...
 ```
 
-<!-- usagestop -->
-
-
-# Commands
-
-<!-- commands -->
-
-- [`bara backend [FILE]`](#bara-backend-file)
-- [`bara help [COMMAND]`](#bara-help-command)
-
-## `bara backend [FILE]`
-
-Create a backend service
-
-```
-USAGE
-  $ bara backend [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ bara backend
-  create backend service
-```
-
-_See code: [src/commands/backend.ts](https://github.com/barajs/bara/blob/v0.1.0/packages/cli/src/commands/backend.ts)_
-
-## `bara help [COMMAND]`
-
-display help for bara
-
-```
-USAGE
-  $ bara help [COMMAND]
-
-ARGUMENTS
-  COMMAND  command to show help for
-
-OPTIONS
-  --all  see all commands in CLI
-```
-
-_See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.2/src/commands/help.ts)_
-
-<!-- commandsstop -->
+<!-- installationstop -->
