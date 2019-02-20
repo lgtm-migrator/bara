@@ -1,0 +1,1 @@
+{"version":3,"file":"condition.js","sourceRoot":"","sources":["../../src/condition.ts"],"names":[],"mappings":";;AAGA;;;GAGG;AACH,MAAa,aAAa;IACxB,YAAY,OAA6B;QACvC,OAAO,CAAC,GAAG,CAAC,OAAO,CAAC,CAAC;IACvB,CAAC;CACF;AAJD,sCAIC;AAEY,QAAA,eAAe,GAAG,CAAC,OAA6B,EAAE,EAAE;IAC/D,OAAO,IAAI,aAAa,CAAC,OAAO,CAAC,CAAC;AACpC,CAAC,CAAC"}
