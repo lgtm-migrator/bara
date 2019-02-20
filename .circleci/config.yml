@@ -15,7 +15,7 @@ jobs:
           command: yarn
       - run:
           name: Link packages
-          command: lerna bootstrap
+          command: npx lerna bootstrap
       - run: ./node_modules/.bin/bara --version
       - run: ./node_modules/.bin/bara --help
       - run:
