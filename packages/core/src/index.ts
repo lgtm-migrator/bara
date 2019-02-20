@@ -8,5 +8,5 @@
 
 //export default bara;
 export default () => {
-  return "Hello World"
-}
+  return "Hello World";
+};

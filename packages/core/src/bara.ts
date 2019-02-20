@@ -34,9 +34,9 @@ export interface BaraOptions {
  *
  */
 export class Bara {
-  public id?: string;
+  id?: string;
 
-  public name?: string;
+  name?: string;
 
   private streams: BaraStream[] = [];
 
@@ -57,14 +57,14 @@ export class Bara {
   /**
    * Retrieve all of the registed streams.
    */
-  public getStreams(): BaraStream[] {
+  getStreams(): BaraStream[] {
     return this.streams;
   }
 
   /**
    * Retrieve app source stream.
    */
-  public getSource() {
+  getSource() {
     return this.appSource;
   }
 
@@ -72,7 +72,7 @@ export class Bara {
    * Register a Bara stream to the Bara application.
    * @param {BaraStream} stream Which stream to be used.
    */
-  public useStream = (stream: BaraStream): void => {
+  useStream = (stream: BaraStream): void => {
     this.streams.push(stream);
   };
 
@@ -81,7 +81,7 @@ export class Bara {
    *
    * It will listen for streams's events and map it with the trigger events.
    */
-  public init(): void {
+  init(): void {
     const events = this.registerTrigger() as BaraEvent[];
     const allStreams = R.map((event: BaraEvent) => event.getStreams())(events);
     this.appSource = combine(...allStreams);

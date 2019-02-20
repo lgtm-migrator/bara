@@ -1,6 +1,6 @@
 import {StreamEventPayload, BaraStreamEmitter} from './stream';
 
-export const mockStreamOptions = (name: string, max: number = 5) => ({
+export const mockStreamOptions = (name: string, max = 5) => ({
   id: `org.barajs.stream.${name.toLowerCase()}`,
   name: `Stream ${name}`,
   methods: {

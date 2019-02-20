@@ -64,7 +64,7 @@ export class BaraEvent {
   /**
    * Get event references named data.
    */
-  public getRef(eventType: string): any | undefined {
+  getRef(eventType: string): any | undefined {
     return R.prop(eventType, this.refs);
   }
 
@@ -73,7 +73,7 @@ export class BaraEvent {
    * This method should be invoked by the main Bara application,
    * and only link with the specify Stream's `id` or stream's `name` registered by this BaraEvent.
    */
-  public connect(streams: BaraStream[]): void {
+  connect(streams: BaraStream[]): void {
     // Register event transfomer before connect any stream to watch all of the events.
     this.registerTransforms();
 
@@ -94,7 +94,7 @@ export class BaraEvent {
    * Get list of connected streams.
    * @return {BaraStream[]}
    */
-  public getStreams(): BaraStream[] {
+  getStreams(): BaraStream[] {
     return this.streams;
   }
 

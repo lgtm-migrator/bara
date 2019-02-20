@@ -37,23 +37,23 @@ export class BaraStream {
    * @example
    * org.barajs.stream.file
    */
-  public id: string = '';
+  id = '';
 
   /**
    * Name of the Bara stream, define this will help the devtool render
    * declarative statement on the GUI.
    */
-  public name?: string;
+  name?: string;
 
   /**
    * Define some methods the stream required to be operated.
    */
-  public methods: BaraStreamMethods;
+  methods: BaraStreamMethods;
 
   /**
    * The configuration of user who register the stream.
    */
-  public config?: any;
+  config?: any;
 
   /**
    * Stream reference for subcribing/emitting list of events over the time.
@@ -63,7 +63,7 @@ export class BaraStream {
   /**
    * Flag to check whether the stream has been initialized or not.
    */
-  private initialized: boolean = false;
+  private initialized = false;
 
   constructor(public options: StreamOptions) {
     this.id = options.id;
@@ -95,7 +95,7 @@ export class BaraStream {
   /**
    * Get the stream reference for the sake of combination with other reactive operators.
    */
-  public getStream(): StreamRef {
+  getStream(): StreamRef {
     return this.stream$;
   }
 
@@ -104,7 +104,7 @@ export class BaraStream {
    * @param {string} eventType Type of the event defined as string.
    * @param {any|option} payload The data emit to the stream.
    */
-  public emit(eventType: string, payload?: any): void {
+  emit(eventType: string, payload?: any): void {
     this.stream$(1, {eventType, payload});
   }
 }

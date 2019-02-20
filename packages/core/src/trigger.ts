@@ -34,7 +34,7 @@ export class BaraTrigger {
   /**
    * Initialization the Trigger from the application streams.
    */
-  public init(streams: BaraStream[]): void {
+  init(streams: BaraStream[]): void {
     // Get all of the stream registered by the main application
     // and filter it before observation.
     this.connectEvents(streams);
@@ -46,7 +46,7 @@ export class BaraTrigger {
    * Get list of registered BaraEvent.
    * @return {BaraEvent[]}
    */
-  public getEvents(): BaraEvent[] {
+  getEvents(): BaraEvent[] {
     return this.events;
   }
 
@@ -54,7 +54,7 @@ export class BaraTrigger {
    * Get list of registered BaraCondition.
    * @return {BaraCondition[]}
    */
-  public getConditions(): BaraCondition[] {
+  getConditions(): BaraCondition[] {
     return this.conditions;
   }
 
@@ -62,7 +62,7 @@ export class BaraTrigger {
    * Get list of registered BaraAction.
    * @return {BaraAction[]}
    */
-  public getActions(): BaraAction[] {
+  getActions(): BaraAction[] {
     return this.actions;
   }
 
