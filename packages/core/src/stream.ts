@@ -1,32 +1,31 @@
-import * as makeSubject from 'callbag-subject';
-import * as observe from 'callbag-observe';
+import xs, {Stream, Producer, Listener} from 'xstream';
 
-export interface StreamEventPayload {
-  eventType: string;
-  payload?: any;
+export interface StreamEventPayload<T> {
+  eventName: string;
+  payload?: T;
 }
 
-export interface StreamRef {
-  (action: number, payload: StreamEventPayload): void;
+export interface Ops<T> extends Producer<T> {
+  [key: string]: unknown;
 }
 
-export interface BaraStreamEmitter {
-  (eventType: string, payload?: any): void;
-}
-
-export interface BaraStreamMethods {
-  init: (emit: BaraStreamEmitter, options?: any) => void;
-  onEvent: (eventPayload: StreamEventPayload) => void;
-}
-
-export interface StreamOptions {
+export interface StreamOptions<T> {
   id: string;
   name: string;
-  methods: BaraStreamMethods;
-  config?: any;
+  producer: Ops<T>;
+  config?: unknown;
+  actions: Array<StreamAction<T>>;
 }
 
-export class BaraStream {
+export class StreamAction<T> {
+  constructor(public eventName: string) {}
+
+  next(value: T): StreamEventPayload<T> {
+    return {eventName: this.eventName, payload: value};
+  }
+}
+
+export class BaraStream<T> {
   /**
    * Unique stream id used to identify which stream is registered
    * in an application.
@@ -46,30 +45,31 @@ export class BaraStream {
   name?: string;
 
   /**
-   * Define some methods the stream required to be operated.
+   * List of predefined events on a stream.
    */
-  methods: BaraStreamMethods;
+  actions: Array<StreamAction<T>>;
 
   /**
    * The configuration of user who register the stream.
    */
-  config?: any;
+  config?: unknown;
 
   /**
    * Stream reference for subcribing/emitting list of events over the time.
    */
-  private stream$: any;
+  private stream$: Stream<T>;
 
   /**
    * Flag to check whether the stream has been initialized or not.
    */
   private initialized = false;
 
-  constructor(public options: StreamOptions) {
+  constructor(public options: StreamOptions<T>) {
     this.id = options.id;
     this.name = options.name;
-    this.methods = options.methods;
     this.config = options.config;
+    this.actions = options.actions;
+    this.stream$ = xs.never();
   }
 
   /**
@@ -78,34 +78,20 @@ export class BaraStream {
    */
   init(): void {
     if (!this.initialized) {
-      // Create a subject stream that is emittable.
-      this.stream$ = makeSubject();
-
-      // Invoke init method to setup the stream.
-      this.methods.init(this.emit.bind(this), this.config);
-
-      // Observe on the stream event emitted by the consumer.
-      observe(this.methods.onEvent)(this.stream$);
-      
-      // Mark stream as initialized.
+      this.stream$ = xs.create(this.options.producer);
       this.initialized = true;
     }
+  }
+
+  addListener(listener: Partial<Listener<T>>): void {
+    this.stream$.addListener(listener);
   }
 
   /**
    * Get the stream reference for the sake of combination with other reactive operators.
    */
-  getStream(): StreamRef {
+  getStream(): Stream<T> {
     return this.stream$;
-  }
-
-  /**
-   * Emit an event to the stream with a payload.
-   * @param {string} eventType Type of the event defined as string.
-   * @param {any|option} payload The data emit to the stream.
-   */
-  emit(eventType: string, payload?: any): void {
-    this.stream$(1, {eventType, payload});
   }
 }
 
@@ -117,6 +103,10 @@ export class BaraStream {
  * @param {StreamOptions} options Required options to create new BaraStream.
  * @return {BaraStream}
  */
-export const createStream = (options: StreamOptions): BaraStream => {
+export const createStream = <T>(options: StreamOptions<T>): BaraStream<T> => {
   return new BaraStream(options);
+};
+
+export const createStreamAction = <T>(eventName: string): StreamAction<T> => {
+  return new StreamAction<T>(eventName);
 };

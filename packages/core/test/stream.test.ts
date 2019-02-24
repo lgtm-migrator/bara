@@ -1,53 +1,36 @@
-import {createStream} from '../src/stream';
+import {createStream, BaraStream, createStreamAction} from '../src/stream';
 
-let stream = null;
+let stream: BaraStream<number>;
 
 export const config = {
-  id: 'org.barajs.stream.file',
+  id: 'org.barajs.stream.tik',
   name: 'Stream File',
 };
 
+const actions = [createStreamAction<number>('INCREASE')];
+
 describe('BaraStream', () => {
-  it('initialized the bara stream', () => {
-    const initMock = jest.fn();
-    stream = createStream({
+  it('initialized the bara stream', done => {
+    jest.setTimeout(10000);
+    const started = jest.fn();
+    stream = createStream<number>({
       ...config,
-      methods: {
-        init: initMock,
-        onEvent: () => {},
+      actions,
+      producer: {
+        start(listener) {
+          console.log('meo');
+          this.id = setInterval(() => listener.next(1), 1000) as unknown;
+        },
+        stop() {
+          clearInterval(this.id as number);
+        },
+        id: 0,
       },
     });
 
-    expect(stream).toHaveProperty('initialized', false);
     stream.init();
-    expect(stream).toHaveProperty('initialized', true);
-    expect(initMock).toBeCalled();
-    expect(stream).toHaveProperty('name', config.name);
-  });
-
-  it('call the onEvent method when new event emitted', (done) => {
-    const onEventMock = jest.fn();
-    stream = createStream({
-      ...config,
-      methods: {
-        init: (emit) => {
-          let counter = 0;
-          const max = 5;
-          const interval = setInterval(() => {
-            if (counter < max) {
-              counter += 1;
-              emit('count', counter);
-            } else {
-              clearInterval(interval);
-              expect(onEventMock.mock.calls.length).toEqual(5);
-              expect(onEventMock.mock.calls[0][0]).toEqual({eventType: 'count', payload: 1});
-              expect(onEventMock.mock.calls[4][0]).toEqual({eventType: 'count', payload: 5});
-              done();
-            }
-          }, 100);
-        },
-        onEvent: onEventMock,
-      },
-    }).init();
+    setTimeout(() => {
+      done();
+    }, 4000);
   });
 });

@@ -1,12 +1,7 @@
-//import bara from './bara';
+import {bara} from './bara';
 
-//export * from './stream';
-//export * from './trigger';
-//export * from './event';
-//export * from './condition';
-//export * from './action';
+export * from './bara';
+export * from './trigger';
 
-//export default bara;
-export default () => {
-  return "Hello World";
-};
+// tslint:disable-next-line
+export default bara;

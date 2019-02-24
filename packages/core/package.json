@@ -1,7 +1,7 @@
 {
   "name": "@bara/core",
   "version": "0.0.0",
-  "description": "",
+  "description": "BaraJS Core - Created For Creating",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "files": [
@@ -10,7 +10,8 @@
   "license": "Apache-2.0",
   "keywords": [],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
@@ -23,6 +24,8 @@
     "@types/jest": "24.0.6",
     "@types/ramda": "0.25.50",
     "gts": "^0.9.0",
+    "jest": "24.1.0",
+    "ts-jest": "24.0.0",
     "typescript": "~3.1.0"
   },
   "dependencies": {
@@ -30,6 +33,7 @@
     "callbag-observe": "1.0.0",
     "callbag-subject": "1.0.2",
     "change-case": "3.1.0",
-    "ramda": "0.26.1"
+    "ramda": "0.26.1",
+    "xstream": "11.10.0"
   }
 }
