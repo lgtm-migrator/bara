@@ -1,31 +1,28 @@
-export interface Event {
-  name: string;
-}
+import {Event} from './event';
 
 export interface Trigger {
   name: string;
-  events: Event[];
   activate: () => void;
 }
 
 let useEventIndex = 0;
-const useEventHooks: EventHook[] = [];
-const events: Event[] = [];
+const useEventHooks = [];
+const events = [];
 
 interface EventAction {
   (eventName: string, payload: unknown): void;
 }
 
-interface EventHook extends Array<Event | EventAction> {
-  0: Event;
+interface EventHook<T> extends Array<Event<T> | EventAction> {
+  0: Event<T>;
   1: EventAction;
 }
 
-function registerEventHook(index: number, event: Event) {
+function registerEventHook<T>(index: number, event: Event<T>) {
   if (!useEventHooks[index]) {
     console.log(`Registering event: ${event.name}`);
-    events.push(event);
-    useEventHooks.push([
+    (events as Array<Event<T>>).push(event);
+    (useEventHooks as Array<EventHook<T>>).push([
       event,
       (eventName, payload) => {
         event.name = eventName;
@@ -36,7 +33,7 @@ function registerEventHook(index: number, event: Event) {
   return useEventHooks[index];
 }
 
-export function useEvent(event: Event) {
+export function useEvent<T>(event: Event<T>) {
   const hookEvent = registerEventHook(useEventIndex, event);
   useEventIndex++;
   return [events, () => {}];
@@ -45,7 +42,6 @@ export function useEvent(event: Event) {
 export function createTrigger(name: string, triggerFunc: () => void): Trigger {
   const trigger: Trigger = {
     name,
-    events,
     activate: () => {
       triggerFunc();
       console.log(`Registered trigger: ${name}`);

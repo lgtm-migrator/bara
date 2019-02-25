@@ -1,13 +1,13 @@
 import * as R from 'ramda';
 import xs from 'xstream';
-import {Trigger, Event} from './trigger';
+import {Trigger} from './trigger';
+import {Event} from './event';
 
 let run: () => void;
 let useTriggerIndex = 0;
-let TOTAL_EVENTS = 0;
 
-interface TriggerHook extends Array<Event[] | number> {
-  0: Event[];
+interface TriggerHook extends Array<Trigger | number> {
+  0: Trigger;
 }
 
 const useTriggerHooks: TriggerHook[] = [];
@@ -16,8 +16,7 @@ function registerTriggerHook(index: number, trigger: Trigger) {
   if (!useTriggerHooks[index]) {
     // activating trigger to registering events
     trigger.activate();
-    TOTAL_EVENTS += trigger.events.length;
-    useTriggerHooks!.push([trigger.events]);
+    useTriggerHooks!.push([trigger]);
   }
   return useTriggerHooks[index];
 }
@@ -31,7 +30,6 @@ export function useTrigger(trigger: Trigger): TriggerHook {
 export function bara(app: () => void) {
   run = () => {
     app();
-    console.log(`TOTAL EVENTS: ${TOTAL_EVENTS}`);
   };
   return {run};
 }

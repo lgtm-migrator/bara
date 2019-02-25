@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "noImplicitAny": false,
     "rootDir": ".",
     "outDir": "build",
     "typeRoots": ["../../@types", "../../node_modules/@types"]
