@@ -10,7 +10,7 @@
     "test": "yarn workspace @bara/core test",
     "fix": "yarn workspaces run fix",
     "test:watch": "lerna run test:watch --stream",
-    "semantic-release": "lerna exec --concurrency 1 -- semantic-release -e semantic-release-monorepo --tag-format='${LERNA_PACKAGE_NAME}-v\\${version}'"
+    "release": "lerna publish --conventional-commits"
   },
   "workspaces": [
     "packages/*"

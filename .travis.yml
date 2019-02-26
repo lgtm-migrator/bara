@@ -15,4 +15,4 @@ install:
   - yarn test
 
 after_success:
-  - npx lerna publish
+  - yarn release
