@@ -10,10 +10,11 @@ cache:
 
 before_install:
   - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" > .npmrc
+  - npm whoami
   - yarn
 
 install:
   - yarn test
 
 after_success:
-  - yarn release
+  - npm run release
