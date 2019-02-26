@@ -1,4 +1,4 @@
-import xs, {Stream, Listener, Producer} from 'xstream';
+import xs, {Listener, Producer, Stream} from 'xstream';
 
 export interface Event<T> {
   name: string;
@@ -9,7 +9,7 @@ interface AddListenerFunc<T> {
   (listener: Listener<T>): void;
 }
 
-interface EventHook<T> extends Array<Stream<T> | AddListenerFunc<T>> {
+interface EventHook<T> extends Array<Stream<T>|AddListenerFunc<T>> {
   0: Stream<T>;
   1: AddListenerFunc<T>;
 }
@@ -27,9 +27,9 @@ const useStreamHooks = [];
 const streams = [];
 
 function registerStreamHook<T>(
-  index: number,
-  setup: StreamSetupFunc<T>,
-): EventHook<T> {
+    index: number,
+    setup: StreamSetupFunc<T>,
+    ): EventHook<T> {
   if (!useStreamHooks![index]) {
     const stream = xs.create<T>({
       start: setup,
@@ -46,8 +46,8 @@ function registerStreamHook<T>(
 }
 
 export function useStream<T>(
-  name: string,
-  setup: (listener: Listener<T>) => void,
+    name: string,
+    setup: (listener: Listener<T>) => void,
 ) {
   const hook = registerStreamHook(useStreamIndex, setup);
   useStreamIndex++;

@@ -13,7 +13,7 @@ interface EventAction {
   (eventName: string, payload: unknown): void;
 }
 
-interface EventHook<T> extends Array<Event<T> | EventAction> {
+interface EventHook<T> extends Array<Event<T>|EventAction> {
   0: Event<T>;
   1: EventAction;
 }

@@ -1,4 +1,4 @@
-import bara, {createTrigger, useTrigger, useEvent} from '../src';
+import bara, {createTrigger, useEvent, useTrigger} from '../src';
 
 describe('main bara application', () => {
   it('run bara application', () => {

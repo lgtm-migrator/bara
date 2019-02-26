@@ -1,4 +1,4 @@
-import {createStream, BaraStream, createStreamAction} from '../src/stream';
+import {BaraStream, createStream, createStreamAction} from '../src/stream';
 
 let stream: BaraStream<number>;
 

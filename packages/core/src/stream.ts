@@ -1,4 +1,4 @@
-import xs, {Stream, Producer, Listener} from 'xstream';
+import xs, {Listener, Producer, Stream} from 'xstream';
 
 export interface StreamEventPayload<T> {
   eventName: string;
@@ -73,8 +73,9 @@ export class BaraStream<T> {
   }
 
   /**
-   * Initialize the stream and invoke the registed `init` method defined by user.
-   * This method is required in the ``methods` options when creating new BaraStream.
+   * Initialize the stream and invoke the registed `init` method defined by
+   * user. This method is required in the ``methods` options when creating new
+   * BaraStream.
    */
   init(): void {
     if (!this.initialized) {
@@ -88,7 +89,8 @@ export class BaraStream<T> {
   }
 
   /**
-   * Get the stream reference for the sake of combination with other reactive operators.
+   * Get the stream reference for the sake of combination with other reactive
+   * operators.
    */
   getStream(): Stream<T> {
     return this.stream$;
