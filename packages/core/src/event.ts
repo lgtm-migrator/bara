@@ -2,7 +2,7 @@ import xs, {Stream, Listener, Producer} from 'xstream';
 
 export interface Event<T> {
   name: string;
-  streams: Array<Stream<T>>;
+  streams?: Array<Stream<T>>;
 }
 
 interface AddListenerFunc<T> {
