@@ -5,9 +5,10 @@
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "keywords": [],
-  "files": [
-    "build/src"
-  ],
+  "files": ["build/src"],
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "MIT",
   "scripts": {
     "test": "jest",
