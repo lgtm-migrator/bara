@@ -10,7 +10,7 @@
     "test": "lerna run test",
     "fix": "lerna run fix",
     "test:watch": "lerna run test:watch --stream",
-    "release": "lerna publish --yes --conventional-commits --canary"
+    "release": "lerna publish --yes --conventional-commits"
   },
   "workspaces": ["packages/*"],
   "workspace-sources": {

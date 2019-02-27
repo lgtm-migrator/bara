@@ -2,6 +2,7 @@
   "name": "@bara/core",
   "version": "0.0.0",
   "description": "BaraJS Core - Created For Creating",
+  "license": "MIT",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "keywords": [],
