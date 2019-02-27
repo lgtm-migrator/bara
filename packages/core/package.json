@@ -1,16 +1,17 @@
 {
   "name": "@bara/core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
   "keywords": [],
-  "files": ["build/src"],
+  "files": [
+    "build/src"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "license": "MIT",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
