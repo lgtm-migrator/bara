@@ -6,9 +6,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "compile": "yarn workspaces run compile",
-    "test": "yarn workspace @bara/core test",
-    "fix": "yarn workspaces run fix",
+    "compile": "lerna run compile",
+    "test": "lerna run test",
+    "fix": "lerna run fix",
     "test:watch": "lerna run test:watch --stream",
     "release": "lerna publish --yes --conventional-commits --canary"
   },
