@@ -13,7 +13,10 @@
     "release": "lerna publish --yes --conventional-commits",
     "cli": "yarn workspace bara-cli"
   },
-  "workspaces": ["packages/*"],
+  "workspaces": {
+    "packages": ["packages/*"],
+    "nohoist": ["**/@types/mocha", "**/@types/mocha/**"]
+  },
   "workspace-sources": {
     "*": ["packages/*/src"]
   },
