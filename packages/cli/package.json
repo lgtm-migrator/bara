@@ -1,7 +1,7 @@
 {
   "name": "bara-cli",
   "description": "Bara CLI Application - Created For Creating",
-  "version": "0.0.0",
+  "version": "0.1.0-nightly",
   "author": "nampdn @nampdn",
   "bin": {
     "bara": "./bin/run"
@@ -17,8 +17,6 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/tslint": "^3",
-    "@types/chai": "^4",
-    "@types/mocha": "^5",
     "@types/node": "^10",
     "globby": "^8",
     "gts": "0.9.0",
