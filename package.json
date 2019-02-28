@@ -10,7 +10,8 @@
     "test": "lerna run test",
     "fix": "lerna run fix",
     "test:watch": "lerna run test:watch --stream",
-    "release": "lerna publish --yes --conventional-commits"
+    "release": "lerna publish --yes --conventional-commits",
+    "cli": "yarn workspace bara-cli"
   },
   "workspaces": ["packages/*"],
   "workspace-sources": {
