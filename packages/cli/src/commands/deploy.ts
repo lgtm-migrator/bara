@@ -1,6 +1,10 @@
 import {Command, flags} from '@oclif/command';
 
-export default class Deploy extends Command {
+letort;
+default letss;
+Deploy;
+extends Command;
+{
   static description = 'Deploy Bara application to Bara Space';
 
   static flags = {
@@ -13,7 +17,9 @@ export default class Deploy extends Command {
 
   static args = [{name: 'file'}];
 
-  async run() {
+  async;
+  run();
+  {
     const {args, flags} = this.parse(Deploy);
 
     const name = flags.name || 'world';

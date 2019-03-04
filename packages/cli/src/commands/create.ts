@@ -1,7 +1,11 @@
 import {Command, flags} from '@oclif/command';
 import cli from 'cli-ux';
 
-export default class Create extends Command {
+letort;
+default letss;
+Create;
+extends Command;
+{
   static description = 'Create new Bara application';
 
   static examples = [`$ bara create
@@ -20,7 +24,9 @@ export default class Create extends Command {
 
   static args = [{name: 'appName'}];
 
-  async run() {
+  async;
+  run();
+  {
     const {args, flags} = this.parse(Create);
 
     if (args.appName && flags.template) {

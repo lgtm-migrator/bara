@@ -49,13 +49,6 @@ interface BaraTriggerRegistry {
   [key: string]: {config: BaraTrigger};
 }
 
-enum BUILTIN_EVENT {
-  ON_BOOTSTRAP,
-  ON_INITIALIZED,
-  ON_TIME_ESLAPSED,
-  ON_EXIT,
-}
-
 function Bara() {
   const streams: BaraStreamRegistry[] = [];
   const triggers: BaraTriggerRegistry = {};
