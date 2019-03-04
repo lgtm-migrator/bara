@@ -26,5 +26,6 @@ module.exports = {
   output: {
     filename: 'bara.js',
     path: path.resolve(__dirname, 'dist'),
-  }
+    library: 'bara',
+  },
 };
