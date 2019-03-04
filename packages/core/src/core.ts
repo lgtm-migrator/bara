@@ -129,9 +129,19 @@ function Bara() {
     useEvent: (eventType: string, config?: any) => (triggerName: string) => {
       // Find existing stream based on event type
       const currentTrigger = triggers[triggerName];
-      const upStreamRegistry = streams.find(
-          s => s[1].eventTypes.indexOf(eventType) > -1,
-      );
+      const upStreamRegistry = streams.find(s => {
+        if (s && s[1].eventTypes) {
+          return s[1].eventTypes.indexOf(eventType) > -1;
+        } else {
+          throw new Error(
+              `[Bara Event] Could not find any event type of ${
+                  eventType} from streams: ${
+                  JSON.stringify(
+                      streams,
+                      )}`,
+          );
+        }
+      });
       if (upStreamRegistry) {
         console.debug(
             `[Bara Event] Found stream ${upStreamRegistry[0]} of event types ${
