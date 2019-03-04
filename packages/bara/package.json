@@ -1,6 +1,6 @@
 {
   "name": "bara",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "description": "Created For Creating - Create any JavaScript application.",
   "main": "build/src/index.js",
   "types": "build/src/index.d.ts",
@@ -24,6 +24,6 @@
     "typescript": "~3.1.0"
   },
   "dependencies": {
-    "@bara/core": "^0.1.0"
+    "@bara/core": "^1.1.0"
   }
 }
