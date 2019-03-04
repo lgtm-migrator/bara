@@ -57,7 +57,8 @@
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "echo NO TESTS",
     "version": "oclif-dev readme && git add README.md",
-    "fix": "gts fix"
+    "fix": "echo 'Fixing in nothing'"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }

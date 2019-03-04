@@ -25,5 +25,6 @@
   },
   "dependencies": {
     "@bara/core": "^1.1.0"
-  }
+  },
+  "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }
