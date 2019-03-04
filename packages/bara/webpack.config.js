@@ -4,9 +4,6 @@ const path = require('path');
 module.exports = {
   entry: './src/index.ts',
   target: 'node',
-  optimization: {
-    minimize: false, // <---- disables uglify.
-  },
   module: {
     exprContextCritical: false,
     rules: [

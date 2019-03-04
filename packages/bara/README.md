@@ -6,9 +6,9 @@ Bara is a library created for creating any JavaScript application.
 
 ```
 npm install --save bara
-``````
+```
 
-or 
+or
 
 ```
 yarn add bara
@@ -18,17 +18,24 @@ yarn add bara
 
 ### Full Application
 
-``````javascript
-import {register, useStream, useTrigger, useEvent, useCondition, useAction} from 'bara';
+```javascript
+const {
+  register,
+  useStream,
+  useTrigger,
+  useEvent,
+  useCondition,
+  useAction,
+} = require('bara');
 
-const ON_TIME_ESLAPSED = 'ON_TIME_ESLAPSED',
+const ON_TIME_ESLAPSED = 'ON_TIME_ESLAPSED';
 
-export const ONLY_EVEN_SECOND = (triggeringEvent) => triggeringEvent.payload % 2 === 0;
+const EVERY_X_SECOND = x => triggeringEvent =>
+  triggeringEvent.payload % x === 0;
+const ONLY_EVEN_SECOND = EVERY_X_SECOND(2);
 
-export const EVERY_X_SECOND = (x) => (triggeringEvent) => triggeringEvent.payload % x === 0;
-
-const timeElapsedStream = () => {
-  name: 'Tik Tok',
+const timeElapsedStream = {
+  name: 'time-elapsed-stream',
   eventTypes: [ON_TIME_ESLAPSED],
   setup: ({emit}) => {
     let elapsed = 0;
@@ -36,31 +43,31 @@ const timeElapsedStream = () => {
       emit(ON_TIME_ESLAPSED, elapsed++);
     }, 1000);
   },
-}
+};
 
-const everyTwoSecondsTrigger = {
-  name: 'Console Every Two Seconds',
-  event: useEvent(TikTokEventTypes.ON_TIME_ESLAPSED),
+const tikTrigger = {
+  name: 'Tik Every Two Seconds',
+  event: useEvent(ON_TIME_ESLAPSED),
   condition: useCondition(ONLY_EVEN_SECOND),
   action: useAction(({payload}) => {
-    console.log(`Console every two seconds: ${payload}`);
+    console.log(`Tik every two seconds: ${payload}`);
   }),
 };
 
-const everyXSecondsTrigger = {
-  name: 'Console Every 20 Seconds',
-  event: useEvent(TikTokEventTypes.ON_TIME_ESLAPSED),
+const tokTrigger = {
+  name: 'Tok Every 5 Seconds',
+  event: useEvent(ON_TIME_ESLAPSED),
   condition: useCondition(EVERY_X_SECOND(5)),
   action: useAction(({payload}) => {
-    console.log(`Console every 5 seconds: ${payload}`);
+    console.log(`Tok every 5 seconds: ${payload}`);
   }),
 };
 
 const tikTokApp = () => {
-    useStream(timeElapsedStream);
-    useTrigger(everyTwoSecondsTrigger);
-    useTrigger(everyXSecondsTrigger)
-}
+  useStream(timeElapsedStream);
+  useTrigger(tikTrigger);
+  useTrigger(tokTrigger);
+};
 
 register(tikTokApp);
-
+```
