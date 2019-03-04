@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.10](https://github.com/nampdn/bara/compare/v1.1.9...v1.1.10) (2019-03-04)
+
+
+### Bug Fixes
+
+* **bara:** optimize package and docs ([454d6fe](https://github.com/nampdn/bara/commit/454d6fe))
+
+
+
+
+
 ## [1.1.9](https://github.com/nampdn/bara/compare/v1.1.8...v1.1.9) (2019-03-04)
 
 
