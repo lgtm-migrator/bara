@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
   entry: './src/index.ts',
-  target: 'web',
+  target: 'node',
   module: {
     exprContextCritical: false,
     rules: [
@@ -27,6 +27,8 @@ module.exports = {
     filename: 'bara.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'bara',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
+    umdNamedDefine: true,
+    globalObject: `(typeof self !== 'undefined' ? self : this)`
   },
 };
