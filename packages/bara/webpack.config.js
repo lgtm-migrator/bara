@@ -27,5 +27,6 @@ module.exports = {
     filename: 'bara.js',
     path: path.resolve(__dirname, 'dist'),
     library: 'bara',
+    libraryTarget: 'umd'
   },
 };
