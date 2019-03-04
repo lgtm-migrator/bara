@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](https://github.com/barajs/bara/compare/v1.1.7...v1.1.8) (2019-03-04)
+
+
+### Bug Fixes
+
+* **bara:** temporary disable optimize ([165dd5d](https://github.com/barajs/bara/commit/165dd5d))
+
+
+
+
+
 ## [1.1.7](https://github.com/barajs/bara/compare/v1.1.6...v1.1.7) (2019-03-04)
 
 
