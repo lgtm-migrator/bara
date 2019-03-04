@@ -4,6 +4,9 @@ const path = require('path');
 module.exports = {
   entry: './src/index.ts',
   target: 'node',
+  optimization: {
+    minimize: false, // <---- disables uglify.
+  },
   module: {
     exprContextCritical: false,
     rules: [
@@ -29,6 +32,6 @@ module.exports = {
     library: 'bara',
     libraryTarget: 'umd',
     umdNamedDefine: true,
-    globalObject: `(typeof self !== 'undefined' ? self : this)`
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
   },
 };
