@@ -1,7 +1,7 @@
 {
   "name": "bara-cli",
   "description": "Bara CLI Application - Created For Creating",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "nampdn @nampdn",
   "bin": {
     "bara": "./bin/run"
