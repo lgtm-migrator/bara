@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.7](https://github.com/nampdn/bara/compare/v1.1.6...v1.1.7) (2019-03-04)
+
+
+### Bug Fixes
+
+* **bara:** webpack module for node ([1c9070b](https://github.com/nampdn/bara/commit/1c9070b))
+
+
+
+
+
 ## [1.1.6](https://github.com/nampdn/bara/compare/v1.1.5...v1.1.6) (2019-03-04)
 
 
