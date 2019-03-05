@@ -4,6 +4,7 @@ export interface SetupCallbacks<T> {
   emit: (eventType: string, payload: T) => void;
   error?: (errorMessage: string) => void;
   done?: () => void;
+  options?: any;
 }
 
 export interface BaraStream<T> {
@@ -38,6 +39,7 @@ interface StreamRegistry {
   stream: Stream<any>;
   config: BaraStream<any>;
   eventTypes: string[];
+  options?: any;
 }
 
 interface BaraStreamRegistry {
@@ -72,7 +74,7 @@ function Bara() {
     // Below hooks must be called in main Bara Application
     useStream: <T>(
         streamConfig: BaraStream<T>,
-        config?: any,
+        options?: any,
         ): [Stream<StreamAction<T>>] => {
       const slugName = streamConfig.name;  // TODO need to be slugified
       let stream$;
@@ -85,7 +87,7 @@ function Bara() {
             };
             const error = listener.error;
             const done = listener.complete;
-            streamConfig.setup({emit, error, done});
+            streamConfig.setup({emit, error, done, options});
           },
           stop: () => {},
         });
@@ -95,6 +97,7 @@ function Bara() {
           slugName,
           {
             eventTypes,
+            options,
             config: streamConfig,
             stream: stream$,
           },
