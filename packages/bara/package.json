@@ -1,6 +1,6 @@
 {
   "name": "bara",
-  "version": "1.1.10",
+  "version": "1.2.0",
   "description": "Created For Creating - Create any JavaScript application.",
   "main": "dist/bara.js",
   "module": "build/src/index.js",
@@ -30,7 +30,7 @@
     "webpack-cli": "^3.2.3"
   },
   "dependencies": {
-    "@bara/core": "^1.1.9"
+    "@bara/core": "^1.2.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }

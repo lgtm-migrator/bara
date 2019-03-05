@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/barajs/bara/compare/v1.1.10...v1.2.0) (2019-03-05)
+
+
+### Features
+
+* **core:** add setup options for extending a module ([d0d62a1](https://github.com/barajs/bara/commit/d0d62a1))
+
+
+
+
+
 ## [1.1.9](https://github.com/barajs/bara/compare/v1.1.8...v1.1.9) (2019-03-04)
 
 
