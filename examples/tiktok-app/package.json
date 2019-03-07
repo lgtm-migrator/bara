@@ -1,5 +1,5 @@
 {
-  "name": "node-app",
+  "name": "tiktok-app",
   "version": "1.2.0",
   "description": "Example Bara Application",
   "main": "build/index.js",
