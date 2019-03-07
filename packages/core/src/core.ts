@@ -51,6 +51,15 @@ interface BaraTriggerRegistry {
   [key: string]: {config: BaraTrigger};
 }
 
+function log(...args: any): void {
+  if (process && process.env.NODE_ENV === 'production') {
+  } else {
+    console.log(...args);
+  }
+}
+
+const warn = log;
+
 function Bara() {
   const streams: BaraStreamRegistry[] = [];
   const triggers: BaraTriggerRegistry = {};
@@ -84,6 +93,7 @@ function Bara() {
           start: listener => {
             const emit = (eventType: string, payload: T) => {
               listener.next({eventType, payload});
+			  // Construct a stream for a callback
             };
             const error = listener.error;
             const done = listener.complete;
@@ -105,7 +115,7 @@ function Bara() {
         // Map the stream event with app source stream!
       } else {
         stream$ = streams[slugName];
-        console.warn(
+        warn(
             `[Bara Stream] Warning: The stream ${
                 slugName} has been duplicate registered, please remove redundant code!`,
         );
@@ -146,7 +156,7 @@ function Bara() {
         }
       });
       if (upStreamRegistry) {
-        console.debug(
+        log(
             `[Bara Event] Found stream ${upStreamRegistry[0]} of event types ${
                 eventType}`,
         );
@@ -162,12 +172,12 @@ function Bara() {
           },
         });
       } else {
-        console.warn(
+        warn(
             `[Bara Event] Not found any stream that will emit event type: ${
                 eventType}`,
         );
       }
-      console.debug(`[Bara Event] Registered ${eventType} from ${triggerName}`);
+      log(`[Bara Event] Registered "${eventType}" from trigger "${triggerName}"`);
     },
     useCondition: (conditionFunc: (data: any) => boolean) => (
         triggeringEvent: any,
