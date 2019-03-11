@@ -1,4 +1,4 @@
-import xs, {Producer, Stream} from 'xstream';
+import xs, { Producer, Stream } from "xstream";
 
 export interface SetupCallbacks<T> {
   emit: (eventType: string, payload: T) => void;
@@ -48,11 +48,11 @@ interface BaraStreamRegistry {
 }
 
 interface BaraTriggerRegistry {
-  [key: string]: {config: BaraTrigger};
+  [key: string]: { config: BaraTrigger };
 }
 
 function log(...args: any): void {
-  if (process && process.env.NODE_ENV === 'production') {
+  if (process && process.env.NODE_ENV === "production") {
   } else {
     console.log(...args);
   }
@@ -71,7 +71,7 @@ function Bara() {
     app();
   }
 
-  function isStreamRegistered<T>({name}: BaraStream<T>) {
+  function isStreamRegistered<T>({ name }: BaraStream<T>) {
     return streams.filter(s => s[0] === name).length > 0;
   }
 
@@ -82,24 +82,24 @@ function Bara() {
     },
     // Below hooks must be called in main Bara Application
     useStream: <T>(
-        streamConfig: BaraStream<T>,
-        options?: any,
-        ): [Stream<StreamAction<T>>] => {
-      const slugName = streamConfig.name;  // TODO need to be slugified
+      streamConfig: BaraStream<T>,
+      options?: any
+    ): [Stream<StreamAction<T>>] => {
+      const slugName = streamConfig.name; // TODO need to be slugified
       let stream$;
       if (!isStreamRegistered(streamConfig)) {
         // Construct a stream object for consumer
         stream$ = xs.create({
           start: listener => {
             const emit = (eventType: string, payload: T) => {
-              listener.next({eventType, payload});
-			  // Construct a stream for a callback
+              listener.next({ eventType, payload });
+              // Construct a stream for a callback
             };
             const error = listener.error;
             const done = listener.complete;
-            streamConfig.setup({emit, error, done, options});
+            streamConfig.setup({ emit, error, done, options });
           },
-          stop: () => {},
+          stop: () => {}
         });
         // Assign to public stream registry
         const eventTypes = streamConfig.eventTypes;
@@ -109,31 +109,29 @@ function Bara() {
             eventTypes,
             options,
             config: streamConfig,
-            stream: stream$,
-          },
+            stream: stream$
+          }
         ]);
         // Map the stream event with app source stream!
       } else {
         stream$ = streams[slugName];
         warn(
-            `[Bara Stream] Warning: The stream ${
-                slugName} has been duplicate registered, please remove redundant code!`,
+          `[Bara Stream] Warning: The stream ${slugName} has been duplicate registered, please remove redundant code!`
         );
       }
       // This return allow multi forking for down stream
       return [stream$];
     },
     useTrigger: (triggerConfig: BaraTrigger) => {
-      const slugName = triggerConfig.name;  // TODO need to be slugified
+      const slugName = triggerConfig.name; // TODO need to be slugified
       if (!Boolean(slugName in triggers)) {
         triggers[slugName] = {
-          config: triggerConfig,
+          config: triggerConfig
         };
         triggers[slugName].config.event(slugName);
       } else {
         throw new Error(
-            `[Bara Trigger] Error: Duplicate trigger name ${
-                slugName} in the registry, please specify different name!`,
+          `[Bara Trigger] Error: Duplicate trigger name ${slugName} in the registry, please specify different name!`
         );
       }
     },
@@ -147,21 +145,20 @@ function Bara() {
           return s[1].eventTypes.indexOf(eventType) > -1;
         } else {
           throw new Error(
-              `[Bara Event] Could not find any event type of ${
-                  eventType} from streams: ${
-                  JSON.stringify(
-                      streams,
-                      )}`,
+            `[Bara Event] Could not find any event type of ${eventType} from streams: ${JSON.stringify(
+              streams
+            )}`
           );
         }
       });
       if (upStreamRegistry) {
         log(
-            `[Bara Event] Found stream ${upStreamRegistry[0]} of event types ${
-                eventType}`,
+          `[Bara Event] Found stream ${
+            upStreamRegistry[0]
+          } of event types ${eventType}`
         );
         const newStream = upStreamRegistry[1].stream.filter(data => {
-          if ('condition' in currentTrigger.config) {
+          if ("condition" in currentTrigger.config) {
             return currentTrigger.config.condition!(data);
           }
           return true;
@@ -169,22 +166,23 @@ function Bara() {
         const eventStream = newStream.subscribe({
           next: payload => {
             currentTrigger.config.action(payload);
-          },
+          }
         });
       } else {
         warn(
-            `[Bara Event] Not found any stream that will emit event type: ${
-                eventType}`,
+          `[Bara Event] Not found any stream that will emit event type: ${eventType}`
         );
       }
-      log(`[Bara Event] Registered "${eventType}" from trigger "${triggerName}"`);
+      log(
+        `[Bara Event] Registered "${eventType}" from trigger "${triggerName}"`
+      );
     },
     useCondition: (conditionFunc: (data: any) => boolean) => (
-        triggeringEvent: any,
-        ): boolean => conditionFunc(triggeringEvent),
+      triggeringEvent: any
+    ): boolean => conditionFunc(triggeringEvent),
     useAction: (actionFunc: (data: any) => void) => (triggeringEvent: any) => {
       actionFunc(triggeringEvent);
-    },
+    }
   };
 }
 
@@ -194,7 +192,7 @@ const {
   useTrigger,
   useEvent,
   useCondition,
-  useAction,
+  useAction
 } = Bara();
 
-export {register, useStream, useTrigger, useEvent, useCondition, useAction};
+export { register, useStream, useTrigger, useEvent, useCondition, useAction };
