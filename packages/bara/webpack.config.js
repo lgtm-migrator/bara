@@ -1,9 +1,9 @@
-const webpack = require('webpack');
-const path = require('path');
+const webpack = require("webpack");
+const path = require("path");
 
 module.exports = {
-  entry: './src/index.ts',
-  target: 'node',
+  entry: "./src/index.ts",
+  target: "node",
   module: {
     exprContextCritical: false,
     rules: [
@@ -11,24 +11,24 @@ module.exports = {
         test: /\.tsx?$/,
         use: [
           {
-            loader: 'ts-loader',
+            loader: "ts-loader",
             options: {
-              configFile: 'tsconfig.build.json',
-            },
-          },
-        ],
-      },
-    ],
+              configFile: "tsconfig.build.json"
+            }
+          }
+        ]
+      }
+    ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: [".tsx", ".ts", ".js"]
   },
   output: {
-    filename: 'bara.js',
-    path: path.resolve(__dirname, 'dist'),
-    library: 'bara',
-    libraryTarget: 'umd',
+    filename: "bara.js",
+    path: path.resolve(__dirname, "dist"),
+    library: "bara",
+    libraryTarget: "umd",
     umdNamedDefine: true,
-    globalObject: `(typeof self !== 'undefined' ? self : this)`,
-  },
+    globalObject: `(typeof self !== 'undefined' ? self : this)`
+  }
 };
