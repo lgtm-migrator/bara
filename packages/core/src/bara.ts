@@ -1,10 +1,21 @@
+import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig } from './model/stream'
-import { useStreamHook } from './hooks/use-stream'
+
 import { useEventHook } from './hooks/use-event'
+import { useStreamHook } from './hooks/use-stream'
+import { BaraTriggerConfig, useTriggerHook } from './hooks/use-trigger'
+
+interface EventMapCache {
+  [k: string]: Array<BaraEvent<any>>
+}
 
 const bara = (() => {
   const streamRegistry: any[] = []
-  const streamRegistryIndex = 0
+  let streamRegistryIndex = 0
+  const triggerRegistry: any[] = []
+  let triggerRegistryIndex = 0
+  const eventMaps: EventMapCache = {} // Temporary cache for initial register
+
   return {
     register(app: () => void) {
       app()
@@ -13,11 +24,34 @@ const bara = (() => {
       streamRegistry[streamRegistryIndex] =
         streamRegistry[streamRegistryIndex] ||
         (useStreamHook(streamConfig) as any)
+      streamRegistryIndex = streamRegistryIndex + 1
       return streamRegistry
     },
-    useEvent(eventType) {},
-    useTrigger(triggerConfig: any) {
-      console.log(`registering trigger: ${triggerConfig}`)
+    useEvent<T>(eventType: EventType) {
+      const currentUpStream = streamRegistry[streamRegistryIndex]
+      const currentTrigger = triggerRegistry[triggerRegistryIndex]
+      if (currentTrigger && currentUpStream) {
+        const event = useEventHook<T>(
+          currentUpStream,
+          currentTrigger,
+          eventType,
+        )
+        if (!('event' in currentTrigger)) {
+          currentTrigger.event = event
+        }
+      } else {
+        throw new Error(
+          `No trigger is registering at this time. 'useEvent' can only being used in a Bara Trigger.`,
+        )
+      }
+      const hook = useEventHook
+    },
+    useTrigger<T>(triggerConfig: BaraTriggerConfig<T>) {
+      const currentTrigger =
+        triggerRegistry[triggerRegistryIndex] ||
+        (useTriggerHook(triggerConfig, triggerRegistryIndex) as any)
+      triggerRegistryIndex = triggerRegistryIndex + 1
+      return triggerRegistry
     },
   }
 })()

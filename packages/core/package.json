@@ -21,7 +21,7 @@
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
     "pretest": "yarn format",
-    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn compile:watch\" "
+    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint\" \"yarn compile:watch\" "
   },
   "devDependencies": {
     "@types/jest": "24.0.6",
