@@ -1,20 +1,17 @@
+import {register, useStream} from '../src/bara';
+
 describe('main bara application', () => {
+  beforeAll(() => {
+    register(() => {
+      const registry = useStream({
+        setup: ({emit}) => {
+          console.log('Registered stream!');
+        },
+      });
+      console.log(registry);
+    });
+  });
   it('run bara application', () => {
     expect(true).toBeTruthy();
-    // const trigger = createTrigger('Test Trigger', () => {
-    // const [eventA, emitEventA] = useEvent<string>({
-    // name: 'initialized',
-    //});
-    // const [eventB, emitEventB] = useEvent<number>({
-    // name: 'update',
-    //});
-    //});
-
-    // const app = () => {
-    // console.log('Before initialize Bara application..');
-    // const t = useTrigger(trigger);
-    // console.log('Application exited!');
-    //};
-    // bara(app).run();
   });
 });
