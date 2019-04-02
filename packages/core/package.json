@@ -25,7 +25,7 @@
     "prepare": "yarn compile",
     "pretest": "yarn format",
     "lint:watch": "npm-watch",
-    "dev": "concurrently --kill-others \"yarn lint:watch\" \"yarn test:watch\" \"yarn compile:watch\" "
+    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint:watch\" \"yarn compile:watch\" "
   },
   "devDependencies": {
     "@types/jest": "24.0.6",

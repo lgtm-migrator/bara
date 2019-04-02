@@ -16,3 +16,8 @@ export const slugify = (str: string) => {
     .replace(/^-+/, '') // Trim - from start of text
     .replace(/-+$/, '') // Trim - from end of text
 }
+
+export const generateName = (whichType: string, incremental: () => string) => {
+    const next = incremental();
+    return `${whichType}___${next}`
+}

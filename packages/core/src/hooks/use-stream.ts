@@ -1,4 +1,5 @@
 import xs from 'xstream'
+import { EventType } from '../model/event'
 import {
   BaraStream,
   BaraStreamConfig,
@@ -14,10 +15,11 @@ function validateStreamConfig<T>(config: BaraStreamConfig<T>) {
 
 export function useStreamHook<T>(config: BaraStreamConfig<T>): BaraStream<T> {
   validateStreamConfig(config)
+  // TODO return a callback function to merge this stream with appStream
   const _$ = xs.create<BaraStreamPayload<T>>({
     // Start callback will be invoked only at least one listener subscribed
     start: listener => {
-      const emit = (eventType: string, payload: T) => {
+      const emit = (eventType: EventType, payload: T) => {
         listener.next({ eventType, payload })
       }
       config.setup({ emit })

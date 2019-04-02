@@ -1,11 +1,7 @@
 import { Base } from '../model/base'
-import { UseEventHookType } from './use-event'
+import { BaraTrigger, BaraTriggerConfig } from '../model/trigger'
 
 import { slugify } from '../helpers/string'
-
-export interface BaraTriggerConfig<T> extends Base {
-  event: UseEventHookType<T>
-}
 
 export function useTriggerHook<T>(
   config: BaraTriggerConfig<T>,
@@ -13,5 +9,5 @@ export function useTriggerHook<T>(
 ) {
   let name = config.name || `trigger-${index}`
   name = slugify(name)
-  return { name }
+  return { name, config }
 }

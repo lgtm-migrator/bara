@@ -1,20 +1,39 @@
-import { register, useStream } from '../src/bara'
+import {
+  createEventType,
+  EventType,
+  register,
+  SetupCallbacks,
+  useEvent,
+  useStream,
+  useTrigger,
+} from '../src'
 
 describe('main bara application', () => {
-  beforeAll(() => {
-    register(() => {
-      const registry = useStream({
-        name: 'example-stream',
-        eventTypes: [],
-        setup: ({ emit }) => {
-          setTimeout(() => {
-            emit!('not_an_event', {})
-          }, 1000)
-        },
+  it('run full bara application', done => {
+    const name = 'Example Stream'
+    const newStringEvent = createEventType<string>('NEW_STRING')
+    const setup = ({ emit }: SetupCallbacks<string>) => {
+      setTimeout(() => {
+        emit(newStringEvent, 'Hello Bara App!')
+      }, 1000)
+    }
+
+    const baraApp = () => {
+
+      // Any Bara application should start with a Stream
+      useStream<string>({
+        name,
+        setup,
+        eventTypes: [newStringEvent],
       })
-    })
-  })
-  it('run bara application', () => {
-    expect(true).toBeTruthy()
+
+      useTrigger<string>(() => {
+        const event = useEvent<string>(newStringEvent)
+        return [event]
+      })
+
+    }
+    const { streamRegistry, triggerRegistry } = register(baraApp)
+    setTimeout(() => { done() }, 2000)
   })
 })
