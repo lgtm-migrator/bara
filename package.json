@@ -8,7 +8,7 @@
   "scripts": {
     "compile": "lerna run compile",
     "test": "lerna run test",
-    "fix": "lerna run fix",
+    "format": "lerna run format",
     "test:watch": "lerna run test:watch --stream",
     "release": "lerna publish --yes --conventional-commits",
     "cli": "yarn workspace bara-cli"

@@ -1,5 +1,5 @@
-import {BaraTriggerConfig} from './model/trigger';
-import {slugify} from './helpers/string';
+import { BaraTriggerConfig } from './model/trigger'
+import { slugify } from './helpers/string'
 
 /**
  * Create event type with safe name, prevent bad character and duplicate event type across different streams
@@ -7,6 +7,6 @@ import {slugify} from './helpers/string';
  */
 export function createEventType<T>(eventType: string) {
   return (trigger: BaraTriggerConfig<T>) => {
-    return slugify(`${trigger.name}___${eventType}`);
-  };
+    return slugify(`${trigger.name}___${eventType}`)
+  }
 }

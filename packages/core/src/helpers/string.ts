@@ -1,9 +1,9 @@
 // Slugify by @hagemann
 // References: https://gist.github.com/hagemann/382adfc57adbd5af078dc93feef01fe1
 export const slugify = (str: string) => {
-  const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;';
-  const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------';
-  const p = new RegExp(a.split('').join('|'), 'g');
+  const a = 'àáäâãåăæçèéëêǵḧìíïîḿńǹñòóöôœṕŕßśșțùúüûǘẃẍÿź·/_,:;'
+  const b = 'aaaaaaaaceeeeghiiiimnnnoooooprssstuuuuuwxyz------'
+  const p = new RegExp(a.split('').join('|'), 'g')
 
   return str
     .toString()
@@ -14,5 +14,5 @@ export const slugify = (str: string) => {
     .replace(/[^\w\-]+/g, '') // Remove all non-word characters
     .replace(/\-\-+/g, '-') // Replace multiple - with single -
     .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, ''); // Trim - from end of text
-};
+    .replace(/-+$/, '') // Trim - from end of text
+}

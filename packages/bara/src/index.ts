@@ -1,4 +1,4 @@
-import * as bara from "@bara/core";
+import * as bara from '@bara/core'
 
 const {
   register,
@@ -6,9 +6,9 @@ const {
   useTrigger,
   useEvent,
   useCondition,
-  useAction
-} = bara;
+  useAction,
+} = bara
 
-export { register, useStream, useTrigger, useEvent, useCondition, useAction };
+export { register, useStream, useTrigger, useEvent, useCondition, useAction }
 
-export default bara;
+export default bara
