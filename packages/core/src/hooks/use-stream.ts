@@ -1,22 +1,24 @@
 import xs from 'xstream';
-import {BaraStreamConfig, SetupCallbacks} from '../model/stream';
+import {BaraStream, BaraStreamConfig, BaraStreamPayload, SetupCallbacks} from '../model/stream';
 
-function validateStreamConfig<T>(streamConfig: BaraStreamConfig<T>) {
-  if (!('setup' in streamConfig)) {
+function validateStreamConfig<T>(config: BaraStreamConfig<T>) {
+  if (!('setup' in config)) {
     throw new Error(`Please specify "setup" function in a Bara Stream`);
   }
 }
 
-export function useStreamHook<T>(streamConfig: BaraStreamConfig<T>) {
-  validateStreamConfig(streamConfig);
-  const $ = xs.create({
+export function useStreamHook<T>(
+  config: BaraStreamConfig<T>,
+): BaraStream<T> {
+  validateStreamConfig(config);
+  const _$ = xs.create<BaraStreamPayload<T>>({
     start: listener => {
       const emit = (eventType: string, payload: T) => {
         listener.next({eventType, payload});
       };
-      streamConfig.setup({emit});
+      config.setup({emit});
     },
     stop: () => {},
   });
-  return {$};
+  return {_$, config};
 }

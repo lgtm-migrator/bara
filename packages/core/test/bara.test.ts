@@ -4,6 +4,8 @@ describe('main bara application', () => {
   beforeAll(() => {
     register(() => {
       const registry = useStream({
+        name: 'example-stream',
+        eventTypes: [],
         setup: ({emit}) => {
           console.log('Registered stream!');
         },
