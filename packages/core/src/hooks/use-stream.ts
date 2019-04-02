@@ -1,5 +1,10 @@
 import xs from 'xstream';
-import {BaraStream, BaraStreamConfig, BaraStreamPayload, SetupCallbacks} from '../model/stream';
+import {
+  BaraStream,
+  BaraStreamConfig,
+  BaraStreamPayload,
+  SetupCallbacks,
+} from '../model/stream';
 
 function validateStreamConfig<T>(config: BaraStreamConfig<T>) {
   if (!('setup' in config)) {
@@ -7,18 +12,19 @@ function validateStreamConfig<T>(config: BaraStreamConfig<T>) {
   }
 }
 
-export function useStreamHook<T>(
-  config: BaraStreamConfig<T>,
-): BaraStream<T> {
+export function useStreamHook<T>(config: BaraStreamConfig<T>): BaraStream<T> {
   validateStreamConfig(config);
   const _$ = xs.create<BaraStreamPayload<T>>({
+    // Start callback will be invoked only at least one listener subscribed
     start: listener => {
       const emit = (eventType: string, payload: T) => {
         listener.next({eventType, payload});
       };
       config.setup({emit});
     },
-    stop: () => {},
+    stop: () => {
+      // TODO implement the stream clean up callback API
+    },
   });
   return {_$, config};
 }
