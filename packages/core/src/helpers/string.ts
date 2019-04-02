@@ -18,6 +18,6 @@ export const slugify = (str: string) => {
 }
 
 export const generateName = (whichType: string, incremental: () => string) => {
-    const next = incremental();
-    return `${whichType}___${next}`
+  const next = incremental()
+  return `${whichType}___${next}`
 }
