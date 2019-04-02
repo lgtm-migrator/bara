@@ -1,4 +1,4 @@
-import {register, useStream} from '../src/bara';
+import { register, useStream } from '../src/bara'
 
 describe('main bara application', () => {
   beforeAll(() => {
@@ -6,14 +6,15 @@ describe('main bara application', () => {
       const registry = useStream({
         name: 'example-stream',
         eventTypes: [],
-        setup: ({emit}) => {
-          console.log('Registered stream!');
+        setup: ({ emit }) => {
+          setTimeout(() => {
+            emit!('not_an_event', {})
+          }, 1000)
         },
-      });
-      console.log(registry);
-    });
-  });
+      })
+    })
+  })
   it('run bara application', () => {
-    expect(true).toBeTruthy();
-  });
-});
+    expect(true).toBeTruthy()
+  })
+})
