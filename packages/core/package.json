@@ -12,6 +12,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "watch": {
+    "lint": "{src}/*.ts"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
@@ -21,12 +24,14 @@
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
     "pretest": "yarn format",
-    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint\" \"yarn compile:watch\" "
+    "lint:watch": "npm-watch",
+    "dev": "concurrently --kill-others \"yarn lint:watch\" \"yarn test:watch\" \"yarn compile:watch\" "
   },
   "devDependencies": {
     "@types/jest": "24.0.6",
     "concurrently": "4.1.0",
     "jest": "24.1.0",
+    "npm-watch": "0.6.0",
     "prettier": "1.16.4",
     "ts-jest": "24.0.0",
     "tslint": "5.15.0",

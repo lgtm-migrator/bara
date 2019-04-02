@@ -19,6 +19,7 @@ const bara = (() => {
   return {
     register(app: () => void) {
       app()
+      // Register all triggers
     },
     useStream<T>(streamConfig: BaraStreamConfig<T>) {
       streamRegistry[streamRegistryIndex] =
@@ -26,6 +27,13 @@ const bara = (() => {
         (useStreamHook(streamConfig) as any)
       streamRegistryIndex = streamRegistryIndex + 1
       return streamRegistry
+    },
+    useTrigger<T>(triggerConfig: BaraTriggerConfig<T>) {
+      const currentTrigger =
+        triggerRegistry[triggerRegistryIndex] ||
+        (useTriggerHook(triggerConfig, triggerRegistryIndex) as any)
+      triggerRegistryIndex = triggerRegistryIndex + 1
+      return triggerRegistry
     },
     useEvent<T>(eventType: EventType) {
       const currentUpStream = streamRegistry[streamRegistryIndex]
@@ -45,13 +53,6 @@ const bara = (() => {
         )
       }
       const hook = useEventHook
-    },
-    useTrigger<T>(triggerConfig: BaraTriggerConfig<T>) {
-      const currentTrigger =
-        triggerRegistry[triggerRegistryIndex] ||
-        (useTriggerHook(triggerConfig, triggerRegistryIndex) as any)
-      triggerRegistryIndex = triggerRegistryIndex + 1
-      return triggerRegistry
     },
   }
 })()
