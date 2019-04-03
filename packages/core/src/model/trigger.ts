@@ -8,14 +8,12 @@ import { UseActionHookType } from '../hooks/use-action'
 import { UseEventHookType } from '../hooks/use-event'
 
 export interface BaraTriggerSetupReturn<T> {
-  event?: (appStream: AppStream<T>) => BaraEvent<T> | null,
-  condition?: (...args: any[]) => BaraCondition<T> | null,
+  event?: (appStream: AppStream<T>) => BaraEvent<T> | null
+  condition?: (...args: any[]) => BaraCondition<T> | null
   action?: (...args: any[]) => BaraAction<T> | null
 }
 
-export type BaraTriggerSetup<T> = (
-  ...args: any[]
-) => BaraTriggerSetupReturn<T>
+export type BaraTriggerSetup<T> = (...args: any[]) => BaraTriggerSetupReturn<T>
 
 export interface BaraTriggerConfig<T> extends Base {
   event: UseEventHookType<T> | null

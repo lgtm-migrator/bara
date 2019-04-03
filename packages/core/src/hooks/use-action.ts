@@ -8,7 +8,9 @@ import { BaraEvent, BaraEventPayload } from '../model/event'
 
 export type UseActionHookType<T> = (event: BaraEvent<T>) => BaraAction<T>
 
-export function useNormalActionHook<T>(callback: BaraNormalActionConfig<T>): UseActionHookType<T> {
+export function useNormalActionHook<T>(
+  callback: BaraNormalActionConfig<T>,
+): UseActionHookType<T> {
   return (event: BaraEvent<T>): BaraAction<T> => {
     const _listener: Listener<BaraEventPayload<T>> = {
       next: (streamPayload: BaraEventPayload<T>) => {
