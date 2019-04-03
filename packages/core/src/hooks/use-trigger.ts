@@ -1,5 +1,6 @@
 import { AppStream } from '../model/app'
 import { Base } from '../model/base'
+import { BaraCondition } from '../model/condition'
 import { BaraEvent } from '../model/event'
 import {
   BaraTrigger,
@@ -9,6 +10,7 @@ import {
 } from '../model/trigger'
 
 import { UseActionHookType } from './use-action'
+import { UseConditionHookType } from './use-condition'
 import { UseEventHookType } from './use-event'
 
 import { generateName } from '../helpers/string'
@@ -45,6 +47,12 @@ export function useTriggerHook<T>(
           trigger[entityType] = event
           return event
         }
+      }
+
+      // Attach Condition
+      if (entityType === TriggerEntityType.CONDITION) {
+        const condition = (entity as UseConditionHookType<T>)()
+        return condition
       }
 
       // Attach Action

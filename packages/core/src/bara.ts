@@ -7,6 +7,7 @@ import {
   BaraNormalActionConfig,
 } from './model/action'
 import { AppStream } from './model/app'
+import { BaraCondition } from './model/condition'
 import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig } from './model/stream'
 import {
@@ -16,6 +17,7 @@ import {
 } from './model/trigger'
 
 import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
+import { useConditionHook } from './hooks/use-condition'
 import { useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
@@ -74,10 +76,15 @@ const bara = (() => {
       const event = currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [
         appStream,
       ])
+      const condition = currentTrigger.attach(
+        TriggerEntityType.CONDITION,
+        conditionSetup,
+        [],
+      )
       const action = currentTrigger.attach(
         TriggerEntityType.ACTION,
         actionSetup,
-        [event],
+        [event, condition],
       ) // TODO replace event with condition or add condition too
 
       // Done trigger registering step and skip to next useTrigger function
@@ -95,8 +102,13 @@ const bara = (() => {
       const eventSetup = useEventHook<T>(currentTriggerConfig, eventType)
       return eventSetup
     },
+    useCondition<T>(config: BaraConditionConfig<T>) {
+      const conditionSetup = useConditionHook<T>(config)
+      return conditionSetup
+    },
     useAction<T>(callback: BaraNormalActionConfig<T>) {
-      return useNormalActionHook(callback)
+      const actionSetup = useNormalActionHook(callback)
+      return actionSetup
     },
   }
 })()
