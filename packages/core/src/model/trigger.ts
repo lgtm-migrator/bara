@@ -14,8 +14,29 @@ export interface BaraTriggerConfig<T> extends Base {
   event: UseEventHookType<T> | null
 }
 
+export enum TriggerEntityType {
+  EVENT = 'EVENT',
+  CONDITION = 'CONDITION',
+  ACTION = 'ACTION',
+}
+
+export type TriggerEntities<T> = UseEventHookType<T>
+
+export type TriggerAttachFunc<T> = (
+  type: TriggerEntityType,
+  entity: TriggerEntities<T>,
+  deps?: any[],
+) => void
+
 export interface BaraTrigger<T> extends Base {
-  event: BaraEvent<T>
-  condition: BaraCondition<T>
-  action: BaraAction<T>
+  // Metadata
+  _config: BaraTriggerConfig<T>
+
+  // Entities
+  EVENT?: BaraEvent<T>
+  CONDITION?: BaraCondition<T>
+  ACTION?: BaraAction<T>
+
+  // Methods
+  attach: TriggerAttachFunc<T>
 }

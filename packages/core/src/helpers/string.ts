@@ -17,7 +17,11 @@ export const slugify = (str: string) => {
     .replace(/-+$/, '') // Trim - from end of text
 }
 
-export const generateName = (whichType: string, incremental: () => string) => {
-  const next = incremental()
+export const generateName = (
+  whichType: string,
+  incremental: (...args: any[]) => string,
+  context?: any,
+) => {
+  const next = incremental(context)
   return `${whichType}___${next}`
 }

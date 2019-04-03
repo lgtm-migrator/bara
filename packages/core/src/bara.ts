@@ -4,7 +4,11 @@ import { generateName } from './helpers/string'
 import { AppStream } from './model/app'
 import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig } from './model/stream'
-import { BaraTriggerConfig, BaraTriggerSetup } from './model/trigger'
+import {
+  BaraTriggerConfig,
+  BaraTriggerSetup,
+  TriggerEntityType,
+} from './model/trigger'
 
 import { useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
@@ -56,27 +60,9 @@ const bara = (() => {
         triggerRegistry[triggerRegistryIndex] ||
         (useTriggerHook(config, triggerRegistryIndex) as any)
 
-      let event: BaraEvent<T>
-      // let condition: any // TODO attach condition
-      // let action: any // TODO attach action
-
       // Attach BaraEvent with current BaraTrigger
-      if (!('event' in currentTrigger)) {
-        if (typeof eventSetup === 'function') {
-          event = eventSetup(appStream)
-          if (event && event._$) {
-            currentTrigger.event = event
-            event._$.addListener({
-              next: data => console.log(data),
-            })
-            console.log(`[BaraEvent] Registered event ${event.name}`)
-          }
-        } else {
-          throw new Error(
-            `Trigger function have to return an array with the first value is an BaraEvent`,
-          )
-        }
-      }
+      currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [appStream])
+
       triggerRegistryIndex = triggerRegistryIndex + 1
 
       return triggerRegistry
