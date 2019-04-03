@@ -8,6 +8,9 @@ import {
   TriggerEntityType,
 } from '../model/trigger'
 
+import { UseActionHookType } from './use-action'
+import { UseEventHookType } from './use-event'
+
 import { generateName } from '../helpers/string'
 
 const generateTriggerName = (triggerName: string, context: number) =>
@@ -31,16 +34,24 @@ export function useTriggerHook<T>(
         let appStream: AppStream<T>
         if (deps && deps.length > 0) {
           appStream = deps[0] as AppStream<T>
-          const event: BaraEvent<T> = entity(appStream)
-          if (event && event._$ && event.name) {
-            trigger[entityType] = event
-          } else {
+          const event: BaraEvent<T> = (entity as UseEventHookType<T>)(appStream)
+          if (!(event && event._$ && event.name)) {
             throw new Error(
               ` [BaraTrigger] Could not detect event before attaching to trigger ${
                 trigger.name
               } `,
             )
           }
+          trigger[entityType] = event
+          return event
+        }
+      }
+
+      // Attach Action
+      if (entityType === TriggerEntityType.ACTION) {
+        if (deps && deps.length > 0) {
+          const event = deps[0] as BaraEvent<T>
+          const action = (entity as UseActionHookType<T>)(event)
         }
       }
     } else {

@@ -4,11 +4,18 @@ import { Base } from './base'
 import { BaraCondition } from './condition'
 import { BaraEvent } from './event'
 
+import { UseActionHookType } from '../hooks/use-action'
 import { UseEventHookType } from '../hooks/use-event'
+
+export interface BaraTriggerSetupReturn<T> {
+  event?: (appStream: AppStream<T>) => BaraEvent<T> | null,
+  condition?: (...args: any[]) => BaraCondition<T> | null,
+  action?: (...args: any[]) => BaraAction<T> | null
+}
 
 export type BaraTriggerSetup<T> = (
   ...args: any[]
-) => [(appStream: AppStream<T>) => BaraEvent<T>]
+) => BaraTriggerSetupReturn<T>
 
 export interface BaraTriggerConfig<T> extends Base {
   event: UseEventHookType<T> | null
@@ -20,13 +27,13 @@ export enum TriggerEntityType {
   ACTION = 'ACTION',
 }
 
-export type TriggerEntities<T> = UseEventHookType<T>
+export type TriggerEntities<T> = UseEventHookType<T> | UseActionHookType<T>
 
 export type TriggerAttachFunc<T> = (
   type: TriggerEntityType,
   entity: TriggerEntities<T>,
   deps?: any[],
-) => void
+) => BaraEvent<T> | BaraCondition<T> | BaraAction<T> | void
 
 export interface BaraTrigger<T> extends Base {
   // Metadata

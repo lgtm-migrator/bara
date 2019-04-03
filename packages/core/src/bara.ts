@@ -1,6 +1,11 @@
 import xs from 'xstream'
 
 import { generateName } from './helpers/string'
+import {
+  BaraAction,
+  BaraCallbackActionConfig,
+  BaraNormalActionConfig,
+} from './model/action'
 import { AppStream } from './model/app'
 import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig } from './model/stream'
@@ -10,6 +15,7 @@ import {
   TriggerEntityType,
 } from './model/trigger'
 
+import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
 import { useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
@@ -50,7 +56,11 @@ const bara = (() => {
       // Setup trigger config
       triggerConfig[triggerConfigIndex] =
         triggerConfig[triggerConfigIndex] || config
-      const [eventSetup] = setup() // Execute user defined trigger setup function which will assign to the current triggerConfig
+      const {
+        event: eventSetup,
+        condition: conditionSetup,
+        action: actionSetup,
+      } = setup() // Execute user defined trigger setup function which will assign to the current triggerConfig
 
       // Done the setup by skip to the next trigger
       triggerConfigIndex += 1
@@ -60,9 +70,17 @@ const bara = (() => {
         triggerRegistry[triggerRegistryIndex] ||
         (useTriggerHook(config, triggerRegistryIndex) as any)
 
-      // Attach BaraEvent with current BaraTrigger
-      currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [appStream])
+      // Attach BaraEvent, BaraCondition, BaraAction with current BaraTrigger
+      const event = currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [
+        appStream,
+      ])
+      const action = currentTrigger.attach(
+        TriggerEntityType.ACTION,
+        actionSetup,
+        [event],
+      ) // TODO replace event with condition or add condition too
 
+      // Done trigger registering step and skip to next useTrigger function
       triggerRegistryIndex = triggerRegistryIndex + 1
 
       return triggerRegistry
@@ -74,12 +92,15 @@ const bara = (() => {
           `No trigger is registering at this time. 'useEvent' can only being used in a Bara Trigger.`,
         )
       }
-      const event = useEventHook<T>(currentTriggerConfig, eventType)
-      return event
+      const eventSetup = useEventHook<T>(currentTriggerConfig, eventType)
+      return eventSetup
+    },
+    useAction<T>(callback: BaraNormalActionConfig<T>) {
+      return useNormalActionHook(callback)
     },
   }
 })()
 
-const { register, useStream, useTrigger, useEvent } = bara
+const { register, useStream, useTrigger, useEvent, useAction } = bara
 
-export { register, useStream, useTrigger, useEvent }
+export { register, useStream, useTrigger, useEvent, useAction }

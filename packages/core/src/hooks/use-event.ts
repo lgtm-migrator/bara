@@ -21,7 +21,12 @@ export function useEventHook<T>(
     const eventFilter = (streamPayload: BaraStreamPayload<T>) => {
       return streamPayload.eventType(trigger) === eventTypeRegister(trigger)
     }
-    const _$ = (appStream as AppStream<T>).filter(eventFilter)
+    const _$ = (appStream as AppStream<T>)
+      .filter(eventFilter)
+      .map(({ eventType: evenTypeRegFunc, payload }) => {
+        const eventType = evenTypeRegFunc(trigger)
+        return { eventType, payload }
+      })
     return { name, _$ }
   }
 }

@@ -3,6 +3,7 @@ import {
   EventType,
   register,
   SetupCallbacks,
+  useAction,
   useEvent,
   useStream,
   useTrigger,
@@ -19,7 +20,6 @@ describe('main bara application', () => {
     }
 
     const baraApp = () => {
-
       // Any Bara application should start with a Stream
       useStream<string>({
         name,
@@ -29,11 +29,15 @@ describe('main bara application', () => {
 
       useTrigger<string>(() => {
         const event = useEvent<string>(newStringEvent)
-        return [event]
+        const action = useAction<string>((data, payload) => {
+          console.log(`Action value: ${data} - ${JSON.stringify(payload)}`)
+        })
+        return {event, action}
       })
-
     }
     const { streamRegistry, triggerRegistry } = register(baraApp)
-    setTimeout(() => { done() }, 2000)
+    setTimeout(() => {
+      done()
+    }, 2000)
   })
 })
