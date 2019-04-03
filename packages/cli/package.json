@@ -37,9 +37,9 @@
   },
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
-    "posttest": "tslint -p . -t stylish",
+    "lint": "tslint -p .",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
+    "test": "echo NO TESTS && exit 0;",
     "version": "oclif-dev readme && git add README.md",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'"
   },
