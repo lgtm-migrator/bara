@@ -12,6 +12,7 @@
     "format": "lerna run format",
     "test:watch": "lerna run test:watch --stream",
     "release": "lerna publish --yes --conventional-commits",
+    "release:nightly": "lerna publish --yes --registry https://registry.npmjs.org --conventional-commits --canary --bump=prerelease",
     "cli": "yarn workspace bara-cli"
   },
   "workspaces": [
