@@ -8,24 +8,42 @@
   "main": "dist/bara.js",
   "module": "build/index.js",
   "types": "build/index.d.ts",
-  "files": ["build", "dist"],
+  "files": [
+    "build",
+    "dist"
+  ],
   "license": "MIT",
-  "keywords": ["bara", "reactive programming", "trigger", "universal", "backend", "frontend"],
+  "keywords": [
+    "bara",
+    "reactive programming",
+    "trigger",
+    "universal",
+    "backend",
+    "frontend"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
     "clean": "rimraf build dist",
     "compile:tsc": "tsc -p ./tsconfig.build.json",
     "compile:webpack": "webpack --mode=production",
     "compile": "yarn clean && yarn compile:tsc && yarn compile:webpack",
+    "postcompile": "bundlesize",
     "tsc": "tsc -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
     "pretest": "yarn format"
   },
+  "bundlesize": [
+    {
+      "path": "./dist/bara.js",
+      "maxSize": "100 kB"
+    }
+  ],
   "dependencies": {
     "@bara/core": "^1.2.0"
   },
   "devDependencies": {
+    "bundlesize": "0.17.1",
     "prettier": "1.16.4",
     "ts-loader": "5.3.3",
     "typescript": "~3.1.0",
