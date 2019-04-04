@@ -7,8 +7,17 @@ const {
   useEvent,
   useCondition,
   useAction,
+  createEventType,
 } = bara
 
-export { register, useStream, useTrigger, useEvent, useCondition, useAction }
+export {
+  register,
+  useStream,
+  useTrigger,
+  useEvent,
+  useCondition,
+  useAction,
+  createEventType,
+}
 
 export default bara
