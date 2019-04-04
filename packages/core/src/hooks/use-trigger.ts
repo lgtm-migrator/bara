@@ -59,7 +59,8 @@ export function useTriggerHook<T>(
       if (entityType === TriggerEntityType.ACTION) {
         if (deps && deps.length > 0) {
           const event = deps[0] as BaraEvent<T>
-          const action = (entity as UseActionHookType<T>)(event)
+          const condition = deps[1] as BaraCondition<T>
+          const action = (entity as UseActionHookType<T>)(event, condition)
         }
       }
     } else {

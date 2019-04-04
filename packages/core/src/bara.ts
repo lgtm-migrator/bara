@@ -7,7 +7,7 @@ import {
   BaraNormalActionConfig,
 } from './model/action'
 import { AppStream } from './model/app'
-import { BaraCondition } from './model/condition'
+import { BaraConditionConfig } from './model/condition'
 import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig } from './model/stream'
 import {
@@ -113,6 +113,13 @@ const bara = (() => {
   }
 })()
 
-const { register, useStream, useTrigger, useEvent, useAction } = bara
+const {
+  register,
+  useStream,
+  useTrigger,
+  useEvent,
+  useAction,
+  useCondition,
+} = bara
 
-export { register, useStream, useTrigger, useEvent, useAction }
+export { register, useStream, useTrigger, useEvent, useAction, useCondition }

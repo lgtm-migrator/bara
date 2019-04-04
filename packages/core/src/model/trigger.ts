@@ -5,6 +5,7 @@ import { BaraCondition } from './condition'
 import { BaraEvent } from './event'
 
 import { UseActionHookType } from '../hooks/use-action'
+import { UseConditionHookType } from '../hooks/use-condition'
 import { UseEventHookType } from '../hooks/use-event'
 
 export interface BaraTriggerSetupReturn<T> {
@@ -25,7 +26,11 @@ export enum TriggerEntityType {
   ACTION = 'ACTION',
 }
 
-export type TriggerEntities<T> = UseEventHookType<T> | UseActionHookType<T>
+// You have to add UseXHookType<T> when add new entity to Bara Trigger in here
+export type TriggerEntities<T> =
+  | UseActionHookType<T>
+  | UseConditionHookType<T>
+  | UseEventHookType<T>
 
 export type TriggerAttachFunc<T> = (
   type: TriggerEntityType,
