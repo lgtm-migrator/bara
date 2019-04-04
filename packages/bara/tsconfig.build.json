@@ -1,11 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "build"
+    "target": "es2015",
+    "module": "commonjs",
+    "allowJs": false,
+    "composite": true,
+    "declaration": true,
+    "noEmit": false,
+    "outDir": "build/",
+    "rootDir": "src"
   },
-  "include": [
-    "src/*.ts",
-    "src/**/*.ts"
-  ]
+  "include": ["src/*.ts", "src/**/*.ts"]
 }
