@@ -1,0 +1,47 @@
+{
+  "name": "@bara/basics",
+  "version": "2.0.0",
+  "description": "BaraJS Basics Internal Module",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "watch": {
+    "lint": "{src}/*.ts"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "compile:watch": "tsc -w -p ./tsconfig.build.json",
+    "lint": "tslint -p .",
+    "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
+    "prepare": "yarn compile",
+    "pretest": "yarn format",
+    "lint:watch": "npm-watch",
+    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint:watch\" \"yarn compile:watch\" "
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.6",
+    "concurrently": "4.1.0",
+    "jest": "24.1.0",
+    "npm-watch": "0.6.0",
+    "prettier": "1.16.4",
+    "ts-jest": "24.0.0",
+    "tslint": "5.15.0",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-react": "4.0.0",
+    "typescript": "~3.1.0"
+  },
+  "dependencies": {
+    "@bara/core": "2.0.0"
+  },
+  "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
+}
