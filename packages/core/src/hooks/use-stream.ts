@@ -14,6 +14,7 @@ function validateStreamConfig<T>(config: BaraStreamConfig<T>) {
 }
 
 export function useStreamHook<T>(config: BaraStreamConfig<T>): BaraStream<T> {
+  const name = (config.name as string) || ''
   validateStreamConfig(config)
   // TODO return a callback function to merge this stream with appStream
   const _$ = xs.create<BaraStreamPayload<T>>({
@@ -28,5 +29,5 @@ export function useStreamHook<T>(config: BaraStreamConfig<T>): BaraStream<T> {
       // TODO implement the stream clean up callback API
     },
   })
-  return { _$, config }
+  return { _$, name, config }
 }

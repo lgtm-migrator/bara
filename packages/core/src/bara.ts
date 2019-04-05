@@ -90,7 +90,7 @@ const bara = (() => {
       // Done trigger registering step and skip to next useTrigger function
       triggerRegistryIndex = triggerRegistryIndex + 1
 
-      return triggerRegistry
+      return currentTrigger
     },
     useEvent<T>(eventType: EventType) {
       const currentTriggerConfig = triggerConfig[triggerConfigIndex]

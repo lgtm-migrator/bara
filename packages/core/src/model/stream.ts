@@ -1,4 +1,6 @@
 import { Stream } from 'xstream'
+
+import { Base } from './base'
 import { EventType } from './event'
 
 export interface BaraStreamPayload<T> {
@@ -12,7 +14,7 @@ export interface BaraStreamConfig<T> {
   setup: (callback: SetupCallbacks<T>) => void
 }
 
-export interface BaraStream<T> {
+export interface BaraStream<T> extends Base {
   _$: Stream<BaraStreamPayload<T>>
   config: BaraStreamConfig<T>
 }
