@@ -8,8 +8,8 @@ import {
 } from '@bara/core'
 import { useTimerElapsed } from '../src/features/timer'
 
-describe('basics/init tests', () => {
-  it('should emit initialization event', done => {
+describe('basics/timer tests', () => {
+  it('should exec an action when 3s elapsed event', done => {
     const timerCheck = jest.fn()
     const app = register(() => {
       useTimerElapsed(3, timerCheck)
