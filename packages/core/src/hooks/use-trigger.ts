@@ -32,7 +32,7 @@ export function useTriggerHook<T>(
     // Only attach an Entity when its not yet attached
     if (trigger && !trigger[entityType]) {
       // Attach Event
-      if (entityType === TriggerEntityType.EVENT) {
+      if (entity && entityType === TriggerEntityType.EVENT) {
         let appStream: AppStream<T>
         if (deps && deps.length > 0) {
           appStream = deps[0] as AppStream<T>
@@ -50,13 +50,13 @@ export function useTriggerHook<T>(
       }
 
       // Attach Condition
-      if (entityType === TriggerEntityType.CONDITION) {
+      if (entity && entityType === TriggerEntityType.CONDITION) {
         const condition = (entity as UseConditionHookType<T>)()
         return condition
       }
 
       // Attach Action
-      if (entityType === TriggerEntityType.ACTION) {
+      if (entity && entityType === TriggerEntityType.ACTION) {
         if (deps && deps.length > 0) {
           const event = deps[0] as BaraEvent<T>
           const condition = deps[1] as BaraCondition<T>
