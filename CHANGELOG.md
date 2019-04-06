@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/nampdn/bara/compare/v2.0.0...v2.1.0) (2019-04-06)
+
+
+### Bug Fixes
+
+* **basics:** change useStream API for init/timer ([47dc33b](https://github.com/nampdn/bara/commit/47dc33b))
+* **basics:** remove condition useless of init ([f26d209](https://github.com/nampdn/bara/commit/f26d209))
+* **core:** ensure trigger entity before do register ([d318814](https://github.com/nampdn/bara/commit/d318814))
+
+
+### Features
+
+* **bara:** add @bara/basics to bara package ([88e0f40](https://github.com/nampdn/bara/commit/88e0f40))
+* **bara:** export all operators from @bara/core ([c66facd](https://github.com/nampdn/bara/commit/c66facd))
+* **basics:** add basics bara stream ([24a3775](https://github.com/nampdn/bara/commit/24a3775))
+* **basics:** add init feature ([ce04488](https://github.com/nampdn/bara/commit/ce04488))
+* **basics:** implement timer feature with elapsed ([4d15e7d](https://github.com/nampdn/bara/commit/4d15e7d))
+* **core:** upgrade useStream API ([5d3761e](https://github.com/nampdn/bara/commit/5d3761e)), closes [#11](https://github.com/nampdn/bara/issues/11)
+
+
+### BREAKING CHANGES
+
+* **core:** switch from object config to function config
+
+
+
+
+
 # [2.0.0](https://github.com/nampdn/bara/compare/v1.2.0...v2.0.0) (2019-04-04)
 
 

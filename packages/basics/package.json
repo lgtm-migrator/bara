@@ -1,6 +1,6 @@
 {
   "name": "@bara/basics",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "BaraJS Basics Internal Module",
   "license": "MIT",
   "main": "dist/index.js",
@@ -41,7 +41,7 @@
     "typescript": "~3.1.0"
   },
   "dependencies": {
-    "@bara/core": "2.0.0"
+    "@bara/core": "^2.1.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }

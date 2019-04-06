@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/barajs/bara/compare/v2.0.0...v2.1.0) (2019-04-06)
+
+
+### Bug Fixes
+
+* **core:** ensure trigger entity before do register ([d318814](https://github.com/barajs/bara/commit/d318814))
+
+
+### Features
+
+* **core:** upgrade useStream API ([5d3761e](https://github.com/barajs/bara/commit/5d3761e)), closes [#11](https://github.com/barajs/bara/issues/11)
+
+
+### BREAKING CHANGES
+
+* **core:** switch from object config to function config
+
+
+
+
+
 # [2.0.0](https://github.com/barajs/bara/compare/v1.2.0...v2.0.0) (2019-04-04)
 
 
