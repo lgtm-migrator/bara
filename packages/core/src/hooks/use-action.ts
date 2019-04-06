@@ -20,7 +20,9 @@ export function useNormalActionHook<T>(
       next: async (eventPayload: BaraEventPayload<T>) => {
         if (callback) {
           const data = eventPayload.payload
+
           if (condition && condition.check) {
+            // Execute action when a condition is defined.
             try {
               const executable = await condition.check(eventPayload)
               if (!!executable) {
@@ -29,6 +31,9 @@ export function useNormalActionHook<T>(
             } catch (err) {
               return
             }
+          } else {
+            // Execute action without checking on BaraCondition
+            callback(data, eventPayload)
           }
         }
       },

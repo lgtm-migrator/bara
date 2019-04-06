@@ -1,14 +1,12 @@
 import xs, { Stream } from 'xstream'
 
-import { generateName } from '../helpers/string'
+import { getBaraName } from '../helpers/string'
 
 import { AppStream } from '../model/app'
 import { Use } from '../model/base'
-import { BaraEvent, EventType } from '../model/event'
+import { BaraEvent, BaraEventPayload, EventType } from '../model/event'
 import { BaraStream, BaraStreamPayload } from '../model/stream'
 import { BaraTrigger, BaraTriggerConfig } from '../model/trigger'
-
-const generateEventName = (name: string) => generateName('EVENT', () => name)
 
 export type UseEventHookType<T> = (appStream: AppStream<T>) => BaraEvent<T>
 
@@ -17,16 +15,16 @@ export function useEventHook<T>(
   eventTypeRegister: EventType,
 ): UseEventHookType<T> {
   return (appStream: AppStream<T>) => {
-    const name = generateEventName(trigger.name!)
+    const name = getBaraName(trigger.name!)
     const eventFilter = (streamPayload: BaraStreamPayload<T>) => {
-      return streamPayload.eventType(trigger) === eventTypeRegister(trigger)
+      const partialEventTypeString = eventTypeRegister({ name: '' })
+      return streamPayload.eventType.indexOf(partialEventTypeString) > -1
     }
     const _$ = (appStream as AppStream<T>)
       .filter(eventFilter)
-      .map(({ eventType: evenTypeRegFunc, payload }) => {
-        const eventType = evenTypeRegFunc(trigger)
+      .map(({ eventType, payload, streamName }) => {
         return { eventType, payload }
       })
-    return { name, _$ }
+    return { name, _$: _$ as Stream<BaraEventPayload<T>> }
   }
 }

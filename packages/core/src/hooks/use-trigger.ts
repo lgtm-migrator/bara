@@ -13,16 +13,7 @@ import { UseActionHookType } from './use-action'
 import { UseConditionHookType } from './use-condition'
 import { UseEventHookType } from './use-event'
 
-import { generateName } from '../helpers/string'
-
-const generateTriggerName = (triggerName: string, context: number) =>
-  generateName(
-    'TRIGGER',
-    ctx => {
-      return triggerName ? triggerName : ctx
-    },
-    context,
-  )
+import { getBaraName } from '../helpers/string'
 
 export function useTriggerHook<T>(
   _config: BaraTriggerConfig<T>,
@@ -72,7 +63,7 @@ export function useTriggerHook<T>(
     }
   }
 
-  const name = generateTriggerName(_config.name as string, index)
+  const name = getBaraName((_config.name as string) || `trigger-${index}`)
   const trigger: BaraTrigger<T> = { _config, name, attach }
   return trigger
 }

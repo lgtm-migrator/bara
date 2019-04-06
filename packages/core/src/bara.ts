@@ -1,6 +1,6 @@
 import xs from 'xstream'
 
-import { generateName } from './helpers/string'
+import { getBaraName } from './helpers/string'
 import {
   BaraAction,
   BaraCallbackActionConfig,
@@ -9,7 +9,7 @@ import {
 import { AppStream } from './model/app'
 import { BaraConditionConfig } from './model/condition'
 import { BaraEvent, EventType } from './model/event'
-import { BaraStreamConfig } from './model/stream'
+import { BaraStreamConfig, BaraStreamSetup } from './model/stream'
 import {
   BaraTriggerConfig,
   BaraTriggerSetup,
@@ -22,13 +22,15 @@ import { useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
 
-const generateTriggerName = (index: number) =>
-  generateName('TRIGGER', () => `${index}`)
-
 const bara = (() => {
+  // Main App Stream, get merged with other stream at register step.
   let appStream: AppStream<any> = xs.never()
+
+  // Handle hook Stream registry
   const streamRegistry: any[] = []
   let streamRegistryIndex = 0
+
+  // Handle hook Trigger registry
   const triggerRegistry: any[] = []
   let triggerRegistryIndex = 0
   const triggerConfig: Array<BaraTriggerConfig<any>> = []
@@ -37,21 +39,24 @@ const bara = (() => {
   return {
     register(app: () => void) {
       app()
-      // Register all triggers
       return { streamRegistry, triggerRegistry }
     },
-    useStream<T>(streamConfig: BaraStreamConfig<T>) {
+    useStream<T>(streamSetup: BaraStreamSetup<T>) {
       streamRegistry[streamRegistryIndex] =
         streamRegistry[streamRegistryIndex] ||
-        (useStreamHook(streamConfig) as any)
+        (useStreamHook(streamSetup, streamRegistryIndex) as any)
+
+      // Merge new stream to the main app stream to make global stream
       appStream = xs.merge(appStream, streamRegistry[streamRegistryIndex]
         ._$ as AppStream<any>)
+
       streamRegistryIndex = streamRegistryIndex + 1
-      return streamRegistry
+
+      return streamRegistry[streamRegistryIndex - 1]
     },
     useTrigger<T>(setup: BaraTriggerSetup<T>) {
       const config: BaraTriggerConfig<T> = {
-        name: generateTriggerName(triggerConfigIndex),
+        name: getBaraName(triggerConfigIndex),
         event: null,
       }
 
