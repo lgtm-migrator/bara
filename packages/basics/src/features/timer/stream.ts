@@ -4,7 +4,7 @@ import { BaraTimer, ON_TIME_ELAPSED } from './event'
 
 export function useTimerStream() {
   let second = 0
-  return useStream<BaraTimer>(({emit, setName, addEventType}) => {
+  return useStream<BaraTimer>(({ emit, setName, addEventType }) => {
     setName('dev.barajs.basics-timer')
     addEventType(ON_TIME_ELAPSED)
 
