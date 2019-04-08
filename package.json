@@ -8,24 +8,34 @@
   "scripts": {
     "compile": "lerna run compile",
     "test": "lerna run test",
-    "fix": "lerna run fix",
+    "lint": "yarn workspaces run lint",
+    "format": "lerna run format",
     "test:watch": "lerna run test:watch --stream",
     "release": "lerna publish --yes --conventional-commits",
+    "release:canary": "lerna publish --yes --conventional-commits --canary --registry https://registry.npmjs.org",
     "cli": "yarn workspace bara-cli"
   },
-  "workspaces": ["packages/*", "examples/*"],
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "workspace-sources": {
-    "*": ["packages/*/src"]
+    "*": [
+      "packages/*/src"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "7.5.2",
     "@commitlint/config-conventional": "7.5.0",
     "husky": "1.3.1",
-    "lerna": "3.13.0"
+    "lerna": "3.13.0",
+    "tslint": "5.15.0",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-react": "4.0.0"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn fix",
+      "pre-commit": "yarn format",
       "pre-push": "yarn test"
     }
   }

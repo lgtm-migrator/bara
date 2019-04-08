@@ -26,48 +26,48 @@ const {
   useEvent,
   useCondition,
   useAction,
-} = require('bara');
+  createEventType
+} = require('bara')
 
-const ON_TIME_ESLAPSED = 'ON_TIME_ESLAPSED';
+const ON_TIME_ESLAPSED = createEventType('ON_TIME_ESLAPSED')
 
-const EVERY_X_SECOND = x => triggeringEvent =>
-  triggeringEvent.payload % x === 0;
-const ONLY_EVEN_SECOND = EVERY_X_SECOND(2);
+const EVERY_X_SECOND = x => second => second % x === 0
+const ONLY_EVEN_SECOND = EVERY_X_SECOND(2)
 
-const timeElapsedStream = {
-  name: 'time-elapsed-stream',
-  eventTypes: [ON_TIME_ESLAPSED],
-  setup: ({emit}) => {
-    let elapsed = 0;
-    const timer = setInterval(() => {
-      emit(ON_TIME_ESLAPSED, elapsed++);
-    }, 1000);
-  },
-};
+const app = () => {
+  // Register source stream for application
+  useStream({
+    name: 'time-elapsed-stream',
+    eventTypes: [ON_TIME_ESLAPSED],
+    setup: ({emit}) => {
+      let elapsed = 0;
+      const timer = setInterval(() => {
+        emit(ON_TIME_ESLAPSED, elapsed++);
+      }, 1000);
+    }
+  })
 
-const tikTrigger = {
-  name: 'Tik Every Two Seconds',
-  event: useEvent(ON_TIME_ESLAPSED),
-  condition: useCondition(ONLY_EVEN_SECOND),
-  action: useAction(({payload}) => {
-    console.log(`Tik every two seconds: ${payload}`);
-  }),
-};
+  // Register a trigger that will be triggered every even second
+  useTrigger(() => {
+    const event = useEvent(ON_TIME_ESLAPSED)
+    const condition = useCondition(ONLY_EVEN_SECOND)
+    const action = useAction((second) => {
+      console.log(`Tik every even seconds: ${second}`)
+    })
 
-const tokTrigger = {
-  name: 'Tok Every 5 Seconds',
-  event: useEvent(ON_TIME_ESLAPSED),
-  condition: useCondition(EVERY_X_SECOND(5)),
-  action: useAction(({payload}) => {
-    console.log(`Tok every 5 seconds: ${payload}`);
-  }),
-};
+    return {event, condition, action}
+  })
 
-const tikTokApp = () => {
-  useStream(timeElapsedStream);
-  useTrigger(tikTrigger);
-  useTrigger(tokTrigger);
-};
+  // Register a trigger that will be triggered every 5 second
+  useTrigger(() => {
+    const every = 5
+    const event = useEvent(ON_TIME_ELAPSED)
+    const condition = useCondition(EVERY_X_SECOND(every))
+    const action = useAction((second) => {
+      console.log(`Tik every `${every}` seconds: ${second}`)
+    })
+  })
+}
 
-register(tikTokApp);
+register(app);
 ```

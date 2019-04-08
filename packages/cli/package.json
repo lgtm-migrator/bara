@@ -1,12 +1,48 @@
 {
   "name": "bara-cli",
   "description": "Bara CLI Application - Created For Creating",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "author": "nampdn @nampdn",
+  "homepage": "https://barajs.dev",
+  "repository": "barajs/bara",
+  "bugs": "https://github.com/barajs/bara/issues",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "bin": {
     "bara": "./bin/run"
   },
-  "bugs": "https://github.com/barajs/bara/issues",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "keywords": [
+    "bara",
+    "cli",
+    "framework",
+    "application",
+    "generator"
+  ],
+  "license": "MIT",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "bara",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "lint": "tslint -p .",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS && exit 0;",
+    "version": "oclif-dev readme && git add README.md",
+    "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'"
+  },
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -20,45 +56,10 @@
     "@types/node": "^10",
     "globby": "^8",
     "gts": "0.9.0",
+    "prettier": "1.16.4",
     "ts-node": "^7",
     "tslint": "^5",
     "typescript": "^3.0"
   },
-  "engines": {
-    "node": ">=8.0.0"
-  },
-  "files": [
-    "/bin",
-    "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
-  ],
-  "homepage": "https://github.com/barajs/bara",
-  "keywords": [
-    "bara",
-    "cli",
-    "framework",
-    "application",
-    "generator"
-  ],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "oclif": {
-    "commands": "./lib/commands",
-    "bin": "bara",
-    "plugins": [
-      "@oclif/plugin-help"
-    ]
-  },
-  "repository": "barajs/bara",
-  "scripts": {
-    "postpack": "rm -f oclif.manifest.json",
-    "posttest": "tslint -p . -t stylish",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md",
-    "fix": "echo 'Fixing in nothing'"
-  },
-  "types": "lib/index.d.ts",
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }

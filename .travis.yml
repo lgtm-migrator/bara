@@ -13,9 +13,9 @@ before_install:
   - npm whoami
   - yarn
 
-install:
-  - yarn test
+script:
   - yarn compile
+  - yarn test
 
 after_success:
-  - npm run release
+  - yarn release

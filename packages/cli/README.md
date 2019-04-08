@@ -19,7 +19,7 @@ $ npm install -g bara-cli
 $ bara COMMAND
 running command...
 $ bara (-v|--version|version)
-bara-cli/1.1.1 darwin-x64 node-v10.12.0
+bara-cli/2.0.0 darwin-x64 node-v11.12.0
 $ bara --help [COMMAND]
 USAGE
   $ bara COMMAND
@@ -49,7 +49,7 @@ EXAMPLE
           Create new Bara application
 ```
 
-_See code: [src/commands/create.ts](https://github.com/barajs/bara/blob/v1.1.1/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/barajs/bara/blob/v2.0.0/src/commands/create.ts)_
 
 ## `bara deploy [FILE]`
 
@@ -65,7 +65,7 @@ OPTIONS
   -n, --name=name  name to print
 ```
 
-_See code: [src/commands/deploy.ts](https://github.com/barajs/bara/blob/v1.1.1/src/commands/deploy.ts)_
+_See code: [src/commands/deploy.ts](https://github.com/barajs/bara/blob/v2.0.0/src/commands/deploy.ts)_
 
 ## `bara help [COMMAND]`
 

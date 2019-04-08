@@ -3,6 +3,61 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/nampdn/bara/compare/v2.0.0...v2.1.0) (2019-04-06)
+
+
+### Bug Fixes
+
+* **basics:** change useStream API for init/timer ([47dc33b](https://github.com/nampdn/bara/commit/47dc33b))
+* **basics:** remove condition useless of init ([f26d209](https://github.com/nampdn/bara/commit/f26d209))
+* **core:** ensure trigger entity before do register ([d318814](https://github.com/nampdn/bara/commit/d318814))
+
+
+### Features
+
+* **bara:** add @bara/basics to bara package ([88e0f40](https://github.com/nampdn/bara/commit/88e0f40))
+* **bara:** export all operators from @bara/core ([c66facd](https://github.com/nampdn/bara/commit/c66facd))
+* **basics:** add basics bara stream ([24a3775](https://github.com/nampdn/bara/commit/24a3775))
+* **basics:** add init feature ([ce04488](https://github.com/nampdn/bara/commit/ce04488))
+* **basics:** implement timer feature with elapsed ([4d15e7d](https://github.com/nampdn/bara/commit/4d15e7d))
+* **core:** upgrade useStream API ([5d3761e](https://github.com/nampdn/bara/commit/5d3761e)), closes [#11](https://github.com/nampdn/bara/issues/11)
+
+
+### BREAKING CHANGES
+
+* **core:** switch from object config to function config
+
+
+
+
+
+# [2.0.0](https://github.com/nampdn/bara/compare/v1.2.0...v2.0.0) (2019-04-04)
+
+
+### Features
+
+* **bara:** export @bara/core functions ([4dcff4a](https://github.com/nampdn/bara/commit/4dcff4a))
+* **bara:** export createEventType function ([36cdea2](https://github.com/nampdn/bara/commit/36cdea2))
+* **core:** add createEventType function ([1ecdd76](https://github.com/nampdn/bara/commit/1ecdd76))
+* **core:** add types for BaraStream ([d5084d3](https://github.com/nampdn/bara/commit/d5084d3))
+* **core:** add useAction ([e410062](https://github.com/nampdn/bara/commit/e410062))
+* **core:** bootstraped useCondition with useEvent before execute an action ([2618992](https://github.com/nampdn/bara/commit/2618992)), closes [#10](https://github.com/nampdn/bara/issues/10)
+* **core:** do not print log in production environment ([3c3b46a](https://github.com/nampdn/bara/commit/3c3b46a))
+* **core:** implement useStream ([96153f0](https://github.com/nampdn/bara/commit/96153f0))
+* **core:** implemented useEvent for useTrigger ([0245d58](https://github.com/nampdn/bara/commit/0245d58))
+* **core:** make useStream, useTrigger, useEvent usable :tada: ([b7a2b51](https://github.com/nampdn/bara/commit/b7a2b51))
+* **core:** useTriggerHook could attach other TriggerEntityType ([b8f9dce](https://github.com/nampdn/bara/commit/b8f9dce))
+* **core:** WIP on add useAction operator ([b0d1774](https://github.com/nampdn/bara/commit/b0d1774))
+
+
+### BREAKING CHANGES
+
+* **core:** change useTrigger API
+
+
+
+
+
 # [1.2.0](https://github.com/nampdn/bara/compare/v1.1.10...v1.2.0) (2019-03-05)
 
 

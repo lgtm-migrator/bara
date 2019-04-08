@@ -1,20 +1,98 @@
-describe('main bara application', () => {
-  it('run bara application', () => {
-    expect(true).toBeTruthy();
-    // const trigger = createTrigger('Test Trigger', () => {
-    // const [eventA, emitEventA] = useEvent<string>({
-    // name: 'initialized',
-    //});
-    // const [eventB, emitEventB] = useEvent<number>({
-    // name: 'update',
-    //});
-    //});
+import {
+  createEventType,
+  EventType,
+  register,
+  SetupCallbacks,
+  useAction,
+  useCondition,
+  useEvent,
+  useStream,
+  useTrigger,
+} from '../src'
 
-    // const app = () => {
-    // console.log('Before initialize Bara application..');
-    // const t = useTrigger(trigger);
-    // console.log('Application exited!');
-    //};
-    // bara(app).run();
-  });
-});
+describe('bara application', () => {
+  it('run full bara application', done => {
+    const syncActionResultCallback = jest.fn()
+    const asyncActionResultCallback = jest.fn()
+    const name = 'Example String' // Will be normalize to "dev.barajs.example-string"
+    const newStringEvent = createEventType<string>('NEW_STRING') // Will create "dev.barajs.example-string.new-string"
+    const newBornEvent = createEventType<number>('NEW_BORN')
+
+    const baraApp = () => {
+      // Any Bara application should start with a Stream
+      const stream = useStream<string>(({ setName, emit, addEventType }) => {
+        setName(name)
+        addEventType(newStringEvent)
+
+        const timer = setTimeout(() => {
+          emit(newStringEvent, 'Hello Bara App!')
+          emit(newStringEvent, 'Hello X App!')
+        }, 1000)
+
+        return () => {
+          clearTimeout(timer)
+        }
+      })
+
+      // Different stream to test for single source events
+      useStream<number>(({ emit, setName, addEventType }) => {
+        setName('tld.example.gospel')
+        addEventType(newBornEvent)
+
+        const timer = setTimeout(() => {
+          emit(newBornEvent, 1)
+        }, 1500)
+
+        return () => {
+          clearTimeout(timer)
+        }
+      })
+
+      // Test Trigger with synchronous condition
+      useTrigger<string>(() => {
+        const event = useEvent<string>(newStringEvent)
+        const condition = useCondition<string>(data => {
+          return data === 'Hello Bara App!'
+        })
+        const action = useAction<string>(syncActionResultCallback)
+        return { event, condition, action }
+      })
+
+      // Test Trigger with asynchronouse condition
+      useTrigger<string>(() => {
+        const event = useEvent<string>(newStringEvent)
+
+        const condition = useCondition<string>(data => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              if (data === 'Hello X App!') {
+                resolve(true)
+              } else {
+                reject()
+              }
+            }, 500)
+          })
+        })
+
+        const action = useAction<string>(asyncActionResultCallback)
+        return { event, condition, action }
+      })
+    }
+
+    const { streamRegistry, triggerRegistry } = register(baraApp)
+    setTimeout(() => {
+      expect(syncActionResultCallback).toHaveBeenCalledTimes(1)
+      expect(syncActionResultCallback).toHaveBeenCalledWith('Hello Bara App!', {
+        eventType: 'dev.barajs.example-string.new-string',
+        payload: 'Hello Bara App!',
+      })
+
+      expect(asyncActionResultCallback).toHaveBeenCalledTimes(1)
+      expect(asyncActionResultCallback).toHaveBeenCalledWith('Hello X App!', {
+        eventType: 'dev.barajs.example-string.new-string',
+        payload: 'Hello X App!',
+      })
+      done()
+    }, 2000)
+  })
+})
