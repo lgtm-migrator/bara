@@ -13,4 +13,4 @@ export interface BaraEvent<T> extends Base {
   _$: BaraEventStream<T>
 }
 
-export type EventType = (trigger: Base) => string
+export type EventType = (trigger?: Base) => string

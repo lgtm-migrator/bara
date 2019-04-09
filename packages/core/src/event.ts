@@ -7,5 +7,6 @@ import { EventType } from './model/event'
  * This will be invoked at runtime by its trigger
  */
 export function createEventType<T>(eventType: string): EventType {
-  return (trigger: Base) => `${trigger.name}.${slugify(eventType)}`
+  return (data?: Base) =>
+    `${data !== undefined ? data.name! + '.' : ''}${slugify(eventType)}`
 }
