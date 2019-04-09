@@ -19,11 +19,18 @@ export function useStreamHook<T>(
   setup: BaraStreamSetup<T>,
   index: number,
 ): BaraStream<T> {
-  const config: BaraStreamConfig<T> = { name: '', eventTypes: [] }
+  const config: BaraStreamConfig<T> = {
+    name: '',
+    memory: false,
+    eventTypes: [],
+  }
 
   const params: BaraStreamParams<T> = {
     setName: (name: string) => {
       config.name = getBaraName(name || `stream-${index}`)
+    },
+    setMemory: (memorable: boolean) => {
+      config.memory = memorable || false
     },
     addEventType: eventType => {
       config.eventTypes = [...config.eventTypes, eventType]
@@ -66,7 +73,9 @@ export function useStreamHook<T>(
     },
   }
 
-  const _$ = xs.create<BaraStreamPayload<T>>(producer)
+  const _$ = config.memory
+    ? xs.createWithMemory<BaraStreamPayload<T>>(producer)
+    : xs.create<BaraStreamPayload<T>>(producer)
 
   // Create dummy listener to make the stream to start
   const dummyListener = {
