@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/barajs/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
+
+
+### Features
+
+* **core:** add MemoryStream support ([ad99a45](https://github.com/barajs/bara/commit/ad99a45)), closes [#14](https://github.com/barajs/bara/issues/14)
+* **core:** add useCustomEvent hook ([0b45c87](https://github.com/barajs/bara/commit/0b45c87)), closes [#14](https://github.com/barajs/bara/issues/14)
+
+
+
+
+
 # [2.1.0](https://github.com/barajs/bara/compare/v2.0.0...v2.1.0) (2019-04-06)
 
 

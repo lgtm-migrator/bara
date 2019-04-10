@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/barajs/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
+
+
+### Features
+
+* **bara:** bundle with @bara/barn ([193e15c](https://github.com/barajs/bara/commit/193e15c)), closes [#14](https://github.com/barajs/bara/issues/14)
+
+
+
+
+
 # [2.1.0](https://github.com/barajs/bara/compare/v2.0.0...v2.1.0) (2019-04-06)
 
 

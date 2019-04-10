@@ -1,6 +1,6 @@
 {
   "name": "@bara/barn",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "BaraJS Internal State Management Module",
   "license": "MIT",
   "main": "dist/index.js",
@@ -43,8 +43,8 @@
     "typescript": "~3.1.0"
   },
   "dependencies": {
-    "@bara/basics": "2.1.0",
-    "@bara/core": "2.1.0",
+    "@bara/basics": "^2.2.0",
+    "@bara/core": "^2.2.0",
     "dot-prop": "5.0.0",
     "xstream": "11.10.0"
   },
