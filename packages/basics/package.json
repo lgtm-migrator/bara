@@ -22,8 +22,6 @@
     "compile:watch": "tsc -w -p ./tsconfig.build.json",
     "lint": "tslint -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
-    "prepare": "yarn compile",
-    "pretest": "yarn format",
     "lint:watch": "npm-watch",
     "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint:watch\" \"yarn compile:watch\" "
   },
