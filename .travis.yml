@@ -14,6 +14,7 @@ before_install:
   - yarn
 
 script:
+  - yarn test
   - yarn compile
 
 after_success:
