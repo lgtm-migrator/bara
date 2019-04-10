@@ -6,8 +6,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "compile": "yarn workspaces run compile",
-    "test": "yarn workspaces run test",
+    "compile": "lerna run compile",
+    "test": "lerna run test",
     "lint": "yarn workspaces run lint",
     "format": "lerna run format",
     "test:watch": "lerna run test:watch --stream",
