@@ -12,6 +12,7 @@ import {
 
 describe('bara application', () => {
   it('run full bara application', done => {
+    jest.setTimeout(5000)
     const syncActionResultCallback = jest.fn()
     const asyncActionResultCallback = jest.fn()
     const name = 'Example String' // Will be normalize to "dev.barajs.example-string"
