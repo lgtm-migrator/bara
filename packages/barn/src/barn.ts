@@ -8,6 +8,7 @@ import {
 } from '@bara/core'
 import { EventEmitter } from 'fbemitter'
 import immer from 'immer'
+import xs, { Listener, Stream } from 'xstream'
 
 export interface BarnState {
   [k: string]: any
@@ -16,10 +17,34 @@ export interface BarnState {
 export const SET_STATE = createEventType('SET_STATE')
 
 export const useBarnStream = (initialState: BarnState) => {
-  const emitter = new EventEmitter()
+  const methods = {
+    next: (...args: any[]) => {
+      return
+    },
+  }
+
+  const nextFunc = (listener: Listener<BarnState>) => (value: any) => {
+    listener.next(value)
+  }
+
+  const barn$ = xs.createWithMemory({
+    start: listener => {
+      const next = nextFunc(listener)
+      methods.next = next
+    },
+    stop: () => {
+      return
+    },
+  })
+
+  barn$.addListener({
+    next: value => {
+      return value
+    },
+  })
 
   const setState = (data: any) => {
-    emitter.emit(SET_STATE(), data)
+    methods.next(data)
   }
 
   let state = { ...initialState }
@@ -29,19 +54,22 @@ export const useBarnStream = (initialState: BarnState) => {
     setMemory(true)
     addEventType(SET_STATE)
 
-    const setStateListener = emitter.addListener(SET_STATE(), (data: any) => {
-      state = immer(state, draft => {
-        for (const prop in data) {
-          if (prop in draft) {
-            draft[prop] = data[prop]
+    const barnListener = {
+      next: (data: any) => {
+        state = immer(state, draft => {
+          for (const prop in data) {
+            if (prop in draft) {
+              draft[prop] = data[prop]
+            }
           }
-        }
-      })
-      emit(SET_STATE, state)
-    })
+        })
+        emit(SET_STATE, state)
+      },
+    }
+    barn$.addListener(barnListener)
 
     return () => {
-      emitter.removeAllListeners()
+      barn$.removeListener(barnListener)
     }
   })
 
