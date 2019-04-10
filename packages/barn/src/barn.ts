@@ -2,12 +2,12 @@ import {
   createEventType,
   useAction,
   useCondition,
-  useEvent,
+  useCustomEvent,
   useStream,
   useTrigger,
 } from '@bara/core'
+import dotProp from 'dot-prop'
 import { EventEmitter } from 'fbemitter'
-import immer from 'immer'
 import xs, { Listener, Stream } from 'xstream'
 
 export interface BarnState {
@@ -18,6 +18,7 @@ export const SET_STATE = createEventType('SET_STATE')
 
 export const useBarnStream = (initialState: BarnState) => {
   const methods = {
+    // Dummy next function
     next: (...args: any[]) => {
       return
     },
@@ -43,8 +44,8 @@ export const useBarnStream = (initialState: BarnState) => {
     },
   })
 
-  const setState = (data: any) => {
-    methods.next(data)
+  const setState = (path: string, data: any) => {
+    methods.next({ path, data })
   }
 
   let state = { ...initialState }
@@ -55,15 +56,9 @@ export const useBarnStream = (initialState: BarnState) => {
     addEventType(SET_STATE)
 
     const barnListener = {
-      next: (data: any) => {
-        state = immer(state, draft => {
-          for (const prop in data) {
-            if (prop in draft) {
-              draft[prop] = data[prop]
-            }
-          }
-        })
-        emit(SET_STATE, state)
+      next: ({ path, data }: any) => {
+        state = dotProp.set(state, path, data)
+        emit(SET_STATE, { path, state })
       },
     }
     barn$.addListener(barnListener)
@@ -76,13 +71,16 @@ export const useBarnStream = (initialState: BarnState) => {
   return [setState]
 }
 
-export const useBarn = (key: string, callback: (data: any) => void) => {
+export const useBarn = (key: string, callback: (...args: any[]) => void) => {
   return useTrigger<BarnState>(() => {
-    const event = useEvent<BarnState>(SET_STATE)
-    const condition = useCondition<BarnState>(data => {
-      return data !== undefined && key in data
+    const event = useCustomEvent<BarnState>(SET_STATE, (streamPayload: any) => {
+      const eventPath = streamPayload.payload.path
+      return eventPath === key
     })
-    const action = useAction(callback)
-    return { event, condition, action }
+    const action = useAction((data: any, payload: any) => {
+      const scopedState = dotProp.get(data.state, key)
+      callback(scopedState, payload)
+    })
+    return { event, action }
   })
 }

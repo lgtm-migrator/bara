@@ -28,6 +28,7 @@
     "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint:watch\" \"yarn compile:watch\" "
   },
   "devDependencies": {
+    "@types/dot-prop": "4.2.0",
     "@types/fbemitter": "2.0.32",
     "@types/jest": "24.0.6",
     "concurrently": "4.1.0",
@@ -44,7 +45,7 @@
   "dependencies": {
     "@bara/basics": "2.1.0",
     "@bara/core": "2.1.0",
-    "immer": "2.1.5",
+    "dot-prop": "5.0.0",
     "xstream": "11.10.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
