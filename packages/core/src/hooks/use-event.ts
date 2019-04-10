@@ -28,3 +28,27 @@ export function useEventHook<T>(
     return { name, _$: _$ as Stream<BaraEventPayload<T>> }
   }
 }
+
+export function useCustomEventHook<T>(
+  trigger: BaraTriggerConfig<T>,
+  eventTypeRegister: EventType,
+  customFilter: (...args: any[]) => boolean,
+): UseEventHookType<T> {
+  return (appStream: AppStream<T>) => {
+    const name = getBaraName(trigger.name!)
+    const eventFilter = (streamPayload: BaraStreamPayload<T>) => {
+      const partialEventTypeString = eventTypeRegister({ name: '' })
+      let flag = streamPayload.eventType.indexOf(partialEventTypeString) > -1
+      if (customFilter) {
+        flag = flag && customFilter(streamPayload)
+      }
+      return flag
+    }
+    const _$ = (appStream as AppStream<T>)
+      .filter(eventFilter)
+      .map(({ eventType, payload, streamName }) => {
+        return { eventType, payload }
+      })
+    return { name, _$: _$ as Stream<BaraEventPayload<T>> }
+  }
+}
