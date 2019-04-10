@@ -1,6 +1,6 @@
 # Bara
 
-Bara is a library created for creating any JavaScript application.
+Bara is a library created for creating any (front/back/cli) JavaScript application.
 
 ## Installation
 
@@ -35,15 +35,18 @@ const EVERY_X_SECOND = x => second => second % x === 0
 const ONLY_EVEN_SECOND = EVERY_X_SECOND(2)
 
 const app = () => {
-  // Register source stream for application
-  useStream({
-    name: 'time-elapsed-stream',
-    eventTypes: [ON_TIME_ESLAPSED],
-    setup: ({emit}) => {
-      let elapsed = 0;
-      const timer = setInterval(() => {
+  // Register source stream factory for Bara application
+  useStream(({setName, addEventType, emit}) => {
+    setName('dev.barajs.timer')
+
+    let elapsed = 0;
+    const timer = setInterval(() => {
         emit(ON_TIME_ESLAPSED, elapsed++);
-      }, 1000);
+    }, 1000);
+
+    return () => {
+        // Cleanup when zero listener
+        clearInterval(timer)
     }
   })
 
@@ -66,6 +69,8 @@ const app = () => {
     const action = useAction((second) => {
       console.log(`Tik every `${every}` seconds: ${second}`)
     })
+
+    return {event, condition, action}
   })
 }
 
