@@ -16,8 +16,7 @@
     "cli": "yarn workspace bara-cli"
   },
   "workspaces": [
-    "packages/*",
-    "examples/*"
+    "packages/*"
   ],
   "workspace-sources": {
     "*": [

@@ -18,7 +18,7 @@ import {
 
 import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
 import { useConditionHook } from './hooks/use-condition'
-import { useEventHook } from './hooks/use-event'
+import { useCustomEventHook, useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
 
@@ -107,6 +107,23 @@ const bara = (() => {
       const eventSetup = useEventHook<T>(currentTriggerConfig, eventType)
       return eventSetup
     },
+    useCustomEvent<T>(
+      eventType: EventType,
+      customFilter: (...args: any[]) => boolean,
+    ) {
+      const currentTriggerConfig = triggerConfig[triggerConfigIndex]
+      if (!currentTriggerConfig) {
+        throw new Error(
+          `No trigger is registering at this time. 'useEvent' can only being used in a Bara Trigger.`,
+        )
+      }
+      const eventSetup = useCustomEventHook<T>(
+        currentTriggerConfig,
+        eventType,
+        customFilter,
+      )
+      return eventSetup
+    },
     useCondition<T>(config: BaraConditionConfig<T>) {
       const conditionSetup = useConditionHook<T>(config)
       return conditionSetup
@@ -123,8 +140,17 @@ const {
   useStream,
   useTrigger,
   useEvent,
+  useCustomEvent,
   useAction,
   useCondition,
 } = bara
 
-export { register, useStream, useTrigger, useEvent, useAction, useCondition }
+export {
+  register,
+  useStream,
+  useTrigger,
+  useEvent,
+  useCustomEvent,
+  useAction,
+  useCondition,
+}
