@@ -39,7 +39,7 @@ const bara = (() => {
   return {
     register(app: () => void) {
       app()
-      return { streamRegistry, triggerRegistry }
+      return { appStream, streamRegistry, triggerRegistry }
     },
     useStream<T>(streamSetup: BaraStreamSetup<T>) {
       streamRegistry[streamRegistryIndex] =
@@ -73,9 +73,10 @@ const bara = (() => {
       triggerConfigIndex += 1
 
       // Setup real trigger
-      const currentTrigger =
+      triggerRegistry[triggerRegistryIndex] =
         triggerRegistry[triggerRegistryIndex] ||
         (useTriggerHook(config, triggerRegistryIndex) as any)
+      const currentTrigger = triggerRegistry[triggerRegistryIndex]
 
       // Attach BaraEvent, BaraCondition, BaraAction with current BaraTrigger
       const event = currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [
