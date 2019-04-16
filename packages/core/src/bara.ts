@@ -42,17 +42,28 @@ const bara = (() => {
       return { streamRegistry, triggerRegistry }
     },
     useStream<T>(streamSetup: BaraStreamSetup<T>) {
-      streamRegistry[streamRegistryIndex] =
-        streamRegistry[streamRegistryIndex] ||
-        (useStreamHook(streamSetup, streamRegistryIndex) as any)
+      let stream
+      let duplicateIndex = -1
+      if (!streamRegistry[streamRegistryIndex]) {
+        const newStream = (useStreamHook(streamSetup, streamRegistryIndex) as any)
+        // Check stream dupplicated
+        duplicateIndex = streamRegistry.findIndex(s => s && s.name === newStream.name)
+        stream = duplicateIndex > -1 ? streamRegistry[duplicateIndex] : newStream
+      } else {
+        stream = streamRegistry[streamRegistryIndex]
+      }
+      streamRegistry[streamRegistryIndex] = stream
+      console.log('Register Stream: ', streamRegistry[streamRegistryIndex].name, duplicateIndex)
 
-      // Merge new stream to the main app stream to make global stream
-      appStream = xs.merge(appStream, streamRegistry[streamRegistryIndex]
-        ._$ as AppStream<any>)
+      if (duplicateIndex === -1) {
+          // Merge new stream to the main app stream to make global stream
+        appStream = xs.merge(appStream, streamRegistry[streamRegistryIndex]
+          ._$ as AppStream<any>)
 
-      streamRegistryIndex = streamRegistryIndex + 1
+        streamRegistryIndex = streamRegistryIndex + 1
+      }
 
-      return streamRegistry[streamRegistryIndex - 1]
+      return streamRegistry[duplicateIndex > -1 ? duplicateIndex : streamRegistryIndex - 1]
     },
     useTrigger<T>(setup: BaraTriggerSetup<T>) {
       const config: BaraTriggerConfig<T> = {
