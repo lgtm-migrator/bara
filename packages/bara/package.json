@@ -48,9 +48,9 @@
     "bundlesize": "0.17.1",
     "prettier": "1.16.4",
     "ts-loader": "5.3.3",
-    "typescript": "~3.1.0",
+    "typescript": "3.1.6",
     "webpack": "4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "3.2.3"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }
