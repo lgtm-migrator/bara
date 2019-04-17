@@ -1,5 +1,4 @@
 import { Listener } from 'xstream'
-import { BaraStreamPayload } from './stream'
 import { BaraEventPayload } from './event'
 
 export type BaraNormalActionConfig<T> = (

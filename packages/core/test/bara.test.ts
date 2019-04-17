@@ -11,6 +11,18 @@ import {
 } from '../src'
 
 describe('bara application', () => {
+  it('prevent stream duplicated', () => {
+    const dupName = 'im.a.same.stream.name'
+    const {streamRegistry} = register(() => {
+      useStream(({setName}) => {
+        setName(dupName)
+      })
+      useStream(({setName}) => {
+        setName(dupName)
+      })
+    })
+    expect(streamRegistry.length).toEqual(1)
+  })
   it('run full bara application', done => {
     jest.setTimeout(5000)
     const syncActionResultCallback = jest.fn()

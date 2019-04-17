@@ -1,4 +1,4 @@
-import { useInit } from '@bara/basics'
+import { useInitStream, useInit } from '@bara/basics'
 import { register } from '@bara/core'
 import { useBarn, useBarnStream } from '../src'
 
@@ -19,7 +19,7 @@ describe('@bara/barn', () => {
 
     register(() => {
       const [setState] = useBarnStream(initialState)
-
+      useInitStream()
       // Register state change handler
       useBarn('hello', handleNewState)
       useBarn('wrong-state-key', handleWrongState)
