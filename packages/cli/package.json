@@ -60,7 +60,7 @@
     "prettier": "1.16.4",
     "ts-node": "8.1.0",
     "tslint": "5.13.0",
-    "typescript": "3.3.3333"
+    "typescript": "3.4.3"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }
