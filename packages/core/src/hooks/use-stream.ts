@@ -8,7 +8,6 @@ import {
   BaraStreamParams,
   BaraStreamPayload,
   BaraStreamSetup,
-  SetupCallbacks,
 } from '../model/stream'
 
 import { getBaraName } from '../helpers/string'
@@ -73,9 +72,10 @@ export function useStreamHook<T>(
     },
   }
 
-  const _$ = config.memory
-    ? xs.createWithMemory<BaraStreamPayload<T>>(producer)
-    : xs.create<BaraStreamPayload<T>>(producer)
+  const _$ =
+    config.memory === true
+      ? xs.createWithMemory<BaraStreamPayload<T>>(producer)
+      : xs.create<BaraStreamPayload<T>>(producer)
 
   // Create dummy listener to make the stream to start
   const dummyListener = {

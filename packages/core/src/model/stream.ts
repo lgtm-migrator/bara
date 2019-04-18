@@ -13,6 +13,8 @@ export interface BaraStreamParams<T> {
   emit: (eventType: EventType, value?: T) => void
   setName: (name: string) => void
   setMemory: (memorable: boolean) => void
+  // listen: (emitter: any) => void
+  // addCallback: (callback: (...args: any[]) => void) => void
   addEventType: (eventType: EventType) => void
   addEventTypes: (eventTypes: EventType[]) => void
 }
@@ -32,16 +34,4 @@ export interface BaraStreamConfig<T> {
 export interface BaraStream<T> extends Base {
   _$: Stream<BaraStreamPayload<T>> | MemoryStream<BaraStreamPayload<T>>
   config: BaraStreamConfig<T>
-}
-
-export interface SetupCallbacks<T> {
-  emit: (eventType: EventType, payload: T) => void
-  emitCallback?: (
-    eventType: EventType,
-    payload: T,
-    callback: (...args: any) => void,
-  ) => void
-  error?: (errorMessage: string) => void
-  done?: () => void
-  options?: any
 }
