@@ -2,7 +2,6 @@ import {
   createEventType,
   EventType,
   register,
-  SetupCallbacks,
   useAction,
   useCondition,
   useEvent,

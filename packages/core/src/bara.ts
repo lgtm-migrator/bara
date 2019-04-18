@@ -1,4 +1,4 @@
-import xs from 'xstream'
+import xs, { Stream } from 'xstream'
 
 import { getBaraName } from './helpers/string'
 import {
@@ -8,6 +8,12 @@ import {
 } from './model/action'
 import { AppStream } from './model/app'
 import { BaraConditionConfig } from './model/condition'
+import {
+  BaraEmitter,
+  BaraEmitterConfig,
+  BaraEmitterPayload,
+  BaraEmitterSetup,
+} from './model/emitter'
 import { BaraEvent, EventType } from './model/event'
 import { BaraStreamConfig, BaraStreamSetup } from './model/stream'
 import {
@@ -18,6 +24,7 @@ import {
 
 import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
 import { useConditionHook } from './hooks/use-condition'
+import { useEmitterHook } from './hooks/use-emitter'
 import { useCustomEventHook, useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
@@ -35,6 +42,10 @@ const bara = (() => {
   let triggerRegistryIndex = 0
   const triggerConfig: Array<BaraTriggerConfig<any>> = []
   let triggerConfigIndex = 0
+
+  // Handle Emitter registry
+  const emitterRegistry: any[] = []
+  let emitterRegistryIndex = 0
 
   return {
     register(app: () => void) {
@@ -133,6 +144,14 @@ const bara = (() => {
       const actionSetup = useNormalActionHook(callback)
       return actionSetup
     },
+    useEmitter<T>(setup: BaraEmitterSetup<T>) {
+      const config: BaraEmitterConfig<T> = { name: '', eventTypes: [] }
+
+      emitterRegistry[emitterRegistryIndex] =
+        emitterRegistry[emitterRegistryIndex] || useEmitterHook(setup)
+
+      emitterRegistryIndex += 1
+    },
   }
 })()
 
@@ -141,6 +160,7 @@ const {
   useStream,
   useTrigger,
   useEvent,
+  useEmitter,
   useCustomEvent,
   useAction,
   useCondition,
@@ -151,6 +171,7 @@ export {
   useStream,
   useTrigger,
   useEvent,
+  useEmitter,
   useCustomEvent,
   useAction,
   useCondition,

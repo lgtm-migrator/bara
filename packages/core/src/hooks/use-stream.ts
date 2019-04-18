@@ -8,7 +8,6 @@ import {
   BaraStreamParams,
   BaraStreamPayload,
   BaraStreamSetup,
-  SetupCallbacks,
 } from '../model/stream'
 
 import { getBaraName } from '../helpers/string'
