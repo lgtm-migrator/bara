@@ -1,5 +1,6 @@
 import xs, { Stream } from 'xstream'
 
+import { createEmitterHook } from './emitter'
 import { getBaraName } from './helpers/string'
 
 import {
@@ -26,7 +27,6 @@ import {
 
 import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
 import { useConditionHook } from './hooks/use-condition'
-import { createEmitterHook } from './hooks/use-emitter'
 import { useCustomEventHook, useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
