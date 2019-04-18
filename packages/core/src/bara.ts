@@ -166,7 +166,8 @@ const bara = (() => {
     },
     createEmitter<T>(setup: BaraEmitterSetup<T>) {
       emitterRegistry[emitterRegistryIndex] =
-        emitterRegistry[emitterRegistryIndex] || createEmitterHook(setup, emitterRegistryIndex)
+        emitterRegistry[emitterRegistryIndex] ||
+        createEmitterHook(setup, emitterRegistryIndex)
 
       // Merge new stream to the main app stream to make global stream
       emitStream = xs.merge(emitStream, emitterRegistry[emitterRegistryIndex]
