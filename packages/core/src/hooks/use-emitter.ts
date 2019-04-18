@@ -21,12 +21,14 @@ export const useEmitterHook = <T>(
 
     const params: BaraEmitterParams<T> = {
       setName: (name: string) => {
-        config.name = getBaraName(name + '-emitter')
+        config.name = getBaraName('emitter-' + name)
       },
       addEventType: eventType => {
         config.eventTypes.push(eventType)
       },
     }
+
+    setup(params)
 
     const emitter$ = xs.never()
 
@@ -37,8 +39,7 @@ export const useEmitterHook = <T>(
       return emitFunc
     })
 
-    setup(params)
 
-    return { name, _$: emitter$ }
+    return { name: config.name, _$: emitter$ }
   }
 }

@@ -1,6 +1,7 @@
 import xs, { Stream } from 'xstream'
 
 import { getBaraName } from './helpers/string'
+
 import {
   BaraAction,
   BaraCallbackActionConfig,
@@ -160,13 +161,20 @@ const bara = (() => {
       const actionSetup = useNormalActionHook(callback)
       return actionSetup
     },
-    useEmitter<T>(setup: BaraEmitterSetup<T>) {
+    setupEmitter<T>(setup: BaraEmitterSetup<T>) {
       const config: BaraEmitterConfig<T> = { name: '', eventTypes: [] }
 
       emitterRegistry[emitterRegistryIndex] =
-        emitterRegistry[emitterRegistryIndex] || useEmitterHook(setup)
+        emitterRegistry[emitterRegistryIndex] ||
+        useEmitterHook(setup)(appStream)
+
+      // Merge new stream to the main app stream to make global stream
+      appStream = xs.merge(appStream, emitterRegistry[emitterRegistryIndex]
+        ._$ as AppStream<any>)
 
       emitterRegistryIndex += 1
+
+      return emitterRegistry[emitterRegistryIndex - 1]
     },
   }
 })()
@@ -176,10 +184,10 @@ const {
   useStream,
   useTrigger,
   useEvent,
-  useEmitter,
   useCustomEvent,
   useAction,
   useCondition,
+  setupEmitter,
 } = bara
 
 export {
@@ -187,8 +195,8 @@ export {
   useStream,
   useTrigger,
   useEvent,
-  useEmitter,
   useCustomEvent,
   useAction,
   useCondition,
+  setupEmitter,
 }
