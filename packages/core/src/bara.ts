@@ -12,6 +12,7 @@ import { BaraConditionConfig } from './model/condition'
 import {
   BaraEmitter,
   BaraEmitterConfig,
+  BaraEmitterMap,
   BaraEmitterPayload,
   BaraEmitterSetup,
 } from './model/emitter'
@@ -25,7 +26,7 @@ import {
 
 import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
 import { useConditionHook } from './hooks/use-condition'
-import { useEmitterHook } from './hooks/use-emitter'
+import { createEmitterHook } from './hooks/use-emitter'
 import { useCustomEventHook, useEventHook } from './hooks/use-event'
 import { useStreamHook } from './hooks/use-stream'
 import { useTriggerHook } from './hooks/use-trigger'
@@ -33,6 +34,7 @@ import { useTriggerHook } from './hooks/use-trigger'
 const bara = (() => {
   // Main App Stream, get merged with other stream at register step.
   let appStream: AppStream<any> = xs.never()
+  let emitStream: AppStream<any> = xs.never()
 
   // Handle hook Stream registry
   const streamRegistry: any[] = []
@@ -47,11 +49,12 @@ const bara = (() => {
   // Handle Emitter registry
   const emitterRegistry: any[] = []
   let emitterRegistryIndex = 0
+  const emitterMap: BaraEmitterMap = {} // Use JS Object for fast access via key
 
   return {
     register(app: () => void) {
       app()
-      return { appStream, streamRegistry, triggerRegistry }
+      return { appStream, emitterMap, streamRegistry, triggerRegistry }
     },
     useStream<T>(streamSetup: BaraStreamSetup<T>) {
       let stream
@@ -161,20 +164,33 @@ const bara = (() => {
       const actionSetup = useNormalActionHook(callback)
       return actionSetup
     },
-    setupEmitter<T>(setup: BaraEmitterSetup<T>) {
-      const config: BaraEmitterConfig<T> = { name: '', eventTypes: [] }
-
+    createEmitter<T>(setup: BaraEmitterSetup<T>) {
       emitterRegistry[emitterRegistryIndex] =
-        emitterRegistry[emitterRegistryIndex] ||
-        useEmitterHook(setup)(appStream)
+        emitterRegistry[emitterRegistryIndex] || createEmitterHook(setup, emitterRegistryIndex)
 
       // Merge new stream to the main app stream to make global stream
-      appStream = xs.merge(appStream, emitterRegistry[emitterRegistryIndex]
+      emitStream = xs.merge(emitStream, emitterRegistry[emitterRegistryIndex]
         ._$ as AppStream<any>)
+
+      // Assign emitter function to emitterMap for fast access
+      let i = emitterRegistry[emitterRegistryIndex].emitFuncs.length
+      // tslint:disable-next-line
+      while (i--) {
+        const [eventType, emitFunc] = emitterRegistry[
+          emitterRegistryIndex
+        ].emitFuncs[i]
+        emitterMap[eventType] = emitFunc
+      }
 
       emitterRegistryIndex += 1
 
       return emitterRegistry[emitterRegistryIndex - 1]
+    },
+    useEmitter<T>(eventType: EventType) {
+      if (eventType() in emitterMap) {
+        return emitterMap[eventType()]
+      }
+      return null
     },
   }
 })()
@@ -187,7 +203,8 @@ const {
   useCustomEvent,
   useAction,
   useCondition,
-  setupEmitter,
+  useEmitter,
+  createEmitter,
 } = bara
 
 export {
@@ -198,5 +215,6 @@ export {
   useCustomEvent,
   useAction,
   useCondition,
-  setupEmitter,
+  useEmitter,
+  createEmitter,
 }
