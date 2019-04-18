@@ -31,7 +31,8 @@
     "tsc": "tsc -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
-    "pretest": "yarn format"
+    "pretest": "yarn format",
+    "lint": "exit 0"
   },
   "bundlesize": [
     {
