@@ -1,6 +1,6 @@
-import { useInitStream, useInit } from '@bara/basics'
+import { useInit, useInitStream } from '@bara/basics'
 import { register } from '@bara/core'
-import { useBarn, useBarnStream } from '../src'
+import { SET_BARN_STATE, setBarnState, useBarn, useBarnStream } from '../src'
 
 describe('@bara/barn', () => {
   it('set initial state and set new state', done => {
@@ -18,7 +18,7 @@ describe('@bara/barn', () => {
     }
 
     register(() => {
-      const [setState] = useBarnStream(initialState)
+      useBarnStream(initialState)
       useInitStream()
       // Register state change handler
       useBarn('hello', handleNewState)
@@ -26,8 +26,8 @@ describe('@bara/barn', () => {
       useBarn('in.the.beginning', handleNestedState)
 
       useInit(() => {
-        setState('hello', 'world')
-        setState('in.the.beginning', 'God created the world!')
+        setBarnState('hello', 'world')
+        setBarnState('in.the.beginning', 'God created the world!')
       })
     })
 
@@ -35,7 +35,7 @@ describe('@bara/barn', () => {
       expect(handleWrongState).not.toHaveBeenCalled()
       expect(handleNewState).toHaveBeenCalled()
       expect(handleNewState).toHaveBeenCalledWith('world', {
-        eventType: 'dev.barajs.barn.set-state',
+        eventType: `dev.barajs.barn.${SET_BARN_STATE()}`,
         payload: {
           path: 'hello',
           state: {
@@ -45,7 +45,7 @@ describe('@bara/barn', () => {
         },
       })
       expect(handleNestedState).toHaveBeenCalledWith('God created the world!', {
-        eventType: 'dev.barajs.barn.set-state',
+        eventType: `dev.barajs.barn.${SET_BARN_STATE()}`,
         payload: {
           path: 'in.the.beginning',
           state: {
