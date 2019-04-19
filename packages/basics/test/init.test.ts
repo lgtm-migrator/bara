@@ -6,12 +6,13 @@ import {
   useStream,
   useTrigger,
 } from '@bara/core'
-import { useInit } from '../src/features/init'
+import { useInit, useInitStream } from '../src/features/init'
 
 describe('basics/init tests', () => {
   it('should emit initialization event', done => {
     const initCheck = jest.fn()
     const app = register(() => {
+      useInitStream()
       useInit(initCheck)
     })
     setTimeout(() => {
