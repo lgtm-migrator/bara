@@ -52,6 +52,11 @@ export const createEmitterHook = <T>(
   ) => {
     const listener = {
       next: (payload: any) => {
+        if (typeof userEventType !== 'function') {
+          throw new Error(
+            `Please specify first parameter of addListener is a function of type EventType of 'bara' package`,
+          )
+        }
         const eventType = userEventType()
         if (
           (payload as BaraEmitterPayload<T>).eventType ===
