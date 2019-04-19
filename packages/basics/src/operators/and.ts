@@ -1,15 +1,9 @@
 import { BaraEventPayload, BaraStreamPayload } from '@bara/core'
 
-import {
-  ConditionAndFunction,
-  ConditionPipe,
-  ConditionPipeFunction,
-} from './model'
+import { ConditionPipe } from './model'
 import { checkConditionPipe } from './pipe-checker'
 
-export const and = <T>(
-  ...conditions: Array<ConditionPipeFunction<T> | ConditionAndFunction<T>>
-) => {
+export const and = <T>(...conditions: Array<ConditionPipe<T>>) => {
   return async (
     triggeringEvent: T,
     payload?: BaraEventPayload<T> | BaraStreamPayload<T>,
