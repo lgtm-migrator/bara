@@ -37,7 +37,7 @@
   "bundlesize": [
     {
       "path": "./dist/bara.js",
-      "maxSize": "100 kB"
+      "maxSize": "150 kB"
     }
   ],
   "dependencies": {

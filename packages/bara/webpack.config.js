@@ -31,4 +31,10 @@ module.exports = {
     umdNamedDefine: true,
     globalObject: `(typeof self !== 'undefined' ? self : this)`,
   },
+  devtool: false,
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({
+      filename: 'bara.js.map',
+    }),
+  ],
 }
