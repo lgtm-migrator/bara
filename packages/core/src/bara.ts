@@ -174,12 +174,9 @@ const bara = (() => {
         ._$ as AppStream<any>)
 
       // Assign emitter function to emitterMap for fast access
-      let i = emitterRegistry[emitterRegistryIndex].emitFuncs.length
-      // tslint:disable-next-line
-      while (i--) {
-        const [eventType, emitFunc] = emitterRegistry[
-          emitterRegistryIndex
-        ].emitFuncs[i]
+      const emitFuncsArray = emitterRegistry[emitterRegistryIndex].emitFuncs
+      for (const emitFuncs of emitFuncsArray) {
+        const [eventType, emitFunc] = emitFuncs
         emitterMap[eventType] = emitFunc
       }
 
