@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/barajs/bara/compare/v2.2.0...v2.3.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* **basics:** remove useInitStream from hook ([5040311](https://github.com/barajs/bara/commit/5040311))
+
+
+### Features
+
+* **basics:** add "and" and "or" operator for "createPipe" function ([746b164](https://github.com/barajs/bara/commit/746b164)), closes [#42](https://github.com/barajs/bara/issues/42)
+* **basics:** add createPipe as an alias of createSequencePipe ([5da12ef](https://github.com/barajs/bara/commit/5da12ef)), closes [#41](https://github.com/barajs/bara/issues/41)
+* **basics:** add createSequencePipe operator ([c37d30f](https://github.com/barajs/bara/commit/c37d30f)), closes [#34](https://github.com/barajs/bara/issues/34)
+
+
+
+
+
 # [2.2.0](https://github.com/barajs/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
 
 **Note:** Version bump only for package @bara/basics

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/nampdn/bara/compare/v2.2.0...v2.3.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* **basics:** remove useInitStream from hook ([5040311](https://github.com/nampdn/bara/commit/5040311))
+* **core:** prevent duplicate stream registration ([9d01ca5](https://github.com/nampdn/bara/commit/9d01ca5))
+* **core:** trigger is not map to triggerRegistry ([00e01eb](https://github.com/nampdn/bara/commit/00e01eb))
+* **core:** WIP on duplicate stream ([d95ffb9](https://github.com/nampdn/bara/commit/d95ffb9))
+* **deps:** update dependency cli-ux to v5.2.1 ([7c1bcbd](https://github.com/nampdn/bara/commit/7c1bcbd))
+
+
+### Features
+
+* **barn:** new operator `setBarnState` based on `useEmitter` ([d4a2bd0](https://github.com/nampdn/bara/commit/d4a2bd0)), closes [#35](https://github.com/nampdn/bara/issues/35)
+* **basics:** add "and" and "or" operator for "createPipe" function ([746b164](https://github.com/nampdn/bara/commit/746b164)), closes [#42](https://github.com/nampdn/bara/issues/42)
+* **basics:** add createPipe as an alias of createSequencePipe ([5da12ef](https://github.com/nampdn/bara/commit/5da12ef)), closes [#41](https://github.com/nampdn/bara/issues/41)
+* **basics:** add createSequencePipe operator ([c37d30f](https://github.com/nampdn/bara/commit/c37d30f)), closes [#34](https://github.com/nampdn/bara/issues/34)
+* **core:** add setupEmitter ([f31f547](https://github.com/nampdn/bara/commit/f31f547))
+* **core:** complete `createEmitter` with `useEmitter` hook ([8d85655](https://github.com/nampdn/bara/commit/8d85655)), closes [#35](https://github.com/nampdn/bara/issues/35)
+* **core:** export all from xstream ([07bd747](https://github.com/nampdn/bara/commit/07bd747))
+* **core:** WIP on adding useEmitter ([59f62d3](https://github.com/nampdn/bara/commit/59f62d3))
+
+
+
+
+
 # [2.2.0](https://github.com/nampdn/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
 
 

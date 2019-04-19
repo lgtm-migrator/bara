@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/barajs/bara/compare/v2.2.0...v2.3.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* **basics:** remove useInitStream from hook ([5040311](https://github.com/barajs/bara/commit/5040311))
+
+
+### Features
+
+* **barn:** new operator `setBarnState` based on `useEmitter` ([d4a2bd0](https://github.com/barajs/bara/commit/d4a2bd0)), closes [#35](https://github.com/barajs/bara/issues/35)
+
+
+
+
+
 # [2.2.0](https://github.com/barajs/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
 
 

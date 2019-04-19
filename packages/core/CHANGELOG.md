@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/barajs/bara/compare/v2.2.0...v2.3.0) (2019-04-19)
+
+
+### Bug Fixes
+
+* **core:** prevent duplicate stream registration ([9d01ca5](https://github.com/barajs/bara/commit/9d01ca5))
+* **core:** trigger is not map to triggerRegistry ([00e01eb](https://github.com/barajs/bara/commit/00e01eb))
+* **core:** WIP on duplicate stream ([d95ffb9](https://github.com/barajs/bara/commit/d95ffb9))
+
+
+### Features
+
+* **barn:** new operator `setBarnState` based on `useEmitter` ([d4a2bd0](https://github.com/barajs/bara/commit/d4a2bd0)), closes [#35](https://github.com/barajs/bara/issues/35)
+* **core:** add setupEmitter ([f31f547](https://github.com/barajs/bara/commit/f31f547))
+* **core:** complete `createEmitter` with `useEmitter` hook ([8d85655](https://github.com/barajs/bara/commit/8d85655)), closes [#35](https://github.com/barajs/bara/issues/35)
+* **core:** export all from xstream ([07bd747](https://github.com/barajs/bara/commit/07bd747))
+* **core:** WIP on adding useEmitter ([59f62d3](https://github.com/barajs/bara/commit/59f62d3))
+
+
+
+
+
 # [2.2.0](https://github.com/barajs/bara/compare/v2.1.0...v2.2.0) (2019-04-10)
 
 
