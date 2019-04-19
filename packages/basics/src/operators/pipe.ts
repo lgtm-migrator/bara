@@ -44,3 +44,5 @@ export const createSequencePipe = <T>(
     return
   }
 }
+
+export const createPipe = createSequencePipe
