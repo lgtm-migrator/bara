@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/nampdn/bara/compare/v2.3.0...v2.3.1) (2019-04-19)
+
+
+### Bug Fixes
+
+* **core:** addListener of createEmitter instance will throw error if parameters is not correct ([28c18b7](https://github.com/nampdn/bara/commit/28c18b7))
+* **core:** emitterMap process could not iterable ([8109697](https://github.com/nampdn/bara/commit/8109697))
+
+
+
+
+
 # [2.3.0](https://github.com/nampdn/bara/compare/v2.2.0...v2.3.0) (2019-04-19)
 
 
