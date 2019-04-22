@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.2](https://github.com/barajs/bara/compare/v2.3.1...v2.3.2) (2019-04-22)
+
+
+### Bug Fixes
+
+* **basics:** add ActionPipe typing for createPipe operator ([bfd99af](https://github.com/barajs/bara/commit/bfd99af))
+* **basics:** fix export and typing on createPipe ([193d718](https://github.com/barajs/bara/commit/193d718))
+
+
+
+
+
 ## [2.3.1](https://github.com/barajs/bara/compare/v2.3.0...v2.3.1) (2019-04-19)
 
 **Note:** Version bump only for package @bara/basics

@@ -1,6 +1,6 @@
 {
   "name": "@bara/basics",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "BaraJS Basics Internal Module",
   "license": "MIT",
   "main": "dist/index.js",
