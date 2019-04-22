@@ -16,11 +16,13 @@ export type ConditionPipe<T> =
   | ConditionAndFunction<T>
   | ConditionOrFunction<T>
 
-export type ActionPipeFunction<T> = (
+export type PayloadPipe<T> = BaraEventPayload<T> | BaraStreamPayload<T>
+
+export type ActionPipe<T> = (
   data: T,
-  payload: BaraEventPayload<T> | BaraStreamPayload<T>,
+  payload?: PayloadPipe<T>,
 ) => Promise<any> | any | undefined | void
 
 export type BaraPipeHook<T> = (
-  ...conditions: Array<ConditionPipeFunction<T>>
-) => (...actions: Array<ActionPipeFunction<T>>) => Promise<void>
+  ...conditions: Array<ConditionPipe<T>>
+) => (...actions: Array<ActionPipe<T>>) => Promise<void>
