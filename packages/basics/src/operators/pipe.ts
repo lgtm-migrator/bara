@@ -1,20 +1,19 @@
-import { BaraEventPayload, BaraStreamPayload } from '@bara/core'
-
 import { and } from './and'
 import {
-  ActionPipeFunction,
+  ActionPipe,
   BaraPipeHook,
   ConditionAndFunction,
   ConditionPipe,
   ConditionPipeFunction,
+  PayloadPipe,
 } from './model'
 
 export const createSequencePipe = <T>(
   triggeringEvent: T,
-  payload?: BaraEventPayload<T>,
+  payload?: PayloadPipe<T>,
 ): BaraPipeHook<T> => {
   return (...conditions: Array<ConditionPipe<T>>) => async (
-    ...actions: ActionPipeFunction[]
+    ...actions: Array<ActionPipe<T>>
   ) => {
     const flag = await and(...(conditions as any))(triggeringEvent, payload)
     if (flag)
