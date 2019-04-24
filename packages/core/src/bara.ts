@@ -56,6 +56,25 @@ const bara = (() => {
       app()
       return { appStream, emitterMap, streamRegistry, triggerRegistry }
     },
+    addDebugListener(whichStream: string, callback: (...args: any[]) => void) {
+      const listener = {
+        next: (value: any) => {
+          callback(value)
+        },
+      }
+      if (whichStream === 'app') {
+        appStream.setDebugListener(listener)
+      } else {
+        const stream = streamRegistry.find(s => s.name === whichStream)
+        if (stream) {
+          stream._$.setDebugListener(listener)
+        } else {
+          throw new Error(
+            `[Bara Debugger] Not found any stream registered with name ${whichStream}. You can specify stream 'app' for all stream event.`,
+          )
+        }
+      }
+    },
     useStream<T>(streamSetup: BaraStreamSetup<T>) {
       let stream
       let duplicateIndex = -1
@@ -194,6 +213,7 @@ const bara = (() => {
 })()
 
 const {
+  addDebugListener,
   register,
   useStream,
   useTrigger,
@@ -206,6 +226,7 @@ const {
 } = bara
 
 export {
+  addDebugListener,
   register,
   useStream,
   useTrigger,
