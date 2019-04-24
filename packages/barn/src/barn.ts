@@ -46,7 +46,7 @@ export const useBarnStream = (initialState: BarnState) => {
 
       const onInitialized = emitter.addListener(BARN_INITIALIZE, () => {
         state = initialState
-        emit(SET_BARN_STATE, state)
+        emit(SET_BARN_STATE, { path: '', state })
       })
 
       return () => {
@@ -58,11 +58,10 @@ export const useBarnStream = (initialState: BarnState) => {
 
   // Emit initialize value to the barn's MemoryStream to making it able to use whenever new listener come.
   setTimeout(() => {
-    barn$._$.shamefullySendNext({
-      eventType: SET_BARN_STATE({ name: BASICS_STREAM_ID }),
-      payload: { path: '', state: initialState },
-      streamName: BASICS_STREAM_ID,
-    })
+    const emit = useEmitter(BARN_INITIALIZE)
+    if (emit) {
+      emit()
+    }
   })
 
   return barn$
