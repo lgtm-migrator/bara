@@ -6,7 +6,8 @@ import {
   useStream,
   useTrigger,
 } from '@bara/core'
-import { useInit, useInitStream } from '../src/features/init'
+
+import { useInit, useInitStream } from '../src'
 
 describe('basics/init tests', () => {
   it('should emit initialization event', done => {
