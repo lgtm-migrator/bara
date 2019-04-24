@@ -1,15 +1,34 @@
 import { useInit, useInitStream } from '@bara/basics'
-import { register } from '@bara/core'
+import { Listener, register, xs } from '@bara/core'
 import { SET_BARN_STATE, setBarnState, useBarn, useBarnStream } from '../src'
 
 describe('@bara/barn', () => {
+  it('create MemoryStream', done => {
+    const handler = jest.fn()
+    const _$ = xs.never()
+    const x = _$.remember()
+    x.shamefullySendNext('bara')
+    setTimeout(() => {
+      x.addListener({
+        next: handler,
+      })
+    }, 1000)
+
+    setTimeout(() => {
+      expect(handler).toHaveBeenCalledWith('bara')
+      done()
+    }, 1550)
+  })
+
   it('set initial state and set new state', done => {
     const handleNewState = jest.fn()
     const handleWrongState = jest.fn()
     const handleNestedState = jest.fn()
+    const handleHelloInitState = jest.fn()
+    const handleInitAllState = jest.fn()
 
     const initialState = {
-      hello: 'world',
+      hello: 'no-world',
       in: {
         the: {
           beginning: 'God created',
@@ -17,18 +36,44 @@ describe('@bara/barn', () => {
       },
     }
 
-    register(() => {
-      useBarnStream(initialState)
+    const { appStream } = register(() => {
+      const stream = useBarnStream(initialState)
+
+      // Handle initialize the state event after it has been initialized
       useInitStream()
+
       // Register state change handler
+      useBarn('', handleInitAllState)
+      useBarn('hello', handleHelloInitState)
+
       useBarn('hello', handleNewState)
       useBarn('wrong-state-key', handleWrongState)
       useBarn('in.the.beginning', handleNestedState)
 
-      useInit(() => {
+      setTimeout(() => {
+        const expectValueOnInit = {
+          eventType: 'dev.barajs.barn.set-barn-state',
+          payload: {
+            path: '',
+            state: {
+              hello: 'no-world',
+              in: { the: { beginning: 'God created' } },
+            },
+          },
+        }
+
+        expect(handleInitAllState).toHaveBeenCalledWith(
+          expectValueOnInit.payload.state,
+          expectValueOnInit,
+        )
+        expect(handleHelloInitState).toHaveBeenCalledWith(
+          'no-world',
+          expectValueOnInit,
+        )
+
         setBarnState('hello', 'world')
         setBarnState('in.the.beginning', 'God created the world!')
-      })
+      }, 1000)
     })
 
     setTimeout(() => {
@@ -55,6 +100,6 @@ describe('@bara/barn', () => {
         },
       })
       done()
-    }, 2000)
+    }, 5000)
   })
 })
