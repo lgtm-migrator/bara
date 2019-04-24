@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/barajs/bara/compare/v2.3.2...v2.4.0) (2019-04-24)
+
+
+### Features
+
+* **basics:** add `useBasicsStream` for convenient usage ([6029ff7](https://github.com/barajs/bara/commit/6029ff7)), closes [#44](https://github.com/barajs/bara/issues/44)
+
+
+
+
+
 ## [2.3.2](https://github.com/barajs/bara/compare/v2.3.1...v2.3.2) (2019-04-22)
 
 

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/barajs/bara/compare/v2.3.2...v2.4.0) (2019-04-24)
+
+
+### Features
+
+* **core:** add remember to `useCustomEvent` ([148b2f0](https://github.com/barajs/bara/commit/148b2f0)), closes [#47](https://github.com/barajs/bara/issues/47)
+* **core:** new operate `addDebugListener` for debugging ([8d8f8c7](https://github.com/barajs/bara/commit/8d8f8c7)), closes [#52](https://github.com/barajs/bara/issues/52)
+
+
+
+
+
 ## [2.3.1](https://github.com/barajs/bara/compare/v2.3.0...v2.3.1) (2019-04-19)
 
 

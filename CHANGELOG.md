@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/nampdn/bara/compare/v2.3.2...v2.4.0) (2019-04-24)
+
+
+### Bug Fixes
+
+* **barn:** not emit init state and latest value ([00aa16d](https://github.com/nampdn/bara/commit/00aa16d)), closes [#47](https://github.com/nampdn/bara/issues/47)
+
+
+### Features
+
+* **basics:** add `useBasicsStream` for convenient usage ([6029ff7](https://github.com/nampdn/bara/commit/6029ff7)), closes [#44](https://github.com/nampdn/bara/issues/44)
+* **core:** add remember to `useCustomEvent` ([148b2f0](https://github.com/nampdn/bara/commit/148b2f0)), closes [#47](https://github.com/nampdn/bara/issues/47)
+* **core:** new operate `addDebugListener` for debugging ([8d8f8c7](https://github.com/nampdn/bara/commit/8d8f8c7)), closes [#52](https://github.com/nampdn/bara/issues/52)
+
+
+
+
+
 ## [2.3.2](https://github.com/nampdn/bara/compare/v2.3.1...v2.3.2) (2019-04-22)
 
 
