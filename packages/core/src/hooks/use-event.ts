@@ -37,18 +37,20 @@ export function useCustomEventHook<T>(
   return (appStream: AppStream<T>) => {
     const name = getBaraName(trigger.name!)
     const eventFilter = (streamPayload: BaraStreamPayload<T>) => {
-      const partialEventTypeString = eventTypeRegister({ name: '' })
+      const partialEventTypeString = eventTypeRegister()
       let flag = streamPayload.eventType.indexOf(partialEventTypeString) > -1
       if (customFilter) {
         flag = flag && customFilter(streamPayload)
       }
       return flag
     }
+
     const _$ = (appStream as AppStream<T>)
       .filter(eventFilter)
       .map(({ eventType, payload, streamName }) => {
         return { eventType, payload }
       })
+      .remember()
     return { name, _$: _$ as Stream<BaraEventPayload<T>> }
   }
 }
