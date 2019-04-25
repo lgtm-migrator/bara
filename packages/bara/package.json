@@ -27,7 +27,6 @@
     "compile:tsc": "tsc -p ./tsconfig.build.json",
     "compile:webpack": "webpack --mode=production",
     "compile": "yarn clean && yarn compile:tsc && yarn compile:webpack",
-    "postcompile": "bundlesize",
     "tsc": "tsc -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
@@ -46,7 +45,6 @@
     "@bara/core": "^2.4.0"
   },
   "devDependencies": {
-    "bundlesize": "0.17.1",
     "prettier": "1.17.0",
     "ts-loader": "5.4.3",
     "typescript": "3.4.4",
