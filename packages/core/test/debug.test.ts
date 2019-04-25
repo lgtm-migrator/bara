@@ -10,6 +10,7 @@ import {
 
 describe('use debugger', () => {
   it('should attach console log to main app stream', done => {
+    jest.setTimeout(6000)
     const handler = jest.fn()
     const handlerReal = jest.fn()
     const handlerNotFoundStream = jest.fn()
@@ -59,11 +60,11 @@ describe('use debugger', () => {
     })
 
     setTimeout(() => {
-      expect(handler).toHaveBeenCalledTimes(9)
-      expect(handlerSpecificStream).toHaveBeenCalledTimes(9)
+      expect(handler).toHaveBeenCalledTimes(10)
+      expect(handlerSpecificStream).toHaveBeenCalledTimes(10)
       expect(handlerNotFoundStream).not.toHaveBeenCalled()
       expect(handler).toHaveBeenCalled()
       done()
-    }, 5000)
+    }, 5200)
   })
 })
