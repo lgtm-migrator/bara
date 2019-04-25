@@ -27,16 +27,18 @@
     "compile:tsc": "tsc -p ./tsconfig.build.json",
     "compile:webpack": "webpack --mode=production",
     "compile": "yarn clean && yarn compile:tsc && yarn compile:webpack",
+    "postcompile": "npx size-limit",
     "tsc": "tsc -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
     "pretest": "yarn format",
     "lint": "exit 0"
   },
-  "bundlesize": [
+  "size-limit": [
     {
-      "path": "./dist/bara.js",
-      "maxSize": "150 kB"
+      "webpack": true,
+      "path": "dist/*.js",
+      "limit": "1 s"
     }
   ],
   "dependencies": {
@@ -46,6 +48,7 @@
   },
   "devDependencies": {
     "prettier": "1.17.0",
+    "size-limit": "1.1.2",
     "ts-loader": "5.4.3",
     "typescript": "3.4.4",
     "webpack": "4.30.0",
