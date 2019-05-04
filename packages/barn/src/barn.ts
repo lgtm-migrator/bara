@@ -21,6 +21,8 @@ export const SET_BARN_STATE = createEventType('SET_BARN_STATE')
 export const BARN_INITIALIZE = createEventType('BARN_INITIALIZE')
 export const BASICS_STREAM_ID = 'dev.barajs.barn'
 
+let globalState: BarnState = {}
+
 export const useBarnStream = (initialState: BarnState) => {
   const emitter = createEmitter(({ setName, addEventType }) => {
     setName('dev.barajs.barn.emitter')
@@ -29,6 +31,7 @@ export const useBarnStream = (initialState: BarnState) => {
   })
 
   let state = { ...initialState }
+  globalState = state
 
   const barn$ = useStream<BarnState>(
     ({ emit, setName, setMemory, addEventType }) => {
@@ -40,6 +43,7 @@ export const useBarnStream = (initialState: BarnState) => {
         SET_BARN_STATE,
         ({ path, data }: any) => {
           state = dotProp.set(state, path, data)
+          globalState = state
           emit(SET_BARN_STATE, { path, state })
         },
       )
@@ -79,7 +83,7 @@ export const setBarnState = (path: string, data: any) => {
 }
 
 export const useBarn = (key: string, callback: (...args: any[]) => void) => {
-  return useTrigger<BarnState>(() => {
+  useTrigger<BarnState>(() => {
     const event = useCustomEvent<BarnState>(
       SET_BARN_STATE,
       (streamPayload: any) => {
@@ -99,4 +103,6 @@ export const useBarn = (key: string, callback: (...args: any[]) => void) => {
     })
     return { event, action }
   })
+
+  return dotProp.get(globalState, key)
 }

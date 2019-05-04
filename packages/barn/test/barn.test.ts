@@ -44,7 +44,10 @@ describe('@bara/barn', () => {
 
       // Register state change handler
       useBarn('', handleInitAllState)
-      useBarn('hello', handleHelloInitState)
+      const hello = useBarn('hello', handleHelloInitState)
+
+      // Check initial value returned
+      expect(hello).toEqual('no-world')
 
       useBarn('hello', handleNewState)
       useBarn('wrong-state-key', handleWrongState)
@@ -73,6 +76,11 @@ describe('@bara/barn', () => {
 
         setBarnState('hello', 'world')
         setBarnState('in.the.beginning', 'God created the world!')
+
+        const newHello = useBarn('hello', () => {
+          return
+        })
+        expect(newHello).toEqual('world')
       }, 1000)
     })
 
