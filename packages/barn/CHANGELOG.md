@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/barajs/bara/compare/v2.4.0...v2.5.0) (2019-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency dot-prop to v5.0.1 ([8f2ded5](https://github.com/barajs/bara/commit/8f2ded5))
+* **deps:** update dependency dot-prop to v5.1.0 ([81dfb77](https://github.com/barajs/bara/commit/81dfb77))
+
+
+### Features
+
+* **barn:** `useBarn` now return value at the time it is called ([be14a6e](https://github.com/barajs/bara/commit/be14a6e)), closes [#56](https://github.com/barajs/bara/issues/56)
+
+
+
+
+
 # [2.4.0](https://github.com/barajs/bara/compare/v2.3.2...v2.4.0) (2019-04-24)
 
 

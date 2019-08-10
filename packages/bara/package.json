@@ -1,6 +1,6 @@
 {
   "name": "bara",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": "nampdn @nampdn",
   "description": "Created For Creating - Create any JavaScript application.",
   "homepage": "https://barajs.dev",
@@ -42,9 +42,9 @@
     }
   ],
   "dependencies": {
-    "@bara/barn": "^2.4.0",
-    "@bara/basics": "^2.4.0",
-    "@bara/core": "^2.4.0"
+    "@bara/barn": "^2.5.0",
+    "@bara/basics": "^2.5.0",
+    "@bara/core": "^2.5.0"
   },
   "devDependencies": {
     "prettier": "1.18.2",

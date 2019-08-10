@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/barajs/bara/compare/v2.4.0...v2.5.0) (2019-08-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency xstream to v11.11.0 ([0ac03fa](https://github.com/barajs/bara/commit/0ac03fa))
+
+
+### Features
+
+* **basics:** add new operators for functional programming ([3282f53](https://github.com/barajs/bara/commit/3282f53))
+
+
+
+
+
 # [2.4.0](https://github.com/barajs/bara/compare/v2.3.2...v2.4.0) (2019-04-24)
 
 
