@@ -27,7 +27,9 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
+    "@types/p-all": "2.0.0",
     "concurrently": "4.1.1",
+    "consola": "2.10.1",
     "jest": "24.8.0",
     "npm-watch": "0.6.0",
     "prettier": "1.18.2",
@@ -39,7 +41,8 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "@bara/core": "^2.4.0"
+    "@bara/core": "^2.4.0",
+    "p-all": "2.1.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
 }
