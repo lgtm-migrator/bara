@@ -16,11 +16,13 @@
     "cli": "yarn workspace bara-cli"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "workspace-sources": {
     "*": [
-      "packages/*/src"
+      "packages/*/src",
+      "examples/*/src"
     ]
   },
   "devDependencies": {

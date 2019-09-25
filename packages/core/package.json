@@ -1,13 +1,15 @@
 {
   "name": "@bara/core",
-  "version": "2.5.0",
+  "version": "3.0.0-alpha.1",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "src/v3/index.ts",
   "types": "dist/index.d.ts",
   "keywords": [],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "publishConfig": {
     "access": "public"
@@ -41,6 +43,7 @@
     "typescript": "3.6.3"
   },
   "dependencies": {
+    "short-id": "0.1.0-1",
     "xstream": "11.11.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
