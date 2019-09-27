@@ -1,5 +1,5 @@
 import xs, { Stream } from 'xstream'
-import { BaraSource } from './source'
+import { BaraSource } from './flow'
 
 export interface BaraStream<T, Context> {
   context: Context

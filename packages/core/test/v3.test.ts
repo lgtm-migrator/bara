@@ -11,7 +11,7 @@ import {
 import { EventEmitter } from 'events'
 
 interface TikTokMold {
-  periodic: number
+  periodic?: number
 }
 
 describe('bara core', () => {
@@ -28,31 +28,26 @@ describe('bara core', () => {
           emitter.emit('second', i) // Simulate the event emitting every second
           i += 1
         }, periodic)
-        return stream({
-          source: fromContext(emitter),
-          context: emitter,
-        })
+        return emitter
       },
-      flow: {
-        whenStart: flow({
-          func: (context, next) => {
-            context.addListener('start', (startData: any) => {
-              next(startData)
-            })
-          },
-        }),
-        whenSecond: flow({
-          func: (context, next) => {
-            context.addListener('second', (startData: any) => {
-              next(startData)
-            })
-          },
-          seep: {
-            isEven: (second: number) => second % 2 === 0,
-            isOdd: (second: number) => second % 2 === 0,
-          },
-        }),
-      },
+      whenStart: flow({
+        func: (context, next) => {
+          context.addListener('start', (startData: any) => {
+            next(startData)
+          })
+        },
+      }),
+      whenSecond: flow({
+        func: (context, next) => {
+          context.addListener('second', (startData: any) => {
+            next(startData)
+          })
+        },
+        seep: {
+          isEven: (second: number) => second % 2 === 0,
+          isOdd: (second: number) => second % 2 === 0,
+        },
+      }),
     })
 
     const { whenStart, whenSecond } = razeEvent(TikTok)

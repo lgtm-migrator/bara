@@ -21,7 +21,7 @@ export const app = (payload: {
   trigger?: any[]
 }): BaraApplication => {
   const { portion } = payload
-  console.log('[Bara Core] Hello world!', portion)
+  console.log('[Bara App] Started!')
 
   const portions = portion.map(p => initPortion(p))
 
