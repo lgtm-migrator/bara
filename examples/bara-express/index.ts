@@ -5,7 +5,7 @@ export interface ExpressMold {
   port?: number
 }
 
-export const ExpressPortion = portion<
+export const ExpressServer = portion<
   express.Request,
   express.Application,
   ExpressMold

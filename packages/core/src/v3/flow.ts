@@ -1,5 +1,5 @@
 import xs, { Stream, Listener } from 'xstream'
-import consola from 'consola'
+import consola from './consola'
 
 import { BaraContext } from './context'
 import { BaraType } from './type'
@@ -80,7 +80,7 @@ export const flow = <T, C, M>(
     subStream.addListener(dummyListener)
     bootstrap(bootstrapPayload)
     subStream.removeListener(dummyListener)
-    consola.info(`[Flow] Bootstrapped!`, bootstrapPayload)
+    consola.info(`[Flow] Bootstrapped!`)
 
     return {
       bara: 'Flow',

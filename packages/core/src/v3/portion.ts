@@ -1,5 +1,7 @@
-import { FlowConfig } from '.'
+import consola from './consola'
+
 import xs, { Stream } from 'xstream'
+import { FlowConfig } from '.'
 
 /**
  * BaraMoldObject is the object contains all values
@@ -43,16 +45,22 @@ export type BaraPortion<T, C, Mold> = (
 /**
  * Basic building block of a Bara application.
  * You can consider a portion is a Component in a React application.
+ *
+ * This function will override and mold if existed
  * @param payload Portion parameter as an object
  */
 export const portion = <T, Context, Mold>(
   payload: BaraPortionPayload<T, Context, Mold>,
 ): BaraPortion<T, Context, Mold> => {
-  return (mold: any) => payload
+  return (userMold?: any) => {
+    const { mold } = payload
+    const overrideMold = { ...mold, ...userMold }
+    return { ...payload, mold: overrideMold }
+  }
 }
 
 export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
-  console.log(`[Portion] Initializing...`)
+  consola.info(`[Portion] Initializing...`)
   const { mold, init } = pt
 
   // Each portion initializer should return the reference context for later use.
@@ -67,8 +75,9 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
   })
 
   // Register Flow from this stream
-  console.log(`[Portion] Initialized!`)
+  consola.info(`[Portion] Initialized!`)
   const flows = registerFlow(pt, context, xstream)
+  return { flows }
 }
 
 export const registerFlow = <T, Context, Mold>(

@@ -1,4 +1,6 @@
-import { initPortion } from './portion'
+import consola from './consola'
+
+import { initPortion, BaraPortionPayload } from './portion'
 
 export interface BaraApplication {
   portion: any[]
@@ -14,16 +16,20 @@ export const app = (payload: {
   /**
    * Basic Bara application building block
    */
-  portion: any[]
+  portion: Array<BaraPortionPayload<any, any, any>>
   /**
    * Trigger is where a bussiness logic will be implement
    */
   trigger?: any[]
 }): BaraApplication => {
   const { portion } = payload
-  console.log('[Bara App] Started!')
+  consola.log('[Bara App] Started!')
 
+  // Initialize each portion for stream subscription
   const portions = portion.map(p => initPortion(p))
+
+  // Subscribe trigger to each portion corresponding stream
+  const triggers = []
 
   return { portion }
 }
