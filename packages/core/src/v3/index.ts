@@ -6,8 +6,8 @@ export * from './app'
 export * from './portion'
 export * from './flow'
 export * from './event'
+export * from './trigger'
 
 // Expiremental Operators
 export * from './context'
 export * from './stream'
-export * from './raze'

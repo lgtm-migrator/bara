@@ -1,5 +1,5 @@
 import express from 'express'
-import { portion, flow } from '@bara/core/src'
+import { portion, flow } from '@bara/core'
 
 export interface ExpressMold {
   port?: number

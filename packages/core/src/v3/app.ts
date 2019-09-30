@@ -1,9 +1,11 @@
 import consola from './consola'
 
 import { initPortion, BaraPortionPayload } from './portion'
+import { initTrigger } from './trigger'
 
 export interface BaraApplication {
-  portion: any[]
+  portions: any[]
+  triggers: any[]
 }
 
 export const app = (payload: {
@@ -22,14 +24,15 @@ export const app = (payload: {
    */
   trigger?: any[]
 }): BaraApplication => {
-  const { portion } = payload
+  const { portion, trigger } = payload
   consola.log('[Bara App] Started!')
 
   // Initialize each portion for stream subscription
   const portions = portion.map(p => initPortion(p))
+  consola.info('[Bara App] Portions: ', portions)
 
   // Subscribe trigger to each portion corresponding stream
-  const triggers = []
+  const triggers = (trigger || []).map(t => initTrigger(t))
 
-  return { portion }
+  return { portions, triggers }
 }

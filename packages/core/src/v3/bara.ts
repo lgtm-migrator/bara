@@ -4,8 +4,8 @@ import { BaraApplication } from './app'
 /* Run Bara Application */
 export const run = (app: BaraApplication) => {
   const context: BaraContext = {}
-  const { portion } = app
-  const all$ = wirePortion(portion)
+  const { portions } = app
+  const all$ = wirePortion(portions)
   return { context }
 }
 

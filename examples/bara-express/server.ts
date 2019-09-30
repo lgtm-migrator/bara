@@ -1,14 +1,16 @@
-import { run, app, popEvent } from '@bara/core/src'
+import { run, app, popEvent } from '@bara/core'
 import { ExpressServer } from '.'
 
-const printExpress = (callback: () => void) => {
-  const { whenInitialized: whenExpressStarted } = popEvent(ExpressServer)
-  return whenExpressStarted(callback)
+const whenExpressStarted = (callback: () => void) => {
+  // const { whenInitialized } = popEvent(ExpressServer)
+  const { whenInitialized } = popEvent(ExpressServer)
+  console.log(whenInitialized)
+  return whenInitialized(callback)
 }
 
 run(
   app({
     portion: [ExpressServer({ port: 3200 })],
-    trigger: [printExpress(() => console.log('Hello from Bara'))],
+    trigger: [whenExpressStarted(() => console.log('Hello from Bara'))],
   }),
 )

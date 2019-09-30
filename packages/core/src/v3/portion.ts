@@ -60,7 +60,6 @@ export const portion = <T, Context, Mold>(
 }
 
 export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
-  consola.info(`[Portion] Initializing...`)
   const { mold, init } = pt
 
   // Each portion initializer should return the reference context for later use.
@@ -86,12 +85,17 @@ export const registerFlow = <T, Context, Mold>(
   stream: Stream<T>,
 ) => {
   const { mold, whenInitialized, ...otherFlow } = pt
+  const flowOperators: { [k: string]: any } = {}
   // Bara Portion Life Cycle
-  whenInitialized && whenInitialized!({ stream, mold, context })
+  if (!!whenInitialized) {
+    const flow = whenInitialized!({ stream, mold, context })
+    flowOperators['whenInitialized'] = flow
+  }
   // for (const flowName in otherFlow) {
   //   const f = otherFlow[flowName]
   //   if (f) {
   // f({ mold, context, next })
   //   }
   // }
+  return flowOperators
 }
