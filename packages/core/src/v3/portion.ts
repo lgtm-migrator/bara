@@ -26,21 +26,27 @@ export type BaraFlow<Context, Mold> = ({
   next: BaraFlowNext,
 }: any) => void
 
-export interface BaraPortionStandard<T, C, Mold> {
-  mold?: BaraMold<Mold>
-  init: BaraPortionInit<C, Mold>
+export interface BaraPortionStandard<T, C, M> {
+  [k: string]: FlowConfig<T, C> | any | undefined
+  mold?: BaraMold<M>
+  init: BaraPortionInit<C, M>
   whenInitialized?: FlowConfig<T, C>
 }
 
-export type BaraPortionCustomFlow<T, C, M> = {
-  [k: string]: FlowConfig<T, C>
+export type BaraPortionCustomFlow<T, C> = {
+  [k: string]: FlowConfig<T, C> | any | undefined
 }
 
-export type BaraPortionPayload<T, C, M> = BaraPortionStandard<T, C, M>
+export type BaraPortionPayload<T, C, M> = {
+  [k: string]: FlowConfig<T, C> | any | undefined
+  mold?: BaraMold<M>
+  init: BaraPortionInit<C, M>
+  whenInitialized?: FlowConfig<T, C>
+}
 
-export type BaraPortion<T, C, Mold> = (
-  mold?: T extends any ? Mold : undefined,
-) => BaraPortionPayload<T, C, Mold>
+export type BaraPortion<T, C, M> = (
+  mold?: BaraMold<M>,
+) => BaraPortionPayload<T, C, M>
 
 /**
  * Basic building block of a Bara application.
@@ -49,12 +55,14 @@ export type BaraPortion<T, C, Mold> = (
  * This function will override and mold if existed
  * @param payload Portion parameter as an object
  */
-export const portion = <T, Context, Mold>(
-  payload: BaraPortionPayload<T, Context, Mold>,
-): BaraPortion<T, Context, Mold> => {
-  return (userMold?: any) => {
+export const portion = <T, C, M>(
+  payload: BaraPortionPayload<T, C, M>,
+): BaraPortion<T, C, M> => {
+  return (userMold?: BaraMold<M>) => {
+    // Override usage mold with builtins mold
     const { mold } = payload
-    const overrideMold = { ...mold, ...userMold }
+    const overrideMold: BaraMold<M> = { ...mold, ...userMold } as BaraMold<M>
+
     return { ...payload, mold: overrideMold }
   }
 }
