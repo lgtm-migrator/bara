@@ -3,6 +3,7 @@ import { BaraPortion } from '.'
 export const popEvent = <T, C, M>(portion: BaraPortion<T, C, M>) => {
   const { mold, init, ...flows } = portion()
   let flowNames: string[] = [] // Use as immutable array
+
   for (const flowName in flows) {
     // Bara rules to treat a flow name started with 'when' keyword
     if (flowName.startsWith('when') && flowName in flows) {

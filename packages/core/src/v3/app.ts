@@ -25,13 +25,13 @@ export const app = (payload: {
   trigger?: any[]
 }): BaraApplication => {
   const { portion, trigger } = payload
-  consola.log('[Bara App] Started!')
 
   // Initialize each portion for stream subscription
   const portions = portion.map(p => initPortion(p))
   consola.info('[Bara App] Portions: ', portions)
 
   // Subscribe trigger to each portion corresponding stream
+  // Trigger will be registering when this application is going run
   const triggers = (trigger || []).map(t => initTrigger(t))
 
   return { portions, triggers }

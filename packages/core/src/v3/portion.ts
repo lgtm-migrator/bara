@@ -1,8 +1,9 @@
+import xs, { Stream } from 'xstream'
+import shortid from 'shortid'
+
 import consola from './consola'
 
-import xs, { Stream } from 'xstream'
-import { FlowConfig } from '.'
-import { FlowSemiConfig } from './flow'
+import { FlowSemiConfig, FlowConfig } from './flow'
 
 /**
  * BaraMoldObject is the object contains all values
@@ -75,7 +76,7 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
   const context = init(mold!)
 
   // Create Stream for this context event
-  const xstream = xs.createWithMemory<T>({
+  const stream = xs.createWithMemory<T>({
     start: listener => {
       listener.next({} as T)
     },
@@ -84,8 +85,8 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
 
   // Register Flow from this stream
   consola.info(`[Portion] Initialized!`)
-  const flows = registerFlow(pt, context, xstream)
-  return { flows }
+  const rawFlows = registerFlow(pt, context, stream)
+  return { id: shortid.generate(), rawFlows, stream }
 }
 
 export const registerFlow = <T, C, Mold>(
@@ -98,16 +99,17 @@ export const registerFlow = <T, C, Mold>(
   const flowPayload = { stream, mold, context }
 
   // Bara Portion Life Cycle
+  // TODO merge this process with below loop for extensible
   if (!!whenInitialized) {
-    const flow = whenInitialized(flowPayload)
-    flowOperators['whenInitialized'] = flow
+    const rawFlow = whenInitialized(flowPayload)
+    flowOperators['whenInitialized'] = rawFlow
   }
 
+  // Initialize all custom flows, all the flow should start with 'when' as naming convention
   for (const flowName in customFlows) {
     if (flowName.startsWith('when') && flowName in customFlows) {
-      const flow = customFlows[flowName](flowPayload)
-      consola.info(`[Portion registerFlow] ${flowName}`, flow)
-      flowOperators[flowName] = flow
+      const rawFlow = customFlows[flowName](flowPayload)
+      flowOperators[flowName] = rawFlow
     }
   }
   return flowOperators
