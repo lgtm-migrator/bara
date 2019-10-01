@@ -2,6 +2,7 @@ import consola from './consola'
 
 import xs, { Stream } from 'xstream'
 import { FlowConfig } from '.'
+import { FlowSemiConfig } from './flow'
 
 /**
  * BaraMoldObject is the object contains all values
@@ -87,23 +88,27 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
   return { flows }
 }
 
-export const registerFlow = <T, Context, Mold>(
-  pt: BaraPortionPayload<T, Context, Mold>,
-  context: Context,
+export const registerFlow = <T, C, Mold>(
+  pt: BaraPortionPayload<T, C, Mold>,
+  context: C,
   stream: Stream<T>,
 ) => {
-  const { mold, whenInitialized, ...otherFlow } = pt
-  const flowOperators: { [k: string]: any } = {}
+  const { mold, whenInitialized, ...customFlows } = pt
+  const flowOperators: { [k: string]: FlowSemiConfig<T, C> } = {}
+  const flowPayload = { stream, mold, context }
+
   // Bara Portion Life Cycle
   if (!!whenInitialized) {
-    const flow = whenInitialized!({ stream, mold, context })
+    const flow = whenInitialized(flowPayload)
     flowOperators['whenInitialized'] = flow
   }
-  // for (const flowName in otherFlow) {
-  //   const f = otherFlow[flowName]
-  //   if (f) {
-  // f({ mold, context, next })
-  //   }
-  // }
+
+  for (const flowName in customFlows) {
+    if (flowName.startsWith('when') && flowName in customFlows) {
+      const flow = customFlows[flowName](flowPayload)
+      consola.info(`[Portion registerFlow] ${flowName}`, flow)
+      flowOperators[flowName] = flow
+    }
+  }
   return flowOperators
 }
