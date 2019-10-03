@@ -33,6 +33,7 @@ export const app = (payload: {
   // Subscribe trigger to each portion corresponding stream
   // Trigger will be registering when this application is going run
   const triggers = (trigger || []).map(t => initTrigger(t))
+  consola.info('[Bara App] Trigger: ', triggers)
 
   return { portions, triggers }
 }

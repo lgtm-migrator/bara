@@ -29,21 +29,17 @@ export type BaraFlow<Context, Mold> = ({
 }: any) => void
 
 export interface BaraPortionStandard<T, C, M> {
-  [k: string]: FlowConfig<T, C> | any | undefined
+  [k: string]: FlowConfig<T, C, M> | any | undefined
   mold?: BaraMold<M>
   init: BaraPortionInit<C, M>
-  whenInitialized?: FlowConfig<T, C>
-}
-
-export type BaraPortionCustomFlow<T, C> = {
-  [k: string]: FlowConfig<T, C> | any | undefined
+  whenInitialized?: FlowConfig<T, C, M>
 }
 
 export type BaraPortionPayload<T, C, M> = {
-  [k: string]: FlowConfig<T, C> | any | undefined
+  [k: string]: FlowConfig<T, C, M> | any | undefined
   mold?: BaraMold<M>
   init: BaraPortionInit<C, M>
-  whenInitialized?: FlowConfig<T, C>
+  whenInitialized?: FlowConfig<T, C, M>
 }
 
 export type BaraPortion<T, C, M> = (
@@ -89,8 +85,8 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
   return { id: shortid.generate(), rawFlows, stream }
 }
 
-export const registerFlow = <T, C, Mold>(
-  pt: BaraPortionPayload<T, C, Mold>,
+export const registerFlow = <T, C, M>(
+  pt: BaraPortionPayload<T, C, M>,
   context: C,
   stream: Stream<T>,
 ) => {
@@ -101,14 +97,16 @@ export const registerFlow = <T, C, Mold>(
   // Bara Portion Life Cycle
   // TODO merge this process with below loop for extensible
   if (!!whenInitialized) {
-    const rawFlow = whenInitialized(flowPayload)
+    const rawFlow = whenInitialized.func(flowPayload)
     flowOperators['whenInitialized'] = rawFlow
   }
 
   // Initialize all custom flows, all the flow should start with 'when' as naming convention
   for (const flowName in customFlows) {
     if (flowName.startsWith('when') && flowName in customFlows) {
-      const rawFlow = customFlows[flowName](flowPayload)
+      const rawFlow = (customFlows[flowName] as FlowConfig<T, C, M>).func(
+        flowPayload,
+      )
       flowOperators[flowName] = rawFlow
     }
   }

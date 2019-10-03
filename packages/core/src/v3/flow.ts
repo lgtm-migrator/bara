@@ -1,8 +1,11 @@
+import { EventEmitter } from 'events'
 import xs, { Stream, Listener } from 'xstream'
+
 import consola from './consola'
 
 import { BaraContext } from './context'
 import { BaraType } from './type'
+import { booleanLiteralTypeAnnotation } from '@babel/types'
 
 const dummyFunc = (...args: any[]): undefined => undefined
 const dummyListener = {
@@ -22,21 +25,31 @@ export interface BaraSource<T> {
   context: BaraContext
 }
 
+export type BaraSeep<T> = {
+  [key: string]: (...args: any[]) => (data: T) => boolean
+}
+
 export interface FlowUserPayload<T, C, M> {
   mold: M
   context: C
   stream: Stream<T>
   next: (data: T) => void
   action: (data: T) => Promise<any>
+  awaitable: (data: T) => Stream<T>
 }
 
 export interface FlowSemiConfig<T, C> {
   bara: BaraType
   context: C
   subStream: Stream<T>
+  awaitAction: EventEmitter
 }
 
-export type FlowConfig<T, C> = (context: BaraContext) => FlowSemiConfig<T, C>
+export interface FlowConfig<T, C, M> {
+  bootstrap: (payload: FlowUserPayload<T, C, M>) => void
+  seep?: BaraSeep<T>
+  func: (context: BaraContext) => FlowSemiConfig<T, C>
+}
 
 export interface FlowPayload<T, C, M> {
   /**
@@ -47,28 +60,41 @@ export interface FlowPayload<T, C, M> {
   /**
    * Conditional filter preset provided from a publisher.
    */
-  seep?: { [key: string]: (data: T) => boolean }
+  seep?: BaraSeep<T>
 }
 
 /**
- * Add new publisher to the referencing context.
+ * Add new publisher to the awaitActionerencing context.
  * @param payload Publisher configuration
  */
 export const flow = <T, C, M>(
   payload: FlowPayload<T, C, M>,
-): FlowConfig<T, C> => {
-  const { bootstrap } = payload
-  return (flowUserPayload: FlowUserPayload<T, C, M>) => {
+): FlowConfig<T, C, M> => {
+  const { bootstrap, seep } = payload
+
+  // TODO create separated awaitableFlow operator
+  const awaitAction = new EventEmitter()
+  const func = (flowUserPayload: FlowUserPayload<T, C, M>) => {
     let bootstrapPayload = { ...flowUserPayload }
     // Setup Flow Emitter Action
     let next = (listener: Listener<T>) => (data: T) => {
       listener.next(data)
     }
-    let actionRef = (data: T) => Promise.resolve(data)
+
+    let actionRef = (data: T | any) => Promise.resolve(data)
+
+    const awaitable = (data: T | any) => {
+      // Emit data object to some stream
+      awaitAction.emit(data)
+      return xs.fromPromise(actionRef(data))
+    }
 
     const subStream = xs.createWithMemory<T>({
       start: listener => {
         const nextRef = next(listener)
+
+        // Patch assign to the bootstrap payload
+        // TODO make this payload immutable
         bootstrapPayload.next = nextRef
         bootstrapPayload.action = actionRef
       },
@@ -77,15 +103,21 @@ export const flow = <T, C, M>(
       },
     })
 
+    // Assign to bootstrapPayload
+    bootstrapPayload.awaitable = awaitable
+
     subStream.addListener(dummyListener)
     bootstrap(bootstrapPayload)
     subStream.removeListener(dummyListener)
     consola.info(`[Flow] Bootstrapped!`)
 
     return {
-      bara: 'Flow',
+      bara: BaraType.Flow,
       context: flowUserPayload.context,
       subStream,
+      awaitAction,
     }
   }
+
+  return { bootstrap, seep, func }
 }

@@ -1,1 +1,5 @@
-export type BaraType = 'Flow' | 'Portion' | 'Trigger'
+export enum BaraType {
+  Flow,
+  Portion,
+  Trigger,
+}

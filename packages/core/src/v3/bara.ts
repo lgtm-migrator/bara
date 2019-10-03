@@ -14,7 +14,14 @@ export const run = (app: BaraApplication, options?: BaraRunOptions) => {
   return { context }
 }
 
+/**
+ * Map each portion's stream into global stream.
+ *
+ * @param portion
+ */
 const wirePortion = (portion: any) => {}
+
+const wireTrigger = () => {}
 
 /**
  * Create main Bara application

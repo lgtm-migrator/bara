@@ -6,7 +6,11 @@ export * from './app'
 export * from './portion'
 export * from './flow'
 export * from './event'
+export * from './seep'
 export * from './trigger'
+
+// Basic Operators
+export * from './chain'
 
 // Expiremental Operators
 export * from './context'
