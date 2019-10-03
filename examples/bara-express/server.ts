@@ -2,9 +2,8 @@ import { run, app, popEvent, popSeep, act, cond } from '@bara/core'
 import { ExpressServer, WhenRouteGet } from '.'
 
 const { whenInitialized, whenRouteGet } = popEvent(ExpressServer)
-// const { hasQuery } = popSeep(ExpressServer)
-const hasQuery = (str: string) => {}
-console.log(`whenRouteGet`, whenRouteGet())
+const { hasQuery } = popSeep(whenRouteGet)
+console.log(`whenRouteGet`, whenRouteGet(), 'hasQuery', hasQuery())
 
 run(
   app({

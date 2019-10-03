@@ -5,7 +5,6 @@ import consola from './consola'
 
 import { BaraContext } from './context'
 import { BaraType } from './type'
-import { booleanLiteralTypeAnnotation } from '@babel/types'
 
 const dummyFunc = (...args: any[]): undefined => undefined
 const dummyListener = {

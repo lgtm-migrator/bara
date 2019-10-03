@@ -1,6 +1,13 @@
 import { BaraPortion } from '.'
+import { BaraSeep } from './flow'
 
-export type VirtualAction = (...actions: any[]) => {}
+export interface VirtualActionConfig<T> {
+  flowName: string
+  actions: any[]
+  seep: BaraSeep<T>
+}
+
+export type VirtualAction<T> = (...actions: any[]) => VirtualActionConfig<T>
 
 /**
  * Pop out one or more event at a time.
@@ -11,7 +18,7 @@ export type VirtualAction = (...actions: any[]) => {}
 export const popEvent = <T, C, M>(
   portion: BaraPortion<T, C, M>,
 ): {
-  [k: string]: VirtualAction
+  [k: string]: VirtualAction<T>
 } => {
   const { mold, init, ...flows } = portion()
   let flowNames: string[] = [] // Use as immutable array
