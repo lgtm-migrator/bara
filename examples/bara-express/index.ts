@@ -11,6 +11,7 @@ export interface WhenRouteGet {
 }
 
 export const ExpressServer = portion<Request, Application, ExpressMold>({
+  name: 'bara-express',
   mold: { port: +process.env.PORT! || 3456 },
   init: () => {
     const expressApp: Application = express()

@@ -1,8 +1,6 @@
 import xs, { Stream } from 'xstream'
 import shortid from 'shortid'
 
-import consola from './consola'
-
 import { FlowSemiConfig, FlowConfig } from './flow'
 
 /**
@@ -37,6 +35,7 @@ export interface BaraPortionStandard<T, C, M> {
 
 export type BaraPortionPayload<T, C, M> = {
   [k: string]: FlowConfig<T, C, M> | any | undefined
+  name: string
   mold?: BaraMold<M>
   init: BaraPortionInit<C, M>
   whenInitialized?: FlowConfig<T, C, M>
@@ -58,7 +57,10 @@ export const portion = <T, C, M>(
 ): BaraPortion<T, C, M> => {
   return (userMold?: BaraMold<M>) => {
     // Override usage mold with builtins mold
-    const { mold } = payload
+    const { mold, name } = payload
+    if (!name) {
+      throw new Error(`[Portion] A portion name should be specified!`)
+    }
     const overrideMold: BaraMold<M> = { ...mold, ...userMold } as BaraMold<M>
 
     return { ...payload, mold: overrideMold }
@@ -80,7 +82,6 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
   })
 
   // Register Flow from this stream
-  consola.info(`[Portion] Initialized!`)
   const rawFlows = registerFlow(pt, context, stream)
   return { id: shortid.generate(), rawFlows, stream }
 }

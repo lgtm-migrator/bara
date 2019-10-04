@@ -5,12 +5,7 @@ import consola from './consola'
 
 import { BaraContext } from './context'
 import { BaraType } from './type'
-
-const dummyFunc = (...args: any[]): undefined => undefined
-const dummyListener = {
-  next: dummyFunc,
-  complete: dummyFunc,
-}
+import { initializeStream } from './stream'
 
 /**
  * XPayload: Is the configuration from user.
@@ -105,9 +100,7 @@ export const flow = <T, C, M>(
     // Assign to bootstrapPayload
     bootstrapPayload.awaitable = awaitable
 
-    subStream.addListener(dummyListener)
-    bootstrap(bootstrapPayload)
-    subStream.removeListener(dummyListener)
+    initializeStream(subStream, bootstrapPayload, bootstrap)
     consola.info(`[Flow] Bootstrapped!`)
 
     return {

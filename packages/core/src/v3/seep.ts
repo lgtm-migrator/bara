@@ -2,7 +2,7 @@ import { VirtualAction } from './event'
 
 export interface VirtualSeepConfig {
   seepName: string
-  conditions: any[]
+  args?: any
 }
 
 export type VirtualSeep = (...conditions: any[]) => VirtualSeepConfig
@@ -10,11 +10,12 @@ export type VirtualSeep = (...conditions: any[]) => VirtualSeepConfig
 export const popSeep = <T>(
   action: VirtualAction<T>,
 ): { [k: string]: VirtualSeep } => {
-  const { seep } = action()
+  const { seep } = action() // Only retrieve the seep name on this virtual object
   const virtualSeeps: { [k: string]: VirtualSeep } = {}
 
-  const createSeepFunction = (seepName: string) => (...conditions: any[]) => {
-    return { seepName, conditions }
+  // Carry on which argument is passing to real seep
+  const createSeepFunction = (seepName: string) => {
+    return (args?: any) => ({ seepName, args })
   }
 
   for (const seepName in seep) {

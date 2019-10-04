@@ -1,5 +1,8 @@
+import consola from './consola'
+
 import { BaraContext } from './context'
 import { BaraApplication } from './app'
+import { BaraTriggerConfig } from './trigger'
 
 export interface BaraRunOptions {
   dev?: boolean
@@ -9,25 +12,37 @@ export interface BaraRunOptions {
 export const run = (app: BaraApplication, options?: BaraRunOptions) => {
   // There will be one singleton for entire application Context
   const context: BaraContext = {}
+
   const { portions, triggers } = app
-  const all$ = wirePortion(portions)
+  const all = wire(portions, triggers)
+
   return { context }
 }
 
 /**
- * Map each portion's stream into global stream.
+ * Wire trigger and portions together to make Bara application works!
  *
- * @param portion
+ * @param portions Raw portions registered by Bara application.
+ * @param triggers Raw triggers data will be map with according stream.
  */
-const wirePortion = (portion: any) => {}
+const wire = (portions: any[], triggers: Array<BaraTriggerConfig>) => {
+  const globalPortions: { [k: string]: any } = {}
 
-const wireTrigger = () => {}
+  // Initialize and structure the portions
+  for (const portion of portions) {
+    if (!(portion.id in globalPortions)) {
+      globalPortions[portion.id] = {
+        flows: portion.rawFlows,
+        triggers: [],
+      }
+    }
+  }
+  console.log(`[Wire portions]`, globalPortions)
 
-/**
- * Create main Bara application
- * @param payload Application parameter
- */
-export const addContext = (ctx: any) => (context: BaraContext) => {
-  const ctxId = 'ctx-'
-  context[ctxId] = ctx
+  // Subscribe trigger with its portions
+  for (const trigger of triggers) {
+    const { func, rawTrigger } = trigger
+    // Apply trigger by seep key
+    consola.info(`[Wire trigger]: `, func(rawTrigger.chain), rawTrigger)
+  }
 }

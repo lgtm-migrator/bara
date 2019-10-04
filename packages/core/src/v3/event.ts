@@ -1,13 +1,15 @@
 import { BaraPortion } from '.'
 import { BaraSeep } from './flow'
+import { Chain } from './chain'
 
 export interface VirtualActionConfig<T> {
+  portionName: string
   flowName: string
-  actions: any[]
+  chain: Chain[]
   seep: BaraSeep<T>
 }
 
-export type VirtualAction<T> = (...actions: any[]) => VirtualActionConfig<T>
+export type VirtualAction<T> = (...chain: Chain[]) => VirtualActionConfig<T>
 
 /**
  * Pop out one or more event at a time.
@@ -20,7 +22,7 @@ export const popEvent = <T, C, M>(
 ): {
   [k: string]: VirtualAction<T>
 } => {
-  const { mold, init, ...flows } = portion()
+  const { mold, name: portionName, init, ...flows } = portion()
   let flowNames: string[] = [] // Use as immutable array
 
   for (const flowName in flows) {
@@ -31,9 +33,8 @@ export const popEvent = <T, C, M>(
   }
 
   // Pseudo code for a flow subscriber
-  const createFlowAction = (flowName: string) => (...actions: any[]) => {
-    console.log(`Flow: `, flows[flowName])
-    return { flowName, actions, seep: flows[flowName].seep || {} }
+  const createFlowAction = (flowName: string) => (...chain: Chain[]) => {
+    return { flowName, portionName, chain, seep: flows[flowName].seep || {} }
   }
 
   // Virtual flow only use as the curry function which is carrying the flow name

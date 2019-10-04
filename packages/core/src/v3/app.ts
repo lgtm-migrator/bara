@@ -1,7 +1,7 @@
 import consola from './consola'
 
 import { initPortion, BaraPortionPayload } from './portion'
-import { initTrigger } from './trigger'
+import { initTrigger, BaraTriggerPayload } from './trigger'
 
 export interface BaraApplication {
   portions: any[]
@@ -22,7 +22,7 @@ export const app = (payload: {
   /**
    * Trigger is where a bussiness logic will be implement
    */
-  trigger?: any[]
+  trigger?: Array<BaraTriggerPayload>
 }): BaraApplication => {
   const { portion, trigger } = payload
 

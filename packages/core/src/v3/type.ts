@@ -1,5 +1,5 @@
 export enum BaraType {
-  Flow,
-  Portion,
-  Trigger,
+  Flow = 'Flow',
+  Portion = 'Portion',
+  Trigger = 'Trigger',
 }

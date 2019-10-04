@@ -1,5 +1,25 @@
-export interface BaraTriggerPayload {}
+import consola from './consola'
 
-export const initTrigger = (trigger: BaraTriggerPayload[]) => {
-  console.log(trigger)
+import { Chain } from './chain'
+import { Stream } from 'xstream'
+
+export interface BaraTriggerPayload {
+  flowName: string
+  chain: any[]
+  seep: any
+}
+
+export interface BaraTriggerConfig {
+  func: (chain: Chain[]) => void
+  rawTrigger: BaraTriggerPayload
+}
+
+export const initTrigger = <T>(
+  rawTrigger: BaraTriggerPayload,
+): BaraTriggerConfig => {
+  const func = (chains: Chain[]) => {
+    const subscribers: any[] = chains.map(chain => {})
+    return subscribers
+  }
+  return { func, rawTrigger }
 }
