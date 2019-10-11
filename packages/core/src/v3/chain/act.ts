@@ -5,9 +5,11 @@ export type ActPayload = (payload: StreamPayload) => any
 
 export interface ActChain extends Chain {}
 
-export const act = (payload: ActPayload): ActChain => {
+export const act = (action: ActPayload): ActChain => {
   return {
     type: ChainType.act,
-    func: payload,
+    func: (payload: StreamPayload) => {
+      action(payload)
+    },
   }
 }

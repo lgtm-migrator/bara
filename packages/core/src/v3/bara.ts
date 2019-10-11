@@ -31,7 +31,9 @@ const wire = (portions: any[], triggers: Array<BaraTriggerConfig>) => {
   // Initialize and structure the portions
   for (const portion of portions) {
     if (!(portion.id in globalPortions)) {
-      globalPortions[portion.id] = {
+      console.log(`Meo portion: ${portion}`)
+      globalPortions[portion.name] = {
+        id: portion.id,
         flows: portion.rawFlows,
         triggers: [],
       }
@@ -43,6 +45,6 @@ const wire = (portions: any[], triggers: Array<BaraTriggerConfig>) => {
   for (const trigger of triggers) {
     const { func, rawTrigger } = trigger
     // Apply trigger by seep key
-    consola.info(`[Wire trigger]: `, func(rawTrigger.chain), rawTrigger)
+    // consola.info(`[Wire trigger]: `, func(rawTrigger.chain), rawTrigger)
   }
 }
