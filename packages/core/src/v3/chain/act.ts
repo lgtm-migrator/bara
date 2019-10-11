@@ -1,5 +1,5 @@
-import { Chain, ChainType } from './type'
 import { StreamPayload } from '../stream'
+import { Chain, ChainType } from './type'
 
 export type ActPayload = (payload: StreamPayload) => any
 

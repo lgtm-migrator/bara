@@ -1,7 +1,7 @@
 import consola from './consola'
 
-import { BaraContext } from './context'
 import { BaraApplication } from './app'
+import { BaraContext } from './context'
 import { BaraTriggerConfig } from './trigger'
 
 export interface BaraRunOptions {
@@ -25,7 +25,7 @@ export const run = (app: BaraApplication, options?: BaraRunOptions) => {
  * @param portions Raw portions registered by Bara application.
  * @param triggers Raw triggers data will be map with according stream.
  */
-const wire = (portions: any[], triggers: Array<BaraTriggerConfig>) => {
+const wire = (portions: any[], triggers: BaraTriggerConfig[]) => {
   const globalPortions: { [k: string]: any } = {}
 
   // Initialize and structure the portions

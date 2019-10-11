@@ -1,7 +1,7 @@
 import consola from './consola'
 
-import { Chain, ChainType } from './chain'
 import { Stream } from 'xstream'
+import { Chain, ChainType } from './chain'
 
 export interface BaraTriggerPayload {
   flowName: string
