@@ -1,13 +1,16 @@
 {
   "name": "bara",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.0",
   "author": "nampdn @nampdn",
   "description": "Created For Creating - Create any JavaScript application.",
   "homepage": "https://barajs.dev",
-  "repository": "barajs/bara",
   "main": "dist/bara.js",
   "module": "build/index.js",
   "types": "build/index.d.ts",
+  "repository" : {
+    "type" : "git",
+    "url": "ssh://git@github.com/barajs/bara.git"
+  },
   "files": [
     "build",
     "dist"
@@ -45,7 +48,7 @@
     }
   ],
   "dependencies": {
-    "@bara/core": "^3.0.0-alpha.2"
+    "@bara/core": "^3.0.0-alpha.0"
   },
   "devDependencies": {
     "prettier": "1.18.2",

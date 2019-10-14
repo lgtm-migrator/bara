@@ -1,11 +1,15 @@
 {
   "name": "@bara/core",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.0",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/barajs/bara.git"
+  },
   "files": [
     "dist"
   ],
@@ -42,6 +46,7 @@
     "typescript": "3.6.4"
   },
   "dependencies": {
+    "p-all": "2.1.0",
     "xstream": "11.11.0"
   },
   "gitHead": "f4c8920813b598869d4e664195ca7838532dd17f"
