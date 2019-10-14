@@ -1,7 +1,5 @@
-import shortid from 'shortid'
 import xs, { Stream } from 'xstream'
 
-import consola from './consola'
 import { FlowConfig, FlowSemiConfig } from './flow'
 
 /**
@@ -79,7 +77,7 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
     start: listener => {
       listener.next({} as T)
     },
-    stop: () => {},
+    stop: () => true,
   })
 
   // Register Flow from this stream

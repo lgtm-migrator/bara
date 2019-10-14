@@ -1,6 +1,5 @@
-import { BaraPortion } from '.'
+import { BaraPortion, Chain } from '.'
 import { BaraSeep } from './flow'
-import { Chain } from './chain'
 
 export interface VirtualActionConfig<T> {
   portionName: string

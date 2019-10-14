@@ -1,13 +1,11 @@
-import xs, { Stream } from 'xstream'
+import { Stream } from 'xstream'
 
 export interface BaraStream<T, Context> {
   context: Context
   stream: Stream<T>
 }
 
-export interface StreamPayload {}
-
-export const stream = () => {}
+export interface StreamPayload {} // TODO add stream payload metadata for future references
 
 export const initializeStream = <T>(
   stream: Stream<T>,

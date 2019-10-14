@@ -4,7 +4,6 @@ import { BaraApplication } from './app'
 import { ChainBase } from './chain'
 import { BaraContext } from './context'
 import { BaraLinker } from './linker'
-import { BaraPortionPayload } from './portion'
 import { VirtualSeepConfig } from './seep'
 import { StreamPayload } from './stream'
 import { BaraTriggerPayload, initTrigger } from './trigger'
@@ -45,10 +44,13 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
   }
 
   const linker: BaraLinker = {
-    getRealAction: (act: ChainBase) => (payload: StreamPayload) => {},
+    getRealAction: (act: ChainBase) => (payload: StreamPayload) => ({
+      act,
+      payload,
+    }),
     getRealSeep: (seep: VirtualSeepConfig) => {
       const { portionName, flowName, seepName, args } = seep
-      let realSeep = (...args: any[]) => (payload: StreamPayload) => {
+      let realSeep = (...params: any[]) => (payload: StreamPayload) => {
         consola.warn(
           `The seep ${seepName} is not correctly destructed from portion: ${portionName}, Bara will making it always return "true".`,
         )
@@ -57,8 +59,7 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
 
       // Replace default seep with the real configured seep
       if (portionName in globalPortions) {
-        const seep = globalPortions[portionName].flows[flowName].seep[seepName]
-        realSeep = seep
+        realSeep = globalPortions[portionName].flows[flowName].seep[seepName]
       }
 
       return (payload: StreamPayload) => {

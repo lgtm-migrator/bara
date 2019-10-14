@@ -4,15 +4,15 @@
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "src/v3/index.ts",
+  "module": "src/index.ts",
   "types": "dist/index.d.ts",
   "keywords": [],
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   },
   "watch": {
     "lint": "{src}/*.ts"
@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.18",
-    "@types/shortid": "0.0.29",
     "concurrently": "4.1.2",
     "jest": "24.9.0",
     "npm-watch": "0.6.0",
@@ -41,7 +40,7 @@
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-react": "4.0.0",
-    "typescript": "3.6.3"
+    "typescript": "3.6.4"
   },
   "dependencies": {
     "xstream": "11.11.0"
