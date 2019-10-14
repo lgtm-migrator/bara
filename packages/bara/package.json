@@ -31,7 +31,6 @@
     "compile:tsc": "tsc -p ./tsconfig.build.json",
     "compile:webpack": "webpack --mode=production",
     "compile": "yarn clean && yarn compile:tsc && yarn compile:webpack",
-    "postcompile": "npx size-limit",
     "tsc": "tsc -p .",
     "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
     "prepare": "yarn compile",
@@ -46,7 +45,7 @@
     }
   ],
   "dependencies": {
-    "@bara/core": "3.0.0-alpha.1"
+    "@bara/core": "^3.0.0-alpha.1"
   },
   "devDependencies": {
     "prettier": "1.18.2",

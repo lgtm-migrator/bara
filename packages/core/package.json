@@ -4,7 +4,6 @@
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
-  "module": "src/index.ts",
   "types": "dist/index.d.ts",
   "keywords": [],
   "files": [
