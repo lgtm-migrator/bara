@@ -1,239 +1,91 @@
-import xs, { Stream } from 'xstream'
+import consola from './consola'
 
-import { createEmitterHook } from './emitter'
-import { getBaraName } from './helpers/string'
+import { BaraApplication } from './app'
+import { ChainBase } from './chain'
+import { BaraContext } from './context'
+import { BaraLinker } from './linker'
+import { BaraPortionPayload } from './portion'
+import { VirtualSeepConfig } from './seep'
+import { StreamPayload } from './stream'
+import { BaraTriggerPayload, initTrigger } from './trigger'
 
-import {
-  BaraAction,
-  BaraCallbackActionConfig,
-  BaraNormalActionConfig,
-} from './model/action'
-import { AppStream } from './model/app'
-import { BaraConditionConfig } from './model/condition'
-import {
-  BaraEmitter,
-  BaraEmitterConfig,
-  BaraEmitterMap,
-  BaraEmitterPayload,
-  BaraEmitterSetup,
-} from './model/emitter'
-import { BaraEvent, EventType } from './model/event'
-import { BaraStreamConfig, BaraStreamSetup } from './model/stream'
-import {
-  BaraTriggerConfig,
-  BaraTriggerSetup,
-  TriggerEntityType,
-} from './model/trigger'
+export interface BaraRunOptions {
+  dev?: boolean
+}
 
-import { useCallbackActionHook, useNormalActionHook } from './hooks/use-action'
-import { useConditionHook } from './hooks/use-condition'
-import { useCustomEventHook, useEventHook } from './hooks/use-event'
-import { useStreamHook } from './hooks/use-stream'
-import { useTriggerHook } from './hooks/use-trigger'
+/* Run Bara Application */
+export const run = (app: BaraApplication, options?: BaraRunOptions) => {
+  // There will be one singleton for entire application Context
+  const context: BaraContext = {}
 
-const bara = (() => {
-  // Main App Stream, get merged with other stream at register step.
-  let appStream: AppStream<any> = xs.never()
-  let emitStream: AppStream<any> = xs.never()
+  const { portions, triggers } = app
 
-  // Handle hook Stream registry
-  const streamRegistry: any[] = []
-  let streamRegistryIndex = 0
+  const all = wire(portions, triggers)
 
-  // Handle hook Trigger registry
-  const triggerRegistry: any[] = []
-  let triggerRegistryIndex = 0
-  const triggerConfig: Array<BaraTriggerConfig<any>> = []
-  let triggerConfigIndex = 0
+  return { context, all }
+}
 
-  // Handle Emitter registry
-  const emitterRegistry: any[] = []
-  let emitterRegistryIndex = 0
-  const emitterMap: BaraEmitterMap = {} // Use JS Object for fast access via key
+/**
+ * Wire trigger and portions together to make Bara application works!
+ *
+ * @param portions Raw portions registered by Bara application.
+ * @param triggers Raw triggers data will be map with according stream.
+ */
+const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
+  const globalPortions: { [k: string]: any } = {}
 
-  return {
-    register(app: () => void) {
-      app()
-      return { appStream, emitterMap, streamRegistry, triggerRegistry }
-    },
-    addDebugListener(whichStream: string, callback: (...args: any[]) => void) {
-      const listener = {
-        next: (value: any) => {
-          callback(value)
-        },
+  // Initialize and structure the portions
+  for (const portion of portions) {
+    if (!(portion.id in globalPortions)) {
+      globalPortions[portion.name] = {
+        id: portion.id,
+        flows: portion.rawFlows,
       }
-      if (whichStream === 'app') {
-        appStream.setDebugListener(listener)
-      } else {
-        const stream = streamRegistry.find(s => s.name === whichStream)
-        if (stream) {
-          stream._$.setDebugListener(listener)
-        } else {
-          throw new Error(
-            `[Bara Debugger] Not found any stream registered with name ${whichStream}. You can specify stream 'app' for all stream event.`,
-          )
-        }
-      }
-    },
-    useStream<T>(streamSetup: BaraStreamSetup<T>) {
-      let stream
-      let duplicateIndex = -1
-      if (!streamRegistry[streamRegistryIndex]) {
-        const newStream = useStreamHook(streamSetup, streamRegistryIndex) as any
-        // Check stream dupplicated
-        duplicateIndex = streamRegistry.findIndex(
-          s => s && s.name === newStream.name,
+    }
+  }
+
+  const linker: BaraLinker = {
+    getRealAction: (act: ChainBase) => (payload: StreamPayload) => {},
+    getRealSeep: (seep: VirtualSeepConfig) => {
+      const { portionName, flowName, seepName, args } = seep
+      let realSeep = (...args: any[]) => (payload: StreamPayload) => {
+        consola.warn(
+          `The seep ${seepName} is not correctly destructed from portion: ${portionName}, Bara will making it always return "true".`,
         )
-        stream =
-          duplicateIndex > -1 ? streamRegistry[duplicateIndex] : newStream
-      } else {
-        stream = streamRegistry[streamRegistryIndex]
+        return true
       }
 
-      if (duplicateIndex === -1) {
-        streamRegistry[streamRegistryIndex] = stream
-
-        // Merge new stream to the main app stream to make global stream
-        appStream = xs.merge(appStream, streamRegistry[streamRegistryIndex]
-          ._$ as AppStream<any>)
-
-        streamRegistryIndex = streamRegistryIndex + 1
+      // Replace default seep with the real configured seep
+      if (portionName in globalPortions) {
+        const seep = globalPortions[portionName].flows[flowName].seep[seepName]
+        realSeep = seep
       }
 
-      return streamRegistry[
-        duplicateIndex > -1 ? duplicateIndex : streamRegistryIndex - 1
-      ]
-    },
-    useTrigger<T>(setup: BaraTriggerSetup<T>) {
-      const config: BaraTriggerConfig<T> = {
-        name: getBaraName(triggerConfigIndex),
-        event: null,
+      return (payload: StreamPayload) => {
+        return realSeep(args)(payload)
       }
-
-      // Setup trigger config
-      triggerConfig[triggerConfigIndex] =
-        triggerConfig[triggerConfigIndex] || config
-      const {
-        event: eventSetup,
-        condition: conditionSetup,
-        action: actionSetup,
-      } = setup() // Execute user defined trigger setup function which will assign to the current triggerConfig
-
-      // Done the setup by skip to the next trigger
-      triggerConfigIndex += 1
-
-      // Setup real trigger
-      triggerRegistry[triggerRegistryIndex] =
-        triggerRegistry[triggerRegistryIndex] ||
-        (useTriggerHook(config, triggerRegistryIndex) as any)
-      const currentTrigger = triggerRegistry[triggerRegistryIndex]
-
-      // Attach BaraEvent, BaraCondition, BaraAction with current BaraTrigger
-      const event = currentTrigger.attach(TriggerEntityType.EVENT, eventSetup, [
-        appStream,
-      ])
-      const condition = currentTrigger.attach(
-        TriggerEntityType.CONDITION,
-        conditionSetup,
-        [],
-      )
-      const action = currentTrigger.attach(
-        TriggerEntityType.ACTION,
-        actionSetup,
-        [event, condition],
-      ) // TODO replace event with condition or add condition too
-
-      // Done trigger registering step and skip to next useTrigger function
-      triggerRegistryIndex = triggerRegistryIndex + 1
-
-      return currentTrigger
-    },
-    useEvent<T>(eventType: EventType) {
-      const currentTriggerConfig = triggerConfig[triggerConfigIndex]
-      if (!currentTriggerConfig) {
-        throw new Error(
-          `No trigger is registering at this time. 'useEvent' can only being used in a Bara Trigger.`,
-        )
-      }
-      const eventSetup = useEventHook<T>(currentTriggerConfig, eventType)
-      return eventSetup
-    },
-    useCustomEvent<T>(
-      eventType: EventType,
-      customFilter: (...args: any[]) => boolean,
-    ) {
-      const currentTriggerConfig = triggerConfig[triggerConfigIndex]
-      if (!currentTriggerConfig) {
-        throw new Error(
-          `No trigger is registering at this time. 'useEvent' can only being used in a Bara Trigger.`,
-        )
-      }
-      const eventSetup = useCustomEventHook<T>(
-        currentTriggerConfig,
-        eventType,
-        customFilter,
-      )
-      return eventSetup
-    },
-    useCondition<T>(config: BaraConditionConfig<T>) {
-      const conditionSetup = useConditionHook<T>(config)
-      return conditionSetup
-    },
-    useAction<T>(callback: BaraNormalActionConfig<T>) {
-      const actionSetup = useNormalActionHook(callback)
-      return actionSetup
-    },
-    createEmitter<T>(setup: BaraEmitterSetup<T>) {
-      emitterRegistry[emitterRegistryIndex] =
-        emitterRegistry[emitterRegistryIndex] ||
-        createEmitterHook(setup, emitterRegistryIndex)
-
-      // Merge new stream to the main app stream to make global stream
-      emitStream = xs.merge(emitStream, emitterRegistry[emitterRegistryIndex]
-        ._$ as AppStream<any>)
-
-      // Assign emitter function to emitterMap for fast access
-      const emitFuncsArray = emitterRegistry[emitterRegistryIndex].emitFuncs
-      for (const emitFuncs of emitFuncsArray) {
-        const [eventType, emitFunc] = emitFuncs
-        emitterMap[eventType] = emitFunc
-      }
-
-      emitterRegistryIndex += 1
-
-      return emitterRegistry[emitterRegistryIndex - 1]
-    },
-    useEmitter<T>(eventType: EventType) {
-      if (eventType() in emitterMap) {
-        return emitterMap[eventType()]
-      }
-      return null
     },
   }
-})()
 
-const {
-  addDebugListener,
-  register,
-  useStream,
-  useTrigger,
-  useEvent,
-  useCustomEvent,
-  useAction,
-  useCondition,
-  useEmitter,
-  createEmitter,
-} = bara
+  // Trigger will be registering when this application is bootstraped
+  const rawTriggers = (triggers || []).map(t => initTrigger(t, linker))
+  // consola.info('[Bara App] Raw Trigger: ', rawTriggers)
 
-export {
-  addDebugListener,
-  register,
-  useStream,
-  useTrigger,
-  useEvent,
-  useCustomEvent,
-  useAction,
-  useCondition,
-  useEmitter,
-  createEmitter,
+  // Subscribe trigger with its portions
+  // This piece of codes could be implement in the `run` function
+  for (const trigger of rawTriggers) {
+    const { rawTrigger, func } = trigger
+    const { flowName, portionName, chain } = rawTrigger
+    const belongPortion = globalPortions[portionName]
+
+    if (flowName in belongPortion.flows) {
+      const upstream = belongPortion.flows[flowName].subStream
+      const triggerSubscribers = func(chain, upstream)
+      for (const { stream, action } of triggerSubscribers) {
+        stream.addListener({ next: action })
+      }
+    }
+  }
+
+  return globalPortions
 }
