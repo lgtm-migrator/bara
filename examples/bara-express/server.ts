@@ -1,25 +1,27 @@
-import { run, app, popEvent, popSeep, act, cond } from '@bara/core'
-import { ExpressServer, WhenRouteGet } from '.'
-
-const { whenInitialized, whenRouteGet } = popEvent(ExpressServer)
-const { hasQuery } = popSeep(whenRouteGet)
-console.log(`whenRouteGet`, whenRouteGet(), 'hasQuery', hasQuery())
+import { run, app, act, cond } from '@bara/core'
+import ExpressServer, {
+  whenExpressInitialized,
+  whenRouteGet,
+  hasQuery,
+  WhenRouteGet,
+} from '.'
 
 run(
   app({
     portion: [ExpressServer({ port: 3200 })],
     trigger: [
-      whenInitialized(
+      whenExpressInitialized(
         // An `act` will also be created new stream when subscribe to a flow.
         act(() => console.log('Hello from Bara trigger')),
+        act(() => console.log('Bara has initialized this trigger!')),
       ),
       whenRouteGet(
         // Each `cond` will create to new sub stream with its own conditional checker.
         cond(
           hasQuery('first'),
           act(({ request, response }: WhenRouteGet) => {
-            console.log(request)
-            response.send({ success: 'Congrats!' })
+            const { query } = request
+            response.send({ success: 'Congrats!', query })
           }),
         ),
       ),

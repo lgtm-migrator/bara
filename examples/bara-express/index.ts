@@ -1,5 +1,5 @@
 import express, { Request, Response, Application } from 'express'
-import { portion, flow, cond } from '@bara/core'
+import { portion, flow, popEvent, popSeep } from '@bara/core'
 
 export interface ExpressMold {
   port?: number
@@ -10,7 +10,7 @@ export interface WhenRouteGet {
   response: Response
 }
 
-export const ExpressServer = portion<Request, Application, ExpressMold>({
+const ExpressServer = portion<Request, Application, ExpressMold>({
   name: 'bara-express',
   mold: { port: +process.env.PORT! || 3456 },
   init: () => {
@@ -21,15 +21,16 @@ export const ExpressServer = portion<Request, Application, ExpressMold>({
     bootstrap: ({ context: expressApp, next, mold }: any) => {
       const { port } = mold
       expressApp.listen(port, function() {
-        next()
         console.log(`Express server is listening on port ${port}`)
+        next()
       })
     },
   }),
   whenRouteGet: flow<WhenRouteGet, Application, ExpressMold>({
-    bootstrap: ({ context: expressApp, awaitable }) => {
+    bootstrap: ({ context: expressApp, awaitable, next }) => {
       expressApp.get('*', (request: Request, response: Response) => {
-        awaitable({ request, response })
+        // awaitable({ request, response })
+        next({ request, response })
       })
     },
     seep: {
@@ -42,3 +43,12 @@ export const ExpressServer = portion<Request, Application, ExpressMold>({
     },
   }),
 })
+
+const { whenInitialized: whenExpressInitialized, whenRouteGet } = popEvent(
+  ExpressServer,
+)
+const { hasQuery } = popSeep(whenRouteGet)
+
+export { whenExpressInitialized, whenRouteGet, hasQuery }
+
+export default ExpressServer

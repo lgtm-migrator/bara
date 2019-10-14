@@ -84,7 +84,7 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
 
   // Register Flow from this stream
   const rawFlows = registerFlow(pt, context, stream)
-  return { id: shortid.generate(), name, rawFlows, stream }
+  return { id: 'Id system will be implemented soon', name, rawFlows, stream }
 }
 
 export const registerFlow = <T, C, M>(
@@ -112,6 +112,5 @@ export const registerFlow = <T, C, M>(
       flowOperators[flowName] = rawFlow
     }
   }
-  consola.info(`Flow raw:`, flowOperators)
   return flowOperators
 }

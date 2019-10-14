@@ -22,7 +22,7 @@ export const run = (app: BaraApplication, options?: BaraRunOptions) => {
 
   const all = wire(portions, triggers)
 
-  return { context }
+  return { context, all }
 }
 
 /**
@@ -43,58 +43,49 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
       }
     }
   }
-  console.log(`[Wire portions]`, globalPortions)
 
   const linker: BaraLinker = {
     getRealAction: (act: ChainBase) => (payload: StreamPayload) => {},
     getRealSeep: (seep: VirtualSeepConfig) => {
-      const { seepName, portionName } = seep
-      const realSeep = (...args: any[]) => {
+      const { portionName, flowName, seepName, args } = seep
+      let realSeep = (...args: any[]) => (payload: StreamPayload) => {
         consola.warn(
-          `The seep ${seepName} is not correctly destructed from Portion, will return true any data through the portion ${portionName}`,
+          `The seep ${seepName} is not correctly destructed from portion: ${portionName}, Bara will making it always return "true".`,
         )
         return true
       }
 
+      // Replace default seep with the real configured seep
       if (portionName in globalPortions) {
-        const currentPortion: BaraPortionPayload<any, any, any> =
-          globalPortions[portionName as string]
-        for (const flowName in currentPortion.rawFlows) {
-          const currentFlow = currentPortion.rawFlows[flowName]
-          console.log(`currentFlow: ${currentFlow}`)
-        }
+        const seep = globalPortions[portionName].flows[flowName].seep[seepName]
+        realSeep = seep
       }
 
       return (payload: StreamPayload) => {
-        return realSeep(payload)
+        return realSeep(args)(payload)
       }
     },
   }
 
-  // Subscribe trigger to each portion corresponding stream
-  // Trigger will be registering when this application is going run
+  // Trigger will be registering when this application is bootstraped
   const rawTriggers = (triggers || []).map(t => initTrigger(t, linker))
-  consola.info('[Bara App] Raw Trigger: ', rawTriggers)
+  // consola.info('[Bara App] Raw Trigger: ', rawTriggers)
 
   // Subscribe trigger with its portions
+  // This piece of codes could be implement in the `run` function
   for (const trigger of rawTriggers) {
     const { rawTrigger, func } = trigger
     const { flowName, portionName, chain } = rawTrigger
     const belongPortion = globalPortions[portionName]
-    consola.info(
-      `[Wiring trigger]:`,
-      rawTrigger,
-      'with portion:',
-      belongPortion,
-    )
 
     if (flowName in belongPortion.flows) {
       const upstream = belongPortion.flows[flowName].subStream
       const triggerSubscribers = func(chain, upstream)
-      consola.info(`[Bara triggerSubscribers]: `, triggerSubscribers)
       for (const { stream, action } of triggerSubscribers) {
         stream.addListener({ next: action })
       }
     }
   }
+
+  return globalPortions
 }

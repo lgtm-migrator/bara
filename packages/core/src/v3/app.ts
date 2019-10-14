@@ -1,11 +1,5 @@
-import consola from './consola'
-
-import { ChainBase } from './chain'
-import { BaraLinker } from './linker'
-import { BaraPortion, BaraPortionPayload, initPortion } from './portion'
-import { VirtualSeepConfig } from './seep'
-import { StreamPayload } from './stream'
-import { BaraTriggerPayload, initTrigger } from './trigger'
+import { BaraPortionPayload, initPortion } from './portion'
+import { BaraTriggerPayload } from './trigger'
 
 export interface BaraApplication {
   portions: any[]
@@ -32,11 +26,5 @@ export const app = (payload: {
 
   // Initialize each portion for stream subscription
   const portions = portion.map(p => initPortion(p))
-  consola.info('[Bara App] Portions: ', portions)
   return { portions, triggers: trigger! }
 }
-
-const findPortion = (
-  portionName: string,
-  portions: Array<BaraPortion<any, any, any>>,
-) => {}

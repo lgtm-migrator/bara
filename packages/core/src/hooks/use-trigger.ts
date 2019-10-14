@@ -30,9 +30,7 @@ export function useTriggerHook<T>(
           const event: BaraEvent<T> = (entity as UseEventHookType<T>)(appStream)
           if (!(event && event._$ && event.name)) {
             throw new Error(
-              ` [BaraTrigger] Could not detect event before attaching to trigger ${
-                trigger.name
-              } `,
+              ` [BaraTrigger] Could not detect event before attaching to trigger ${trigger.name} `,
             )
           }
           trigger[entityType] = event
@@ -56,9 +54,7 @@ export function useTriggerHook<T>(
       }
     } else {
       throw new Error(
-        `[BaraTrigger] Could not attach multiple ${entityType} to trigger ${
-          trigger.name
-        }`,
+        `[BaraTrigger] Could not attach multiple ${entityType} to trigger ${trigger.name}`,
       )
     }
   }
