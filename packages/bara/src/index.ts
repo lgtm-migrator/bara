@@ -1,1 +1,1 @@
-export * from '@bara/core'
+export * from '@barajs/core'
