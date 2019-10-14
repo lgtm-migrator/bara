@@ -1,6 +1,6 @@
 {
   "name": "@barajs/core",
-  "version": "3.0.0-alpha.1+40b99e7",
+  "version": "3.0.0-alpha.412+1004f43",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
@@ -49,5 +49,5 @@
     "p-all": "2.1.0",
     "xstream": "11.11.0"
   },
-  "gitHead": "40b99e7b393970874702e92e40fcbe1f86b8bd8c"
+  "gitHead": "1004f432a9dc0621963ae556f58b8ae4ef61ca49"
 }

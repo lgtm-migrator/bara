@@ -1,6 +1,6 @@
 {
-  "name": "bara",
-  "version": "3.0.0-alpha.1+40b99e7",
+  "name": "@barajs/bara",
+  "version": "3.0.0-alpha.2+1004f43",
   "author": "nampdn @nampdn",
   "description": "Created For Creating - Create any JavaScript application.",
   "homepage": "https://barajs.dev",
@@ -48,7 +48,7 @@
     }
   ],
   "dependencies": {
-    "@barajs/core": "^3.0.0-alpha.1+40b99e7"
+    "@barajs/core": "^3.0.0-alpha.412+1004f43"
   },
   "devDependencies": {
     "prettier": "1.18.2",
@@ -58,5 +58,5 @@
     "webpack": "4.40.2",
     "webpack-cli": "3.3.8"
   },
-  "gitHead": "40b99e7b393970874702e92e40fcbe1f86b8bd8c"
+  "gitHead": "1004f432a9dc0621963ae556f58b8ae4ef61ca49"
 }
