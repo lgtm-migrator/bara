@@ -1,3 +1,3 @@
-import consola from 'consola'
+import consola from './primitives/consola'
 
 export default consola
