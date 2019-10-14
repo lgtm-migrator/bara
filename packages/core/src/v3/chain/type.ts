@@ -1,6 +1,6 @@
 import { Stream } from 'xstream'
-import { StreamPayload } from '../stream'
 import { BaraLinker } from '../linker'
+import { StreamPayload } from '../stream'
 
 export enum ChainType {
   cond = 'cond',

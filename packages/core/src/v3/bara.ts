@@ -1,13 +1,13 @@
 import consola from './consola'
 
 import { BaraApplication } from './app'
-import { BaraContext } from './context'
-import { initTrigger, BaraTriggerPayload } from './trigger'
-import { BaraLinker } from './linker'
 import { ChainBase } from './chain'
+import { BaraContext } from './context'
+import { BaraLinker } from './linker'
+import { BaraPortionPayload } from './portion'
 import { VirtualSeepConfig } from './seep'
 import { StreamPayload } from './stream'
-import { BaraPortionPayload } from './portion'
+import { BaraTriggerPayload, initTrigger } from './trigger'
 
 export interface BaraRunOptions {
   dev?: boolean
@@ -49,7 +49,7 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
     getRealAction: (act: ChainBase) => (payload: StreamPayload) => {},
     getRealSeep: (seep: VirtualSeepConfig) => {
       const { seepName, portionName } = seep
-      let realSeep = (...args: any[]) => {
+      const realSeep = (...args: any[]) => {
         consola.warn(
           `The seep ${seepName} is not correctly destructed from Portion, will return true any data through the portion ${portionName}`,
         )
@@ -90,7 +90,7 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
 
     if (flowName in belongPortion.flows) {
       const upstream = belongPortion.flows[flowName].subStream
-      let triggerSubscribers = func(chain, upstream)
+      const triggerSubscribers = func(chain, upstream)
       consola.info(`[Bara triggerSubscribers]: `, triggerSubscribers)
       for (const { stream, action } of triggerSubscribers) {
         stream.addListener({ next: action })

@@ -1,8 +1,8 @@
-import xs, { Stream } from 'xstream'
 import shortid from 'shortid'
+import xs, { Stream } from 'xstream'
 
-import { FlowSemiConfig, FlowConfig } from './flow'
 import consola from './consola'
+import { FlowConfig, FlowSemiConfig } from './flow'
 
 /**
  * BaraMoldObject is the object contains all values
@@ -34,7 +34,7 @@ export interface BaraPortionStandard<T, C, M> {
   whenInitialized?: FlowConfig<T, C, M>
 }
 
-export type BaraPortionPayload<T, C, M> = {
+export interface BaraPortionPayload<T, C, M> {
   [k: string]: FlowConfig<T, C, M> | any | undefined
   name: string
   mold?: BaraMold<M>
@@ -100,7 +100,7 @@ export const registerFlow = <T, C, M>(
   // TODO merge this process with below loop for extensible
   if (!!whenInitialized) {
     const rawFlow = whenInitialized.func(flowPayload)
-    flowOperators['whenInitialized'] = rawFlow
+    flowOperators.whenInitialized = rawFlow
   }
 
   // Initialize all custom flows, all the flow should start with 'when' as naming convention

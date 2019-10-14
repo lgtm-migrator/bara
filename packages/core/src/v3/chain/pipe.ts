@@ -1,6 +1,6 @@
+import { VirtualActionConfig } from '../event'
 import { StreamPayload } from '../stream'
 import { ActChain, ChainType } from './type'
-import { VirtualActionConfig } from '../event'
 
 const getAction = (virtualAction: VirtualActionConfig<any>) => (
   payload: StreamPayload,

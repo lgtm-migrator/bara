@@ -1,8 +1,8 @@
-import { ActChain, CondChain, ChainType } from './type'
+import { ActChain, ChainType, CondChain } from './type'
 
-import { StreamPayload } from '../stream'
-import { VirtualSeepConfig } from '../seep'
 import { BaraLinker } from '../linker'
+import { VirtualSeepConfig } from '../seep'
+import { StreamPayload } from '../stream'
 
 const getRealSeep = (virtualSeep: VirtualSeepConfig) => (
   payload: StreamPayload,

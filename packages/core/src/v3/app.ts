@@ -1,11 +1,11 @@
 import consola from './consola'
 
-import { initPortion, BaraPortionPayload, BaraPortion } from './portion'
-import { initTrigger, BaraTriggerPayload } from './trigger'
-import { BaraLinker } from './linker'
 import { ChainBase } from './chain'
+import { BaraLinker } from './linker'
+import { BaraPortion, BaraPortionPayload, initPortion } from './portion'
 import { VirtualSeepConfig } from './seep'
 import { StreamPayload } from './stream'
+import { BaraTriggerPayload, initTrigger } from './trigger'
 
 export interface BaraApplication {
   portions: any[]
@@ -26,7 +26,7 @@ export const app = (payload: {
   /**
    * Trigger is where a bussiness logic will be implement
    */
-  trigger?: Array<BaraTriggerPayload>
+  trigger?: BaraTriggerPayload[]
 }): BaraApplication => {
   const { portion, trigger } = payload
 

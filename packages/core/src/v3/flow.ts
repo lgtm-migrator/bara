@@ -1,11 +1,11 @@
 import { EventEmitter } from 'events'
-import xs, { Stream, Listener } from 'xstream'
+import xs, { Listener, Stream } from 'xstream'
 
 import consola from './consola'
 
 import { BaraContext } from './context'
-import { BaraType } from './type'
 import { initializeStream } from './stream'
+import { BaraType } from './type'
 
 /**
  * XPayload: Is the configuration from user.
@@ -19,7 +19,7 @@ export interface BaraSource<T> {
   context: BaraContext
 }
 
-export type BaraSeep<T> = {
+export interface BaraSeep<T> {
   [key: string]: (...args: any[]) => (data: T) => boolean
 }
 
@@ -70,13 +70,13 @@ export const flow = <T, C, M>(
   // TODO create separated awaitableFlow operator
   const awaitAction = new EventEmitter()
   const func = (flowUserPayload: FlowUserPayload<T, C, M>) => {
-    let bootstrapPayload = { ...flowUserPayload }
+    const bootstrapPayload = { ...flowUserPayload }
     // Setup Flow Emitter Action
-    let next = (listener: Listener<T>) => (data: T) => {
+    const next = (listener: Listener<T>) => (data: T) => {
       listener.next(data)
     }
 
-    let actionRef = (data: T | any) => Promise.resolve(data)
+    const actionRef = (data: T | any) => Promise.resolve(data)
 
     const awaitable = (data: T | any) => {
       // Emit data object to some stream

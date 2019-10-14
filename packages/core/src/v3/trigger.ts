@@ -16,7 +16,7 @@ export interface BaraTriggerSubscriber {
 }
 
 export interface BaraTriggerConfig {
-  func: (chain: Chain[], upstream: Stream<any>) => Array<BaraTriggerSubscriber>
+  func: (chain: Chain[], upstream: Stream<any>) => BaraTriggerSubscriber[]
   rawTrigger: BaraTriggerPayload
 }
 
@@ -25,7 +25,7 @@ export const initTrigger = (
   linker: BaraLinker,
 ): BaraTriggerConfig => {
   const func = (chains: Chain[], upstream: Stream<any>) => {
-    const subscribers: Array<BaraTriggerSubscriber> = chains.map(chain => {
+    const subscribers: BaraTriggerSubscriber[] = chains.map(chain => {
       const nextStream = chain.link(upstream, linker)
       return {
         stream: nextStream,
