@@ -1,0 +1,19 @@
+{
+  "name": "bara-express",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsnd --debounce 3000 --respawn server.ts",
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@bara/core": "3.0.0-alpha.1",
+    "express": "4.17.1"
+  },
+  "devDependencies": {
+    "@types/express": "4.17.1",
+    "ts-node-dev": "1.0.0-pre.43",
+    "typescript": "3.6.3"
+  }
+}
