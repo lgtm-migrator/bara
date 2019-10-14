@@ -1,7 +1,11 @@
 import consola from './consola'
 
-import { initPortion, BaraPortionPayload } from './portion'
+import { initPortion, BaraPortionPayload, BaraPortion } from './portion'
 import { initTrigger, BaraTriggerPayload } from './trigger'
+import { BaraLinker } from './linker'
+import { ChainBase } from './chain'
+import { VirtualSeepConfig } from './seep'
+import { StreamPayload } from './stream'
 
 export interface BaraApplication {
   portions: any[]
@@ -29,11 +33,10 @@ export const app = (payload: {
   // Initialize each portion for stream subscription
   const portions = portion.map(p => initPortion(p))
   consola.info('[Bara App] Portions: ', portions)
-
-  // Subscribe trigger to each portion corresponding stream
-  // Trigger will be registering when this application is going run
-  const triggers = (trigger || []).map(t => initTrigger(t))
-  consola.info('[Bara App] Trigger: ', triggers)
-
-  return { portions, triggers }
+  return { portions, triggers: trigger! }
 }
+
+const findPortion = (
+  portionName: string,
+  portions: Array<BaraPortion<any, any, any>>,
+) => {}

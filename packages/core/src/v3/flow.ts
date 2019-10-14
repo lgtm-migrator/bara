@@ -37,6 +37,7 @@ export interface FlowSemiConfig<T, C> {
   context: C
   subStream: Stream<T>
   awaitAction: EventEmitter
+  seep?: BaraSeep<T>
 }
 
 export interface FlowConfig<T, C, M> {
@@ -101,13 +102,13 @@ export const flow = <T, C, M>(
     bootstrapPayload.awaitable = awaitable
 
     initializeStream(subStream, bootstrapPayload, bootstrap)
-    consola.info(`[Flow] Bootstrapped!`)
 
     return {
       bara: BaraType.Flow,
       context: flowUserPayload.context,
       subStream,
       awaitAction,
+      seep,
     }
   }
 

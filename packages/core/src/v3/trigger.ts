@@ -1,32 +1,36 @@
-import consola from './consola'
-
 import { Stream } from 'xstream'
-import { Chain, ChainType } from './chain'
+import { Chain, ChainBase } from './chain'
+import { BaraLinker } from './linker'
+import { StreamPayload } from './stream'
 
 export interface BaraTriggerPayload {
+  portionName: string
   flowName: string
-  chain: any[]
+  chain: ChainBase[]
   seep: any
 }
 
+export interface BaraTriggerSubscriber {
+  stream: Stream<any>
+  action: (payload: StreamPayload) => any[] | any | void | undefined
+}
+
 export interface BaraTriggerConfig {
-  func: (chain: Chain[]) => void
+  func: (chain: Chain[], upstream: Stream<any>) => Array<BaraTriggerSubscriber>
   rawTrigger: BaraTriggerPayload
 }
 
 export const initTrigger = (
   rawTrigger: BaraTriggerPayload,
+  linker: BaraLinker,
 ): BaraTriggerConfig => {
-  const func = (chains: Chain[]) => {
-    const subscribers: any[] = chains.map(chain => {
-      // Create sub stream for trigger action here
-      console.log(chain)
-      if (chain.type === ChainType.cond) {
-        // Create filter stream
-      } else if (chain.type === ChainType.act) {
-        // Create direct action stream
+  const func = (chains: Chain[], upstream: Stream<any>) => {
+    const subscribers: Array<BaraTriggerSubscriber> = chains.map(chain => {
+      const nextStream = chain.link(upstream, linker)
+      return {
+        stream: nextStream,
+        action: chain.func,
       }
-      return chain
     })
     return subscribers
   }

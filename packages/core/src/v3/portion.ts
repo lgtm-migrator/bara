@@ -2,6 +2,7 @@ import xs, { Stream } from 'xstream'
 import shortid from 'shortid'
 
 import { FlowSemiConfig, FlowConfig } from './flow'
+import consola from './consola'
 
 /**
  * BaraMoldObject is the object contains all values
@@ -68,7 +69,7 @@ export const portion = <T, C, M>(
 }
 
 export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
-  const { mold, init } = pt
+  const { mold, init, name } = pt
 
   // Each portion initializer should return the reference context for later use.
   const context = init(mold!)
@@ -83,7 +84,7 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
 
   // Register Flow from this stream
   const rawFlows = registerFlow(pt, context, stream)
-  return { id: shortid.generate(), rawFlows, stream }
+  return { id: shortid.generate(), name, rawFlows, stream }
 }
 
 export const registerFlow = <T, C, M>(
@@ -111,5 +112,6 @@ export const registerFlow = <T, C, M>(
       flowOperators[flowName] = rawFlow
     }
   }
+  consola.info(`Flow raw:`, flowOperators)
   return flowOperators
 }

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsnd --respawn server.ts",
+    "start": "tsnd --debounce 3000 --respawn server.ts",
     "build": "tsc -b"
   },
   "dependencies": {

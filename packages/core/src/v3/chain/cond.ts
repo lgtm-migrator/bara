@@ -1,11 +1,13 @@
-import { Chain, ChainType } from './type'
+import { ActChain, CondChain, ChainType } from './type'
 
-import { ActChain } from './act'
 import { StreamPayload } from '../stream'
 import { VirtualSeepConfig } from '../seep'
+import { BaraLinker } from '../linker'
 
-export interface CondChain extends Chain {
-  act: ActChain
+const getRealSeep = (virtualSeep: VirtualSeepConfig) => (
+  payload: StreamPayload,
+): boolean => {
+  return true
 }
 
 /**
@@ -19,8 +21,11 @@ export const cond = (seep: VirtualSeepConfig, act: ActChain): CondChain => {
   return {
     type: ChainType.cond,
     func: (payload: StreamPayload) => {
-      return { ...seep, payload }
+      act.func(payload)
     },
-    act,
+    link: (parent, linker: BaraLinker) => {
+      const filter = linker.getRealSeep(seep) // TODO make actualSeep the converter belong to the linker
+      return parent.filter(filter)
+    },
   }
 }
