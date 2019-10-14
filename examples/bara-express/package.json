@@ -1,6 +1,6 @@
 {
   "name": "bara-express",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@bara/core": "3.0.0-alpha.1",
+    "@bara/core": "^3.0.0-alpha.2",
     "express": "4.17.1"
   },
   "devDependencies": {
