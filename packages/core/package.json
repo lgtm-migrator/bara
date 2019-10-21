@@ -1,6 +1,6 @@
 {
   "name": "@barajs/core",
-  "version": "3.0.0-alpha.413",
+  "version": "3.0.0-alpha.414",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
   "main": "dist/index.js",
