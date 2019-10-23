@@ -16,3 +16,5 @@ export * from './split'
 export * from './take'
 export * from './to'
 export * from './with'
+
+export * from './pipe'

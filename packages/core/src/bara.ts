@@ -1,11 +1,6 @@
-import consola from './consola'
-
 import { BaraApplication } from './app'
-import { ChainBase } from './chain'
 import { BaraContext } from './context'
-import { BaraLinker } from './linker'
-import { VirtualSeepConfig } from './seep'
-import { StreamPayload } from './stream'
+import { BaraLinker, buildLinker } from './linker'
 import { BaraTriggerPayload, initTrigger } from './trigger'
 
 export interface BaraRunOptions {
@@ -43,34 +38,10 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
     }
   }
 
-  const linker: BaraLinker = {
-    getRealAction: (act: ChainBase) => (payload: StreamPayload) => ({
-      act,
-      payload,
-    }),
-    getRealSeep: (seep: VirtualSeepConfig) => {
-      const { portionName, flowName, seepName, args } = seep
-      let realSeep = (...params: any[]) => (payload: StreamPayload) => {
-        consola.warn(
-          `The seep ${seepName} is not correctly destructed from portion: ${portionName}, Bara will making it always return "true".`,
-        )
-        return true
-      }
-
-      // Replace default seep with the real configured seep
-      if (portionName in globalPortions) {
-        realSeep = globalPortions[portionName].flows[flowName].seep[seepName]
-      }
-
-      return (payload: StreamPayload) => {
-        return realSeep(args)(payload)
-      }
-    },
-  }
+  const linker: BaraLinker = buildLinker(globalPortions)
 
   // Trigger will be registering when this application is bootstraped
   const rawTriggers = (triggers || []).map(t => initTrigger(t, linker))
-  // consola.info('[Bara App] Raw Trigger: ', rawTriggers)
 
   // Subscribe trigger with its portions
   // This piece of codes could be implement in the `run` function

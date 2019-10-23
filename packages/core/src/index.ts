@@ -15,3 +15,6 @@ export * from './chain'
 // Expiremental Operators
 export * from './context'
 export * from './stream'
+
+// Primitive Operators
+export * from './primitives'

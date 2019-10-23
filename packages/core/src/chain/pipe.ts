@@ -3,7 +3,7 @@ import { ActChain, ChainType } from './type'
 
 export type ActPayload = (payload: StreamPayload) => any
 
-export const pipe = (...actions: ActPayload[]): ActChain => {
+export const pipeChain = (...actions: ActPayload[]): ActChain => {
   return {
     type: ChainType.act,
     func: (payload: StreamPayload) => payload,

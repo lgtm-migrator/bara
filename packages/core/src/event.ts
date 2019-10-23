@@ -1,14 +1,16 @@
-import { BaraPortion, Chain } from '.'
+import { BaraPortion, PrimaryChain } from '.'
 import { BaraSeep } from './flow'
 
 export interface VirtualActionConfig<T> {
   portionName: string
   flowName: string
-  chain: Chain[]
+  chain: PrimaryChain[]
   seep: BaraSeep<T>
 }
 
-export type VirtualAction<T> = (...chain: Chain[]) => VirtualActionConfig<T>
+export type VirtualAction<T> = (
+  ...chain: PrimaryChain[]
+) => VirtualActionConfig<T>
 
 /**
  * Pop out one or more event at a time.
@@ -32,7 +34,7 @@ export const popEvent = <T, C, M>(
   }
 
   // Pseudo code for a flow subscriber
-  const createFlowAction = (flowName: string) => (...chain: Chain[]) => {
+  const createFlowAction = (flowName: string) => (...chain: PrimaryChain[]) => {
     return { flowName, portionName, chain, seep: flows[flowName].seep || {} }
   }
 

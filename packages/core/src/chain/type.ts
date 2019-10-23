@@ -1,25 +1,39 @@
 import { Stream } from 'xstream'
 import { BaraLinker } from '../linker'
+import { VirtualSeepConfig } from '../seep'
 import { StreamPayload } from '../stream'
 
 export enum ChainType {
   cond = 'cond',
+  and = 'and',
   act = 'act',
   pipe = 'pipe',
 }
 
 export interface ChainBase {
   type: ChainType
-  func: (payload: StreamPayload) => any
+  func?: (payload: StreamPayload) => any
   link: (parentStream: Stream<any>, linker: BaraLinker) => Stream<any>
 }
 
-export interface ActChain extends ChainBase {}
-
-export interface CondChain extends ChainBase {}
-
-export interface PipeChain extends ChainBase {
-  acts: ActChain
+export interface ActChain extends ChainBase {
+  func: (payload: StreamPayload) => any
 }
 
-export type Chain = ActChain | CondChain | PipeChain
+export interface CondChain extends ChainBase {
+  func: (payload: StreamPayload) => any
+  seeps: VirtualSeepConfig[]
+}
+
+export interface AndChain extends ChainBase {
+  seeps: VirtualSeepConfig[]
+}
+export interface OrChain extends ChainBase {
+  seeps: VirtualSeepConfig[]
+}
+
+export type PrimaryChain = ActChain | CondChain
+
+export function isChain(obj: VirtualSeepConfig | ChainBase): boolean {
+  return (obj as ChainBase).type !== undefined
+}

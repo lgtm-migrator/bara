@@ -1,4 +1,4 @@
-import { ActChain, ChainType, CondChain } from './type'
+import { ActChain, AndChain, ChainType, CondChain, isChain } from './type'
 
 import { BaraLinker } from '../linker'
 import { VirtualSeepConfig } from '../seep'
@@ -17,15 +17,21 @@ const getRealSeep = (virtualSeep: VirtualSeepConfig) => (
  * @param condition Evaluate the condition before executing an action
  * @param chain Which action will be executed when condition is pass
  */
-export const cond = (seep: VirtualSeepConfig, act: ActChain): CondChain => {
+export const cond = (
+  seepOrChain: VirtualSeepConfig | AndChain,
+  act: ActChain,
+): CondChain => {
   return {
     type: ChainType.cond,
     func: (payload: StreamPayload) => {
       act.func(payload)
     },
     link: (parent, linker: BaraLinker) => {
-      const filter = linker.getRealSeep(seep) // TODO make actualSeep the converter belong to the linker
-      return parent.filter(filter)
+      const filter = isChain(seepOrChain)
+        ? (seepOrChain as CondChain).link(parent, linker)
+        : parent.filter(linker.getRealSeep(seepOrChain as VirtualSeepConfig))
+      return filter
     },
+    seeps: [seepOrChain as VirtualSeepConfig],
   }
 }
