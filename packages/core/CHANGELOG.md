@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.415](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.414...@barajs/core@3.0.0-alpha.415) (2019-10-23)
+
+
+### Features
+
+* **core:** add "and" operator to chain ([16eae6b](https://github.com/barajs/bara/commit/16eae6b))
+* **core:** reimplement chain and, or ([66a3069](https://github.com/barajs/bara/commit/66a3069))
+
+
+
+
+
 # [3.0.0-alpha.414](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.413...@barajs/core@3.0.0-alpha.414) (2019-10-21)
 
 **Note:** Version bump only for package @barajs/core
