@@ -6,6 +6,7 @@ import { StreamPayload } from '../stream'
 export enum ChainType {
   cond = 'cond',
   and = 'and',
+  or = 'or',
   act = 'act',
   pipe = 'pipe',
 }
@@ -33,6 +34,8 @@ export interface OrChain extends ChainBase {
 }
 
 export type PrimaryChain = ActChain | CondChain
+
+export type CompareChain = AndChain | OrChain
 
 export function isChain(obj: VirtualSeepConfig | ChainBase): boolean {
   return (obj as ChainBase).type !== undefined
