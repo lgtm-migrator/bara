@@ -5,7 +5,7 @@ export interface BaraStream<T, Context> {
   stream: Stream<T>
 }
 
-export interface StreamPayload {} // TODO add stream payload metadata for future references
+export type StreamPayload = any | number | string | void | boolean // TODO add stream payload metadata for future references
 
 export const initializeStream = <T>(
   stream: Stream<T>,
