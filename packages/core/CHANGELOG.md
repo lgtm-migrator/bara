@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.416](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.415...@barajs/core@3.0.0-alpha.416) (2019-10-24)
+
+
+### Features
+
+* **core:** act chain now accept array as parameter ([ca6e59d](https://github.com/barajs/bara/commit/ca6e59d))
+
+
+
+
+
 # [3.0.0-alpha.415](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.414...@barajs/core@3.0.0-alpha.415) (2019-10-23)
 
 
