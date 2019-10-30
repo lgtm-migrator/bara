@@ -3,8 +3,8 @@
   "version": "3.0.0-alpha.416",
   "description": "BaraJS Core - Created For Creating",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/bara.js",
+  "types": "dist/bara.d.ts",
   "keywords": [],
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "test:watch": "jest --watch",
     "compile": "tsc -p ./tsconfig.build.json",
     "compile:watch": "tsc -w -p ./tsconfig.build.json",
+    "compile:webpack": "webpack",
     "clean": "rm -rf dist",
     "precompile": "yarn clean",
     "lint": "tslint -p .",
@@ -38,11 +39,14 @@
     "npm-watch": "0.6.0",
     "prettier": "1.18.2",
     "ts-jest": "24.1.0",
+    "ts-loader": "6.2.1",
     "tslint": "5.20.0",
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.18.0",
     "tslint-react": "4.0.0",
-    "typescript": "3.6.4"
+    "typescript": "3.6.4",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.9"
   },
   "dependencies": {
     "p-all": "2.1.0",
