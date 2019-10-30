@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.419](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.418...@barajs/core@3.0.0-alpha.419) (2019-10-30)
+
+
+### Features
+
+* **formula:** add pipe, side formula ([a18bab3](https://github.com/barajs/bara/commit/a18bab3))
+
+
+
+
+
 # [3.0.0-alpha.418](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.417...@barajs/core@3.0.0-alpha.418) (2019-10-30)
 
 
