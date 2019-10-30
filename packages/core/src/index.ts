@@ -17,4 +17,4 @@ export * from './context'
 export * from './stream'
 
 // Primitive Operators
-export * from './primitives'
+export * from './formula'
