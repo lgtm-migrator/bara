@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.417](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.416...@barajs/core@3.0.0-alpha.417) (2019-10-30)
+
+
+### Bug Fixes
+
+* **bundle:** build using webpack ([cc958d0](https://github.com/barajs/bara/commit/cc958d0))
+
+
+
+
+
 # [3.0.0-alpha.416](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.415...@barajs/core@3.0.0-alpha.416) (2019-10-24)
 
 
