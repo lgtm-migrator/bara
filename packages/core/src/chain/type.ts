@@ -23,7 +23,7 @@ export interface ActChain extends ChainBase {
 
 export interface CondChain extends ChainBase {
   func: (payload: StreamPayload) => any
-  seeps: VirtualSeepConfig[]
+  seeps?: VirtualSeepConfig[]
 }
 
 export interface AndChain extends ChainBase {

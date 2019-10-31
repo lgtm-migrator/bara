@@ -17,14 +17,12 @@ export const match = (props: FormulaMatchProps) => async (
   }
 }
 
-/*
-import { loopOf } from './loop'
-loopOf(
-  ['KT2', 'GN'],
-  match({
-    KT: console.log,
-    GN: console.warn,
-    default: () => console.error('default'),
-  }),
-)({ hello: 'world' })
-*/
+// import { loopOf } from './loop'
+// loopOf(
+//   ['KT2', 'GN'],
+//   match({
+//     KT: console.log,
+//     GN: console.warn,
+//     default: () => console.error('default'),
+//   }),
+// )({ hello: 'world' })
