@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.421](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.420...@barajs/core@3.0.0-alpha.421) (2019-10-31)
+
+
+### Bug Fixes
+
+* **chain:** type union on PrimaryChain complain ([8bae437](https://github.com/barajs/bara/commit/8bae437))
+
+
+
+
+
 # [3.0.0-alpha.420](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.419...@barajs/core@3.0.0-alpha.420) (2019-10-31)
 
 
