@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.420](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.419...@barajs/core@3.0.0-alpha.420) (2019-10-31)
+
+
+### Features
+
+* **core:** add gather formulas ([d2f4051](https://github.com/barajs/bara/commit/d2f4051))
+* **core:** add loop formula ([ef5b014](https://github.com/barajs/bara/commit/ef5b014))
+* **core:** add match formula ([3dfca6e](https://github.com/barajs/bara/commit/3dfca6e))
+* **core:** add split fomulas ([5caf261](https://github.com/barajs/bara/commit/5caf261))
+
+
+
+
+
 # [3.0.0-alpha.419](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.418...@barajs/core@3.0.0-alpha.419) (2019-10-30)
 
 
