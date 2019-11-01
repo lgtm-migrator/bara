@@ -19,6 +19,7 @@ export interface ChainBase {
 
 export interface ActChain extends ChainBase {
   func: (payload: StreamPayload, contextes: any) => any
+  seeps?: VirtualSeepConfig[] // TODO need fixed typing here with CondChain
 }
 
 export interface CondChain extends ChainBase {
