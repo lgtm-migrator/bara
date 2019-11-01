@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.424](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.423...@barajs/core@3.0.0-alpha.424) (2019-11-01)
+
+
+### Features
+
+* **core:** add withContext to access Context from an act ([e8059c8](https://github.com/barajs/bara/commit/e8059c8))
+
+
+
+
+
 # [3.0.0-alpha.423](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.422...@barajs/core@3.0.0-alpha.423) (2019-11-01)
 
 
