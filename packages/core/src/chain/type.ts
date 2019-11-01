@@ -34,8 +34,6 @@ export interface OrChain extends ChainBase {
   seeps: VirtualSeepConfig[]
 }
 
-export type PrimaryChain = ActChain | CondChain
-
 export type CompareChain = AndChain | OrChain
 
 export function isChain(obj: VirtualSeepConfig | ChainBase): boolean {

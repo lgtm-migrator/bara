@@ -1,12 +1,12 @@
 import { Stream } from 'xstream'
-import { PrimaryChain } from './chain'
+import { ChainBase } from './chain'
 import { BaraLinker } from './linker'
 import { StreamPayload } from './stream'
 
 export interface BaraTriggerPayload {
   portionName: string
   flowName: string
-  chain: PrimaryChain[]
+  chain: ChainBase[]
   seep: any
 }
 
@@ -19,10 +19,7 @@ export interface BaraTriggerSubscriber {
 }
 
 export interface BaraTriggerConfig {
-  func: (
-    chain: PrimaryChain[],
-    upstream: Stream<any>,
-  ) => BaraTriggerSubscriber[]
+  func: (chain: ChainBase[], upstream: Stream<any>) => BaraTriggerSubscriber[]
   rawTrigger: BaraTriggerPayload
 }
 
@@ -30,12 +27,12 @@ export const initTrigger = (
   rawTrigger: BaraTriggerPayload,
   linker: BaraLinker,
 ): BaraTriggerConfig => {
-  const func = (chains: PrimaryChain[], upstream: Stream<any>) => {
+  const func = (chains: ChainBase[], upstream: Stream<any>) => {
     const subscribers: BaraTriggerSubscriber[] = chains.map(chain => {
       const nextStream = chain.link(upstream, linker)
       return {
         stream: nextStream,
-        action: chain.func,
+        action: chain.func!,
       }
     })
     return subscribers
