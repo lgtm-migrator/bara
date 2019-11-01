@@ -11,3 +11,10 @@ export const takeFirst = () => (payload: any[]): any => {
 export const takeLast = () => (payload: any[]): any => {
   return payload && payload.length ? payload[payload.length - 1] : null
 }
+
+/**
+ * Get nth element from provided array
+ */
+export const takeNth = (num: number) => (payload: any[]): any => {
+  return payload && payload.length ? payload[num] : null
+}
