@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.426](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.425...@barajs/core@3.0.0-alpha.426) (2019-11-01)
+
+
+### Bug Fixes
+
+* **core:** fix typings on chain ([466461d](https://github.com/barajs/bara/commit/466461d))
+
+
+
+
+
 # [3.0.0-alpha.425](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.424...@barajs/core@3.0.0-alpha.425) (2019-11-01)
 
 
