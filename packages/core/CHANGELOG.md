@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.422](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.421...@barajs/core@3.0.0-alpha.422) (2019-11-01)
+
+
+### Bug Fixes
+
+* **formula:** forgot to export new fomulas ([f9cf81a](https://github.com/barajs/bara/commit/f9cf81a))
+
+
+
+
+
 # [3.0.0-alpha.421](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.420...@barajs/core@3.0.0-alpha.421) (2019-10-31)
 
 
