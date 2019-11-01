@@ -1,0 +1,54 @@
+{
+  "name": "@barajs/formula",
+  "version": "3.0.0-alpha.422",
+  "description": "BaraJS Formula - Curry Functional Programming Kit for Bara application",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "build/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.com/barajs/bara.git"
+  },
+  "files": [
+    "build",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "watch": {
+    "lint": "{src}/*.ts"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "compile": "yarn compile:tsc && yarn compile:webpack",
+    "compile:tsc": "tsc -p ./tsconfig.build.json",
+    "compile:webpack": "webpack",
+    "clean": "rm -rf dist",
+    "precompile": "yarn clean",
+    "lint": "tslint -p .",
+    "format": "prettier --write '{.,src/**}/*.{js,jsx,ts,tsx}'",
+    "lint:watch": "npm-watch",
+    "dev": "concurrently --kill-others \"yarn test:watch\" \"yarn lint:watch\" \"yarn compile:watch\" "
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.18",
+    "concurrently": "4.1.2",
+    "jest": "24.9.0",
+    "npm-watch": "0.6.0",
+    "prettier": "1.18.2",
+    "ts-jest": "24.1.0",
+    "ts-loader": "6.2.1",
+    "tslint": "5.20.0",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-config-prettier": "1.18.0",
+    "tslint-react": "4.0.0",
+    "typescript": "3.6.4",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.9"
+  },
+  "gitHead": "1004f432a9dc0621963ae556f58b8ae4ef61ca49"
+}
