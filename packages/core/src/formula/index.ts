@@ -1,8 +1,12 @@
 export * from './types'
 
+export * from './array'
 export * from './gather'
+export * from './join'
 export * from './loop'
 export * from './match'
 export * from './pipe'
+export * from './props'
 export * from './side'
 export * from './split'
+export * from './string'
