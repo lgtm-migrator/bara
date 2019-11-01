@@ -13,16 +13,16 @@ export enum ChainType {
 
 export interface ChainBase {
   type: ChainType
-  func?: (payload: StreamPayload) => any
+  func?: (payload: StreamPayload, contextes: any) => any
   link: (parentStream: Stream<any>, linker: BaraLinker) => Stream<any>
 }
 
 export interface ActChain extends ChainBase {
-  func: (payload: StreamPayload) => any
+  func: (payload: StreamPayload, contextes: any) => any
 }
 
 export interface CondChain extends ChainBase {
-  func: (payload: StreamPayload) => any
+  func: (payload: StreamPayload, contextes: any) => any
   seeps?: VirtualSeepConfig[]
 }
 

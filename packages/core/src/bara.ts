@@ -34,6 +34,7 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
       globalPortions[portion.name] = {
         id: portion.id,
         flows: portion.rawFlows,
+        context: portion.context,
       }
     }
   }
@@ -54,7 +55,11 @@ const wire = (portions: any[], triggers: BaraTriggerPayload[]) => {
       const upstream = belongPortion.flows[flowName].subStream
       const triggerSubscribers = func(chain, upstream)
       for (const { stream, action } of triggerSubscribers) {
-        stream.addListener({ next: action })
+        stream.addListener({
+          next: (data: any) => {
+            action(data, globalPortions)
+          },
+        })
       }
     }
   }

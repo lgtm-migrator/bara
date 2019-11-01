@@ -60,7 +60,10 @@ export const portion = <T, C, M>(
     if (!name) {
       throw new Error(`[Portion] A portion name should be specified!`)
     }
-    const overrideMold: BaraMold<M> = { ...mold, ...userMold } as BaraMold<M>
+    const overrideMold: BaraMold<M> = {
+      ...(mold as any),
+      ...(userMold as any),
+    } as BaraMold<M>
 
     return { ...payload, mold: overrideMold }
   }
@@ -82,7 +85,13 @@ export const initPortion = <T, C, M>(pt: BaraPortionPayload<T, C, M>) => {
 
   // Register Flow from this stream
   const rawFlows = registerFlow(pt, context, stream)
-  return { id: 'Id system will be implemented soon', name, rawFlows, stream }
+  return {
+    id: 'Id system will be implemented soon',
+    name,
+    rawFlows,
+    stream,
+    context,
+  }
 }
 
 export const registerFlow = <T, C, M>(

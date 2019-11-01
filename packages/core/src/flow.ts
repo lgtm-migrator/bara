@@ -27,7 +27,7 @@ export interface FlowUserPayload<T, C, M> {
   mold: M
   context: C
   stream: Stream<T>
-  next: (data: T) => void
+  next: (data?: T) => void
   action: (data: T) => Promise<any>
   awaitable: (data: T) => Stream<T>
 }
@@ -72,8 +72,8 @@ export const flow = <T, C, M>(
   const func = (flowUserPayload: FlowUserPayload<T, C, M>) => {
     const bootstrapPayload = { ...flowUserPayload }
     // Setup Flow Emitter Action
-    const next = (listener: Listener<T>) => (data: T) => {
-      listener.next(data)
+    const next = (listener: Listener<T>) => (data?: T) => {
+      listener.next(data!)
     }
 
     const actionRef = (data: T | any) => Promise.resolve(data)

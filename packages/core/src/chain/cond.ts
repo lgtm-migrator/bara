@@ -4,12 +4,6 @@ import { BaraLinker } from '../linker'
 import { VirtualSeepConfig } from '../seep'
 import { StreamPayload } from '../stream'
 
-const getRealSeep = (virtualSeep: VirtualSeepConfig) => (
-  payload: StreamPayload,
-): boolean => {
-  return true
-}
-
 /**
  * `cond` will be map as a filter stream from the base Flow's stream,
  * resulted in new sub stream of condition.
@@ -23,8 +17,8 @@ export const cond = (
 ): CondChain => {
   return {
     type: ChainType.cond,
-    func: (payload: StreamPayload) => {
-      act.func(payload)
+    func: (payload: StreamPayload, contextes: any) => {
+      act.func(payload, contextes)
     },
     link: (parent, linker: BaraLinker) => {
       const filter = isChain(seepOrChain)
