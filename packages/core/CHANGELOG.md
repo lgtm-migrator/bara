@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.423](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.422...@barajs/core@3.0.0-alpha.423) (2019-11-01)
+
+
+### Features
+
+* **formula:** add more formula ([d4e3027](https://github.com/barajs/bara/commit/d4e3027))
+* **formula:** detach formula into separated module ([f2139a0](https://github.com/barajs/bara/commit/f2139a0))
+
+
+
+
+
 # [3.0.0-alpha.422](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.421...@barajs/core@3.0.0-alpha.422) (2019-11-01)
 
 
