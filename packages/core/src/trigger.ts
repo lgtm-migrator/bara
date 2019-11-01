@@ -12,7 +12,10 @@ export interface BaraTriggerPayload {
 
 export interface BaraTriggerSubscriber {
   stream: Stream<any>
-  action: (payload: StreamPayload) => any[] | any | void | undefined
+  action: (
+    payload: StreamPayload,
+    contextes: any,
+  ) => any[] | any | void | undefined
 }
 
 export interface BaraTriggerConfig {
