@@ -27,10 +27,6 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'bara',
-    libraryTarget: 'umd',
-    umdNamedDefine: true,
-    globalObject: `(typeof self !== 'undefined' ? self : this)`,
   },
   devtool: false,
   plugins: [
