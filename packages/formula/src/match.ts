@@ -7,12 +7,13 @@ export interface FormulaMatchProps {
 export const match = (props: FormulaMatchProps) => async (
   matchingCase: string,
   payload: string,
+  ...rest: any[]
 ) => {
   if (matchingCase in props) {
-    await props[matchingCase](payload)
+    await props[matchingCase](payload, ...rest)
   } else {
     if ('default' in props) {
-      await props.default(payload)
+      await props.default(payload, ...rest)
     }
   }
 }

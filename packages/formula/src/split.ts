@@ -1,4 +1,9 @@
-export const splitStrToObj = (
+/**
+ * Split to object, split by delimiter and takes only selected segment
+ * @param delimiter
+ * @param takes
+ */
+export const s2o = (
   delimiter: string = ' ',
   takes: { [k: number]: string } = {},
 ) => (path: string) => {
@@ -9,5 +14,9 @@ export const splitStrToObj = (
   return obj
 }
 
-export const splitStrToArray = (delimiter: string = '/') => (path: string) =>
+/**
+ * Split an object in to an array
+ * @param delimiter
+ */
+export const s2a = (delimiter: string = '/') => (path: string) =>
   path && path.length ? path.split(delimiter) : []

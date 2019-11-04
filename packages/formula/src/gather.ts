@@ -6,6 +6,7 @@ import { Formula } from './types'
  */
 export const gatherTo = (props: string[], ...actions: Formula[]) => async (
   payload: any,
+  ...rest: any[]
 ) => {
   const buffer: any[] = await side(...actions)(payload)
   const result: any = {}
@@ -20,8 +21,8 @@ export const gatherReduce = (
   props: string[],
   reducer: (accumulator: any, value: any, propName?: string) => any,
   ...actions: Formula[]
-) => async (payload: any) => {
-  const buffer: any[] = await side(...actions)(payload)
+) => async (payload: any, ...rest: any[]) => {
+  const buffer: any[] = await side(...actions)(payload, ...rest)
   let result: any = initialValue
   for (let i = 0; i < buffer.length; i += 1) {
     result = reducer(result, buffer[i], props[i])
