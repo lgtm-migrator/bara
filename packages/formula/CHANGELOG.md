@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.431](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.430...@barajs/formula@3.0.0-alpha.431) (2019-11-04)
+
+
+### Features
+
+* **formula:** add template function for building string with a template ([79ce016](https://github.com/barajs/bara/commit/79ce016))
+
+
+
+
+
 # [3.0.0-alpha.430](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.429...@barajs/formula@3.0.0-alpha.430) (2019-11-04)
 
 
