@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.427](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.426...@barajs/formula@3.0.0-alpha.427) (2019-11-04)
+
+
+### Features
+
+* **formula:** add swapArg ([9e364e3](https://github.com/barajs/bara/commit/9e364e3))
+* **props:** upgrade modifier with ...rest ([3116537](https://github.com/barajs/bara/commit/3116537))
+
+
+
+
+
 # [3.0.0-alpha.426](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.425...@barajs/formula@3.0.0-alpha.426) (2019-11-04)
 
 
