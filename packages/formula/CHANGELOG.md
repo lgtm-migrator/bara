@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.432](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.431...@barajs/formula@3.0.0-alpha.432) (2019-11-04)
+
+
+### Bug Fixes
+
+* **formula:** add async/await support for template ([22356cd](https://github.com/barajs/bara/commit/22356cd))
+
+
+
+
+
 # [3.0.0-alpha.431](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.430...@barajs/formula@3.0.0-alpha.431) (2019-11-04)
 
 
