@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.433](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.432...@barajs/formula@3.0.0-alpha.433) (2019-11-04)
+
+
+### Features
+
+* **formula:** upgrade props and gather to have Promise ([40dbed7](https://github.com/barajs/bara/commit/40dbed7))
+
+
+
+
+
 # [3.0.0-alpha.432](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.431...@barajs/formula@3.0.0-alpha.432) (2019-11-04)
 
 
