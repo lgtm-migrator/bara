@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.434](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.433...@barajs/formula@3.0.0-alpha.434) (2019-11-04)
+
+
+### Features
+
+* **formula:** add ifElse function ([e02b050](https://github.com/barajs/bara/commit/e02b050))
+
+
+
+
+
 # [3.0.0-alpha.433](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.432...@barajs/formula@3.0.0-alpha.433) (2019-11-04)
 
 
