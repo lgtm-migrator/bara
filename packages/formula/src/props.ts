@@ -119,9 +119,12 @@ export const disposeProps = (
 export const evolveProp = (
   propName: string,
   modifier: (propVal: any, ...rest: any[]) => any,
-) => (payload: any, ...rest: any[]) => {
+) => async (payload: any, ...rest: any[]) => {
   return !!payload && propName in payload
-    ? { ...payload, [propName]: modifier(payload[propName], ...rest) }
+    ? {
+        ...payload,
+        [propName]: await Promise.resolve(modifier(payload[propName], ...rest)),
+      }
     : payload
 }
 // const a = evolveProp('a', () => 'world')({a: 'hello'})
@@ -135,8 +138,11 @@ export const evolveProp = (
 export const addProp = (
   propName: string,
   modifier: (payload: any, ...rest: any[]) => any,
-) => (payload: any, ...rest: any[]) => {
-  return { ...payload, [propName]: modifier(payload, ...rest) }
+) => async (payload: any, ...rest: any[]) => {
+  return {
+    ...payload,
+    [propName]: await Promise.resolve(modifier(payload, ...rest)),
+  }
 }
 // const a = addProp('b', () => 'world')({a: 'hello'})
 // console.log(a)
