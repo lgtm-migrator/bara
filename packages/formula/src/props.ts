@@ -118,10 +118,10 @@ export const disposeProps = (
  */
 export const evolveProp = (
   propName: string,
-  modifier: (propVal: any) => any,
-) => (payload: any) => {
+  modifier: (propVal: any, ...rest: any[]) => any,
+) => (payload: any, ...rest: any[]) => {
   return !!payload && propName in payload
-    ? { ...payload, [propName]: modifier(payload[propName]) }
+    ? { ...payload, [propName]: modifier(payload[propName], ...rest) }
     : payload
 }
 // const a = evolveProp('a', () => 'world')({a: 'hello'})
@@ -132,10 +132,11 @@ export const evolveProp = (
  * @param propName
  * @param modifier
  */
-export const addProp = (propName: string, modifier: (payload: any) => any) => (
-  payload: any,
-) => {
-  return { ...payload, [propName]: modifier(payload) }
+export const addProp = (
+  propName: string,
+  modifier: (payload: any, ...rest: any[]) => any,
+) => (payload: any, ...rest: any[]) => {
+  return { ...payload, [propName]: modifier(payload, ...rest) }
 }
 // const a = addProp('b', () => 'world')({a: 'hello'})
 // console.log(a)
