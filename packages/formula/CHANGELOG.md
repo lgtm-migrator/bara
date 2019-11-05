@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.437](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.436...@barajs/formula@3.0.0-alpha.437) (2019-11-05)
+
+
+### Features
+
+* **formula:** add slice and concat functioin ([4203067](https://github.com/barajs/bara/commit/4203067))
+
+
+
+
+
 # [3.0.0-alpha.436](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.435...@barajs/formula@3.0.0-alpha.436) (2019-11-05)
 
 
