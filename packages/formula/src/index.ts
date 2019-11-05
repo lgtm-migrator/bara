@@ -15,3 +15,5 @@ export * from './same'
 export * from './side'
 export * from './split'
 export * from './string'
+
+export * from './condition'
