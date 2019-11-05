@@ -1,6 +1,7 @@
 export * from './types'
 
 export * from './args'
+export * from './filter'
 export * from './array'
 export * from './gather'
 export * from './if'
