@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.438](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.437...@barajs/formula@3.0.0-alpha.438) (2019-11-05)
+
+
+### Features
+
+* **formula:** add condition of startsWith ([d8f3ad9](https://github.com/barajs/bara/commit/d8f3ad9))
+* **formula:** add filter function ([e5630f4](https://github.com/barajs/bara/commit/e5630f4))
+
+
+
+
+
 # [3.0.0-alpha.437](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.436...@barajs/formula@3.0.0-alpha.437) (2019-11-05)
 
 
