@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.436](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.435...@barajs/formula@3.0.0-alpha.436) (2019-11-05)
+
+
+### Bug Fixes
+
+* **formula:** typings not include in package.json ([d239db0](https://github.com/barajs/bara/commit/d239db0))
+
+
+
+
+
 # [3.0.0-alpha.435](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.434...@barajs/formula@3.0.0-alpha.435) (2019-11-05)
 
 **Note:** Version bump only for package @barajs/formula
