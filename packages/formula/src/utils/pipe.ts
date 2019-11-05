@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 /**
  * Pipe multiple formular together to make the execution in sequence

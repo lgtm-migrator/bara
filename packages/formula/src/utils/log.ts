@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 /**
  * Log function useful for debugging and logging any payload

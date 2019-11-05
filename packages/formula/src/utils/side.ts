@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 /**
  * Execute multiple actions side-by-side in a parallel

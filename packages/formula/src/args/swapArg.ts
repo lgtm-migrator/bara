@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 /**
  * Move specific arguments index into the first arg.

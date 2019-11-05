@@ -1,5 +1,5 @@
-import { side } from './side'
-import { Formula } from './types'
+import { Formula } from '../types'
+import { side } from '../utils/side'
 
 /**
  * Gathering returning value from list of actions into single JS object

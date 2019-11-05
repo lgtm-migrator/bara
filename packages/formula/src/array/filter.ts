@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 /**
  * Filter out element that is not qualify with checker.

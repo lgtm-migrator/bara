@@ -1,4 +1,4 @@
-import { Formula } from './types'
+import { Formula } from '../types'
 
 export const ifElse = (
   ifStm: Formula,
