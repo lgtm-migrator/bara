@@ -39,3 +39,9 @@ export const withContext = (
   actChain.func = patchFunc
   return actChain
 }
+
+export const getContext = (portionName: string, contextes: any) => {
+  const portion = portionName in contextes ? contextes[portionName] : null
+  const context = portion.context
+  return context
+}
