@@ -48,8 +48,13 @@ export const gather = (actions: { [k: string]: Formula }) => async (
 ) => {
   const result: any = {}
   for (const key in actions) {
-    if (key in actions)
-      result[key] = await Promise.resolve(actions[key](payload, ...rest))
+    if (key in actions) {
+      if (typeof actions[key] !== 'function') {
+        result[key] = actions[key]
+      } else {
+        result[key] = await Promise.resolve(actions[key](payload, ...rest))
+      }
+    }
   }
   return result
 }
