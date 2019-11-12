@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.442](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.441...@barajs/formula@3.0.0-alpha.442) (2019-11-12)
+
+
+### Features
+
+* **formula:** add templateProps function ([0ead81b](https://github.com/barajs/bara/commit/0ead81b))
+
+
+
+
+
 # [3.0.0-alpha.441](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.440...@barajs/formula@3.0.0-alpha.441) (2019-11-12)
 
 
