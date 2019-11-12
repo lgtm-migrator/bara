@@ -11,7 +11,7 @@
     "lint": "yarn workspaces run lint",
     "format": "lerna run format",
     "test:watch": "lerna run test:watch --stream",
-    "release": "lerna publish --yes --conventional-commits",
+    "release": "yarn compile && lerna publish --yes --conventional-commits",
     "release:canary": "lerna publish --yes --conventional-commits --canary --registry https://npm.pkg.github.com/",
     "cli": "yarn workspace bara-cli"
   },

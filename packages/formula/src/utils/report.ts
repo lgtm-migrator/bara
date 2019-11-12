@@ -24,6 +24,7 @@ export const report = (
   return [payload, ...rest]
 }
 
+// Prototype
 // const result = report(
 //   `{hello}, this message come from {from}. {nested.chi_ld}`,
 // )({
