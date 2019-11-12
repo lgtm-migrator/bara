@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.439](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.438...@barajs/formula@3.0.0-alpha.439) (2019-11-12)
+
+
+### Features
+
+* **formula:** add loopThrough function ([69dd0e7](https://github.com/barajs/bara/commit/69dd0e7))
+
+
+
+
+
 # [3.0.0-alpha.438](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.437...@barajs/formula@3.0.0-alpha.438) (2019-11-05)
 
 
