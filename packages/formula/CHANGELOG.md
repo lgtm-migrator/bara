@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.445](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.444...@barajs/formula@3.0.0-alpha.445) (2019-11-12)
+
+
+### Bug Fixes
+
+* **formula:** typing of gather add any type ([4dfdf63](https://github.com/barajs/bara/commit/4dfdf63))
+
+
+
+
+
 # [3.0.0-alpha.444](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.443...@barajs/formula@3.0.0-alpha.444) (2019-11-12)
 
 
