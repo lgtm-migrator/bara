@@ -42,7 +42,7 @@ export const gatherReduce = (
  *  year: (a: number, b: number) => a + b,
  * })(2000, 19) // {hello: 'world', year: 2019}
  */
-export const gather = (actions: { [k: string]: Formula }) => async (
+export const gather = (actions: { [k: string]: Formula | any }) => async (
   payload: any,
   ...rest: any[]
 ) => {
