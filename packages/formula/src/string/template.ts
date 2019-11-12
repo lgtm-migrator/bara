@@ -1,3 +1,4 @@
+import { lensProp } from '../object'
 import { Formula } from '../types'
 
 /**
@@ -32,6 +33,19 @@ export const template = (
   }
   return result
 }
+
+export const templateProps = (s: string) => async (
+  payload: any,
+  ...rest: any[]
+) => {
+  const replacer = s.replace(
+    /\{([A-Za-z0-9._]+)\}/g,
+    (_: string, prop: string) =>
+      lensProp(prop)(payload, ...rest) || `[${prop}]`,
+  )
+  return replacer
+}
+
 // console.log(
 //   template('how {be} {who} {what}?', {
 //     be: 'are',
