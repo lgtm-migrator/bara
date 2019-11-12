@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.446](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.445...@barajs/formula@3.0.0-alpha.446) (2019-11-12)
+
+
+### Bug Fixes
+
+* **formula:** correctly implement groupBy and find ([d0a120c](https://github.com/barajs/bara/commit/d0a120c))
+
+
+### Features
+
+* **formula:** add find function ([73b7c98](https://github.com/barajs/bara/commit/73b7c98))
+* **formula:** add groupBy function ([f8e0c2e](https://github.com/barajs/bara/commit/f8e0c2e))
+
+
+
+
+
 # [3.0.0-alpha.445](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.444...@barajs/formula@3.0.0-alpha.445) (2019-11-12)
 
 
