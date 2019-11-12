@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.444](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.443...@barajs/formula@3.0.0-alpha.444) (2019-11-12)
+
+
+### Features
+
+* **formula:** gather function now accept primitives value ([3ea508c](https://github.com/barajs/bara/commit/3ea508c))
+
+
+
+
+
 # [3.0.0-alpha.443](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.442...@barajs/formula@3.0.0-alpha.443) (2019-11-12)
 
 
