@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.441](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.440...@barajs/formula@3.0.0-alpha.441) (2019-11-12)
+
+
+### Bug Fixes
+
+* **formula:** compile all before release ([c672f92](https://github.com/barajs/bara/commit/c672f92))
+
+
+
+
+
 # [3.0.0-alpha.440](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.439...@barajs/formula@3.0.0-alpha.440) (2019-11-12)
 
 
