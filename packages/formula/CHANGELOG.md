@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.447](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.446...@barajs/formula@3.0.0-alpha.447) (2019-11-13)
+
+
+### Features
+
+* **formula:** add attempt function ([caf333e](https://github.com/barajs/bara/commit/caf333e))
+
+
+
+
+
 # [3.0.0-alpha.446](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.445...@barajs/formula@3.0.0-alpha.446) (2019-11-12)
 
 
