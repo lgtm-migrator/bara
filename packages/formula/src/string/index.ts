@@ -1,3 +1,4 @@
+export * from './pattern'
 export * from './removeChar'
 export * from './template'
 export * from './s2a'
