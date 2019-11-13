@@ -2,7 +2,9 @@ import { lensProp } from '../object'
 
 /**
  * Report a message with the help of string templating
- * and nested prop
+ * and nested prop.
+ *
+ * Use the "{.}" sign to print the primitives value
  *
  * @example
  *
@@ -18,7 +20,10 @@ export const report = (
 ) => (payload: any, ...rest: any[]) => {
   const replacer = message.replace(
     /\{([A-Za-z0-9._]+)\}/g,
-    (_: string, prop: string) => lensProp(prop)(payload) || `[${prop}]`,
+    (_: string, prop: string) =>
+      prop === '.'
+        ? JSON.stringify(payload)
+        : lensProp(prop)(payload) || `[${prop}]`,
   )
   adapter[loggerMethod](replacer)
   return [payload, ...rest]
@@ -33,3 +38,6 @@ export const report = (
 //   nested: { chi_ld: 'Awesome!' },
 // })
 // result
+
+// const result = report(`This is the primitive {.}`)('value')
+// result // ?
