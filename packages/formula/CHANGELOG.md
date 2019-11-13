@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.451](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.450...@barajs/formula@3.0.0-alpha.451) (2019-11-13)
+
+
+### Features
+
+* **formula:** add pattern string regular expression checker ([0c6f198](https://github.com/barajs/bara/commit/0c6f198))
+* **formula:** add replace function ([8411dd5](https://github.com/barajs/bara/commit/8411dd5))
+
+
+
+
+
 # [3.0.0-alpha.450](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.449...@barajs/formula@3.0.0-alpha.450) (2019-11-13)
 
 
