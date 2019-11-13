@@ -1,5 +1,6 @@
 export * from './pattern'
 export * from './removeChar'
+export * from './replace'
 export * from './template'
 export * from './s2a'
 export * from './s2o'
