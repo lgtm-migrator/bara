@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.450](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.449...@barajs/formula@3.0.0-alpha.450) (2019-11-13)
+
+
+### Features
+
+* **formula:** upgrade report function to have {.} for primitive value ([ee08083](https://github.com/barajs/bara/commit/ee08083))
+
+
+
+
+
 # [3.0.0-alpha.449](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.448...@barajs/formula@3.0.0-alpha.449) (2019-11-13)
 
 
