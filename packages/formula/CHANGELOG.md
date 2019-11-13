@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.452](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.451...@barajs/formula@3.0.0-alpha.452) (2019-11-13)
+
+
+### Features
+
+* **formula:** add fromArgs function ([62e1ab4](https://github.com/barajs/bara/commit/62e1ab4))
+
+
+
+
+
 # [3.0.0-alpha.451](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.450...@barajs/formula@3.0.0-alpha.451) (2019-11-13)
 
 
