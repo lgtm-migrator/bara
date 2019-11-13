@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.448](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.447...@barajs/formula@3.0.0-alpha.448) (2019-11-13)
+
+
+### Bug Fixes
+
+* **formula:** if statement should return the result ([4620fdb](https://github.com/barajs/bara/commit/4620fdb))
+
+
+
+
+
 # [3.0.0-alpha.447](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.446...@barajs/formula@3.0.0-alpha.447) (2019-11-13)
 
 
