@@ -1,3 +1,4 @@
+export * from './attempt'
 export * from './log'
 export * from './pipe'
 export * from './same'
