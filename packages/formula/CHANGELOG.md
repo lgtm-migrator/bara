@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.459](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.458...@barajs/formula@3.0.0-alpha.459) (2019-11-14)
+
+
+### Features
+
+* **formula:** add append/prepend functions ([faf64d4](https://github.com/barajs/bara/commit/faf64d4))
+
+
+
+
+
 # [3.0.0-alpha.458](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.457...@barajs/formula@3.0.0-alpha.458) (2019-11-14)
 
 
