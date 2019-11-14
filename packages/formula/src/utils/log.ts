@@ -14,14 +14,17 @@ export const log = (
   adapter: any = console,
   type: string = 'log',
 ) => (...args: any[]) => {
+  if (typeof action === 'function') {
+    const result = action(...args)
+    adapter[type](result)
+    return result
+  }
   if (payloadOnly) {
     adapter[type](args[0])
   } else {
     adapter[type](...args)
   }
-  if (typeof action === 'function') {
-    return action(...args)
-  }
+
   return args
 }
 
