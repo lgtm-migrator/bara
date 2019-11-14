@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.454](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.453...@barajs/formula@3.0.0-alpha.454) (2019-11-14)
+
+
+### Bug Fixes
+
+* **formula:** fix find method with arrayProp to indicate which prop should find ([27dcdc6](https://github.com/barajs/bara/commit/27dcdc6))
+* **formula:** fix find with extra args arrayProp to indicate the payload prop to find ([8b2b74a](https://github.com/barajs/bara/commit/8b2b74a))
+
+
+
+
+
 # [3.0.0-alpha.453](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.452...@barajs/formula@3.0.0-alpha.453) (2019-11-14)
 
 
