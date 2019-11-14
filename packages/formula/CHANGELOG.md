@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.456](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.455...@barajs/formula@3.0.0-alpha.456) (2019-11-14)
+
+
+### Bug Fixes
+
+* **formula:** condition eq and neq not correctly implemented ([a4018a1](https://github.com/barajs/bara/commit/a4018a1))
+
+
+
+
+
 # [3.0.0-alpha.455](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.454...@barajs/formula@3.0.0-alpha.455) (2019-11-14)
 
 
