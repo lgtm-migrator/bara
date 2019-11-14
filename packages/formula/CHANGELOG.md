@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.458](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.457...@barajs/formula@3.0.0-alpha.458) (2019-11-14)
+
+
+### Bug Fixes
+
+* **formula:** fix find and compare eq operator ([e5aefbf](https://github.com/barajs/bara/commit/e5aefbf))
+* **formula:** fix neq function algorithm ([ea75384](https://github.com/barajs/bara/commit/ea75384))
+
+
+
+
+
 # [3.0.0-alpha.457](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.456...@barajs/formula@3.0.0-alpha.457) (2019-11-14)
 
 
