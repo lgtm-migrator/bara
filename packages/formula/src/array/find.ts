@@ -6,10 +6,11 @@ import { Formula } from '../types'
  * @param formula
  */
 export const find = (formula: Formula, arrayProp: string = '') => (
-  payload: any[],
+  payload: any | any[],
   ...rest: any[]
 ) => {
-  return (arrayProp ? payload[arrayProp] : payload).find((element: any) =>
-    formula({ element, payload }, ...rest),
-  )
+  return (arrayProp !== ''
+    ? (payload as any)[arrayProp]
+    : (payload as any[])
+  ).find((element: any) => formula({ element, payload }, ...rest))
 }
