@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.453](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.452...@barajs/formula@3.0.0-alpha.453) (2019-11-14)
+
+
+### Features
+
+* **formula:** add condition of eq, neq ([54dda0a](https://github.com/barajs/bara/commit/54dda0a))
+* **formula:** change find function payload ([d60dc2e](https://github.com/barajs/bara/commit/d60dc2e))
+
+
+
+
+
 # [3.0.0-alpha.452](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.451...@barajs/formula@3.0.0-alpha.452) (2019-11-13)
 
 
