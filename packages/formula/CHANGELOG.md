@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.457](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.456...@barajs/formula@3.0.0-alpha.457) (2019-11-14)
+
+
+### Bug Fixes
+
+* **formula:** forgot to Promise.resolve the find formula checker ([3636a83](https://github.com/barajs/bara/commit/3636a83))
+
+
+
+
+
 # [3.0.0-alpha.456](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.455...@barajs/formula@3.0.0-alpha.456) (2019-11-14)
 
 
