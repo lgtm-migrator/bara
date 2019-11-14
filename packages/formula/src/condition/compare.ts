@@ -9,32 +9,15 @@ export const eq = (first: Formula, second: Formula) => async (
   return firstVal === secondVal
 }
 
-// const boo = eq(
-//   data => {
-//     return data.one
-//   },
-//   data => data.enable
-// )([{ one: '1', enable: true }, { one: '2', enable: false }])
-// boo
-
-// const boo = eq(data => data.data1, data => data.data2)({
-//   data1: 'sample',
-//   data2: 'example',
-// })
-
-// boo
-
-export const neq = (...formulas: Formula[]) => async (
+export const neq = (first: Formula, second: Formula) => async (
   payload: any,
   ...rest: any[]
 ) => {
-  return formulas.reduce(async (acc: any, formula: any) => {
-    if (acc === null) {
-      return await Promise.resolve(formula(payload, ...rest))
-    }
-    return acc !== (await Promise.resolve(formula(payload, ...rest)))
-  }, Promise.resolve(null))
+  const firstVal = await Promise.resolve(first(payload, ...rest))
+  const secondVal = await Promise.resolve(second(payload, ...rest))
+  return firstVal !== secondVal
 }
+
 // export const either = (...formulas: Formula[]) => async (
 //   payload: any,
 //   ...rest: any[]
