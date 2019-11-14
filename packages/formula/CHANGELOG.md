@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.455](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.454...@barajs/formula@3.0.0-alpha.455) (2019-11-14)
+
+
+### Bug Fixes
+
+* **formula:** log wrap function not correctly ([6d69159](https://github.com/barajs/bara/commit/6d69159))
+
+
+
+
+
 # [3.0.0-alpha.454](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.453...@barajs/formula@3.0.0-alpha.454) (2019-11-14)
 
 
