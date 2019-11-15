@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.460](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.459...@barajs/formula@3.0.0-alpha.460) (2019-11-15)
+
+
+### Features
+
+* **formula:** add o2a function ([3eebad5](https://github.com/barajs/bara/commit/3eebad5))
+
+
+
+
+
 # [3.0.0-alpha.459](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.458...@barajs/formula@3.0.0-alpha.459) (2019-11-14)
 
 
