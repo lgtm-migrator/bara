@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.461](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.460...@barajs/formula@3.0.0-alpha.461) (2019-11-15)
+
+
+### Bug Fixes
+
+* **formula:** fix o2a bug ([81913fb](https://github.com/barajs/bara/commit/81913fb))
+
+
+
+
+
 # [3.0.0-alpha.460](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.459...@barajs/formula@3.0.0-alpha.460) (2019-11-15)
 
 
