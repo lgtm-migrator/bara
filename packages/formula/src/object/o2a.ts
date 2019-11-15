@@ -11,22 +11,29 @@ export interface O2aProps {
 
 /**
  * Convert object key-value into single array.
- * @param props Configuration for object - array function.
+ * @param config Configuration for object - array function.
  */
-export const o2a = (props: O2aProps) => (payload: any) => {
-  const { index, prop } = props
+export const o2a = (config: O2aProps = { index: false, prop: false }) => (
+  payload: any,
+) => {
+  const { index, prop } = config
   let array: any = []
   let i: number = 0
-  for (const propName of payload) {
-    const element = { ...payload[propName] }
-    if (index) {
-      element._index = i
+  for (const propName in payload) {
+    if (propName in payload) {
+      const element = { ...payload[propName] }
+      if (index) {
+        element._index = i
+      }
+      if (prop) {
+        element._prop = propName
+      }
+      array = [...array, element]
+      i += 1
     }
-    if (prop) {
-      element._prop = prop
-    }
-    array = [...array, element]
-    i += 1
   }
   return array
 }
+
+// const a = o2a({ index: true, prop: true })({ '1': 'a', a: 'b' })
+// a
