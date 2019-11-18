@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.465](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.464...@barajs/formula@3.0.0-alpha.465) (2019-11-18)
+
+
+### Bug Fixes
+
+* **formula:** fix mapProp wrong payload ([b3848d7](https://github.com/barajs/bara/commit/b3848d7))
+
+
+### Features
+
+* **formula:** upgrade mapProp and fix wrong mapping ([a02065c](https://github.com/barajs/bara/commit/a02065c))
+
+
+
+
+
 # [3.0.0-alpha.464](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.463...@barajs/formula@3.0.0-alpha.464) (2019-11-18)
 
 
