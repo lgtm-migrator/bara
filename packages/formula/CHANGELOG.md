@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.467](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.466...@barajs/formula@3.0.0-alpha.467) (2019-11-18)
+
+
+### Bug Fixes
+
+* **formula:** concurrent not correctly implemented ([a0466b2](https://github.com/barajs/bara/commit/a0466b2))
+* **formula:** concurrent test with mapProp ([2d998b6](https://github.com/barajs/bara/commit/2d998b6))
+
+
+
+
+
 # [3.0.0-alpha.466](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.465...@barajs/formula@3.0.0-alpha.466) (2019-11-18)
 
 
