@@ -118,14 +118,16 @@ export const disposeProps = (
  * @param propName
  * @param modifier
  */
-export const evolveProp = (
-  propName: string,
-  modifier: (propVal: any, ...rest: any[]) => any,
-) => async (payload: any, ...rest: any[]) => {
+export const evolveProp = (propName: string, formula: Formula) => async (
+  payload: any,
+  ...rest: any[]
+) => {
   return !!payload && propName in payload
     ? {
         ...payload,
-        [propName]: await Promise.resolve(modifier(payload[propName], ...rest)),
+        [propName]: await Promise.resolve(
+          formula(payload[propName], payload, ...rest),
+        ),
       }
     : payload
 }
