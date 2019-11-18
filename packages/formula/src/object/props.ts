@@ -162,11 +162,13 @@ export const mapProp = (propName: string, formula: Formula) => (
   ...rest: any[]
 ) => {
   if (typeof payloadOrFunc === 'function') {
-    return payloadOrFunc[propName].map((data: any) => async () => {
+    return (rest[0] as any[]).map((data: any) => async () => {
       return await Promise.resolve(formula(data, payloadOrFunc, ...rest))
     })
   }
-  return payloadOrFunc[propName].map(async (data: any) => {
-    return await Promise.resolve(formula(data, payloadOrFunc, ...rest))
-  })
+  return ((payloadOrFunc as any)[propName] as any[]).map(
+    async (element: any) => {
+      return await Promise.resolve(formula(element, payloadOrFunc, ...rest))
+    },
+  )
 }
