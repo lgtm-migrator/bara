@@ -157,18 +157,19 @@ type F = () => any
  * @param propName which prop name to map.
  * @param formula Map to which action of data.
  */
-export const mapProp = (propName: string, formula: Formula) => (
+export const mapProp = (propName: string, formula: Formula) => async (
   payloadOrFunc: any[] | F,
   ...rest: any[]
 ) => {
   if (typeof payloadOrFunc === 'function') {
-    return (rest[0] as any[]).map((data: any) => async () => {
-      return await Promise.resolve(formula(data, payloadOrFunc, ...rest))
+    return (rest[0] as any[]).map((data: any) => () => {
+      return formula(data, payloadOrFunc, ...rest)
     })
   }
-  return ((payloadOrFunc as any)[propName] as any[]).map(
-    async (element: any) => {
-      return await Promise.resolve(formula(element, payloadOrFunc, ...rest))
-    },
+
+  return await Promise.all(
+    ((payloadOrFunc as any)[propName] as any[]).map((element: any) => {
+      return formula(element, payloadOrFunc, ...rest)
+    }),
   )
 }

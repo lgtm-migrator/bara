@@ -12,7 +12,7 @@ export const map = (formula: Formula) => async (
 ) => {
   if (typeof payloadOrFunc === 'function') {
     return (rest[0] as any[]).map((element: any) => () =>
-      formula(element, ...rest),
+      formula(element, payloadOrFunc, ...rest),
     )
   }
   return payloadOrFunc.map((element: any) => formula(element, ...rest))
