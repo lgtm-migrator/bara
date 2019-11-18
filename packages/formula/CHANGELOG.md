@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.463](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.462...@barajs/formula@3.0.0-alpha.463) (2019-11-18)
+
+
+### Bug Fixes
+
+* **formula:** add payload as seconds argument for mapProp ([1afbc5b](https://github.com/barajs/bara/commit/1afbc5b))
+
+
+
+
+
 # [3.0.0-alpha.462](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.461...@barajs/formula@3.0.0-alpha.462) (2019-11-18)
 
 
