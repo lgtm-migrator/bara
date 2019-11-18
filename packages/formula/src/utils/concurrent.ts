@@ -56,7 +56,7 @@ export const concurrent = (
       ;(async () => {
         try {
           const element = nextItem.value
-          result[i] = await Promise.resolve(element()) // ?
+          result[i] = await Promise.resolve(element) // ?
           resolvingCount -= 1
           next()
         } catch (err) {
@@ -94,15 +94,14 @@ export const concurrent = (
 // result // ?
 
 // import { mapProp } from '../object'
-// const sample = [{a: 1}, {a: 2}, {a: 3}, {a: 4}, {a: 5}]
+// const sample = [{ a: 1 }, { a: 2 }, { a: 3 }, { a: 4 }, { a: 5 }]
 // const result = concurrent(
 //   mapProp('a', num => {
 //     console.log(num)
 //     return num
 //   }),
 //   { concurrency: 2 },
-// )(sample)
-
-// result // ?
+// )(sample);
+// (async () => await result)() // ?
 
 // const resultMap = map(num => num)(sample)
