@@ -1,3 +1,5 @@
+import { Formula } from '../types'
+
 // Copyright: @sindresorhus dot-prop
 
 const isObj = (value: unknown | any): boolean => {
@@ -146,3 +148,17 @@ export const addProp = (
 }
 // const a = addProp('b', () => 'world')({a: 'hello'})
 // console.log(a)
+
+/**
+ * Map an array with specific prop.
+ * @param propName which prop name to map.
+ * @param formula Map to which action of data.
+ */
+export const mapProp = (propName: string, formula: Formula) => (
+  payload: any[],
+  ...rest: any[]
+) => {
+  return payload.map(async (data: any) => {
+    data[propName] = await Promise.resolve(formula(data, ...rest))
+  })
+}
