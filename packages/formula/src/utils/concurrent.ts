@@ -49,6 +49,7 @@ export const concurrent = (
             resolve(result)
           }
         }
+        return
       }
 
       resolvingCount += 1
@@ -80,6 +81,7 @@ export const concurrent = (
 
 // Quokka:
 
+// import { map } from '../array'
 // const sample = [1, 2, 3, 4, 5]
 // const result = concurrent(
 //   map(num => {
@@ -88,5 +90,7 @@ export const concurrent = (
 //   }),
 //   { concurrency: 2 },
 // )(sample)
+
+// result // ?
 
 // const resultMap = map(num => num)(sample)
