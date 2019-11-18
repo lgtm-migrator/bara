@@ -137,20 +137,21 @@ export const evolveProp = (
  * @param propName
  * @param modifier
  */
-export const addProp = (
-  propName: string,
-  modifier: (payload: any, ...rest: any[]) => any,
-) => async (payload: any, ...rest: any[]) => {
+export const addProp = (propName: string, formula: Formula) => async (
+  payload: any,
+  ...rest: any[]
+) => {
   return {
     ...payload,
-    [propName]: await Promise.resolve(modifier(payload, ...rest)),
+    [propName]: await Promise.resolve(formula(payload, ...rest)),
   }
 }
 // const a = addProp('b', () => 'world')({a: 'hello'})
 // console.log(a)
 
 /**
- * Map an array with specific prop.
+ * Map an array with specific prop with the `payload` as second argument.
+ *
  * @param propName which prop name to map.
  * @param formula Map to which action of data.
  */
@@ -159,6 +160,6 @@ export const mapProp = (propName: string, formula: Formula) => (
   ...rest: any[]
 ) => {
   return payload.map(async (data: any) => {
-    data[propName] = await Promise.resolve(formula(data, ...rest))
+    data[propName] = await Promise.resolve(formula(data, payload, ...rest))
   })
 }
