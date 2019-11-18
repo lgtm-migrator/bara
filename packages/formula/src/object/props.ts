@@ -149,6 +149,8 @@ export const addProp = (propName: string, formula: Formula) => async (
 // const a = addProp('b', () => 'world')({a: 'hello'})
 // console.log(a)
 
+type F = () => any
+
 /**
  * Map an array with specific prop with the `payload` as second argument.
  *
@@ -156,10 +158,15 @@ export const addProp = (propName: string, formula: Formula) => async (
  * @param formula Map to which action of data.
  */
 export const mapProp = (propName: string, formula: Formula) => (
-  payload: any[],
+  payloadOrFunc: any[] | F,
   ...rest: any[]
 ) => {
-  return payload.map(async (data: any) => {
-    data[propName] = await Promise.resolve(formula(data, payload, ...rest))
+  if (typeof payloadOrFunc === 'function') {
+    return payloadOrFunc[propName].map((data: any) => async () => {
+      return await Promise.resolve(formula(data, payloadOrFunc, ...rest))
+    })
+  }
+  return payloadOrFunc[propName].map(async (data: any) => {
+    return await Promise.resolve(formula(data, payloadOrFunc, ...rest))
   })
 }
