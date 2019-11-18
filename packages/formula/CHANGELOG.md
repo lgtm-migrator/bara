@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.468](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.467...@barajs/formula@3.0.0-alpha.468) (2019-11-18)
+
+
+### Bug Fixes
+
+* **formula:** concurrent not work expected with primitives value ([77d89c6](https://github.com/barajs/bara/commit/77d89c6))
+
+
+
+
+
 # [3.0.0-alpha.467](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.466...@barajs/formula@3.0.0-alpha.467) (2019-11-18)
 
 
