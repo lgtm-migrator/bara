@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.466](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.465...@barajs/formula@3.0.0-alpha.466) (2019-11-18)
+
+
+### Bug Fixes
+
+* **formula:** fix mapProp not using Promise api ([11d016e](https://github.com/barajs/bara/commit/11d016e))
+
+
+
+
+
 # [3.0.0-alpha.465](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.464...@barajs/formula@3.0.0-alpha.465) (2019-11-18)
 
 
