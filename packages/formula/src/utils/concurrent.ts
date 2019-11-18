@@ -56,7 +56,7 @@ export const concurrent = (
       ;(async () => {
         try {
           const element = nextItem.value
-          result[i] = await Promise.resolve(element) // ?
+          result[i] = await Promise.resolve(element())
           resolvingCount -= 1
           next()
         } catch (err) {
