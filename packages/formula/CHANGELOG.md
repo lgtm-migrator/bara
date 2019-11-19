@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.470](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.469...@barajs/formula@3.0.0-alpha.470) (2019-11-19)
+
+
+### Bug Fixes
+
+* **formula:** fix log function not resolve promise ([d3cd9c6](https://github.com/barajs/bara/commit/d3cd9c6))
+* **formula:** fix map method not resolve all promises ([1ffd748](https://github.com/barajs/bara/commit/1ffd748))
+
+
+
+
+
 # [3.0.0-alpha.469](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.468...@barajs/formula@3.0.0-alpha.469) (2019-11-18)
 
 
