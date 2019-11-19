@@ -15,5 +15,7 @@ export const map = (formula: Formula) => async (
       formula(element, payloadOrFunc, ...rest),
     )
   }
-  return payloadOrFunc.map((element: any) => formula(element, ...rest))
+  return await Promise.all(
+    payloadOrFunc.map((element: any) => formula(element, ...rest)),
+  )
 }
