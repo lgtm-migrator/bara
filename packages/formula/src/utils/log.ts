@@ -13,9 +13,9 @@ export const log = (
   payloadOnly: boolean = true,
   adapter: any = console,
   type: string = 'log',
-) => (...args: any[]) => {
+) => async (...args: any[]) => {
   if (typeof action === 'function') {
-    const result = action(...args)
+    const result = await action(...args)
     adapter[type](result)
     return result
   }
