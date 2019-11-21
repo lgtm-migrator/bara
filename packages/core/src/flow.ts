@@ -20,9 +20,7 @@ export interface BaraSource<T> {
 }
 
 export interface BaraSeep<T> {
-  [key: string]: (
-    ...args: any[]
-  ) => (data: T, ...rest: any[]) => boolean | Promise<boolean>
+  [key: string]: (...args: any[]) => (data: T, ...rest: any[]) => boolean
 }
 
 export interface FlowUserPayload<T, C, M> {
