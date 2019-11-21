@@ -22,6 +22,11 @@ export const act = (action: ActPayload | ActPayload[]): ActChain => {
   }
 }
 
+/**
+ * @deprecated In stable v3.0.0 will remove this function.
+ * @param actChain
+ * @param portions
+ */
 export const withContext = (
   actChain: ActChain,
   ...portions: Array<BaraPortion<any, any, any>>
