@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.428](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.427...@barajs/core@3.0.0-alpha.428) (2019-11-21)
+
+
+### Features
+
+* **cond:** add globalPortions as contextes reference for cond ([8d2d2df](https://github.com/barajs/bara/commit/8d2d2df))
+
+
+
+
+
 # [3.0.0-alpha.427](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.426...@barajs/core@3.0.0-alpha.427) (2019-11-07)
 
 
