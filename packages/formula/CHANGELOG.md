@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.471](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.470...@barajs/formula@3.0.0-alpha.471) (2019-11-22)
+
+
+### Features
+
+* **formula:** add copyObject function ([ca315f4](https://github.com/barajs/bara/commit/ca315f4))
+
+
+
+
+
 # [3.0.0-alpha.470](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.469...@barajs/formula@3.0.0-alpha.470) (2019-11-19)
 
 
