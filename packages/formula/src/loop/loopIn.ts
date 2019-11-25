@@ -7,7 +7,7 @@ export const loopIn = (action: Formula) => async (
   const result: any[] = []
   for (const key in payload) {
     if (payload[key] !== undefined) {
-      const r = await action([key, payload[key]], payload, ...rest)
+      const r = await action([key, payload[key]], ...rest)
       result.push(r)
     }
   }
