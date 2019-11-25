@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.472](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.471...@barajs/formula@3.0.0-alpha.472) (2019-11-25)
+
+
+### Bug Fixes
+
+* **formula:** loopIn remove second params as payload ([8e105c4](https://github.com/barajs/bara/commit/8e105c4))
+
+
+
+
+
 # [3.0.0-alpha.471](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.470...@barajs/formula@3.0.0-alpha.471) (2019-11-22)
 
 
