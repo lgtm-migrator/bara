@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.473](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.472...@barajs/formula@3.0.0-alpha.473) (2019-11-25)
+
+
+### Bug Fixes
+
+* **formula:** loopIn not correctly and safety iterate ([951d5cc](https://github.com/barajs/bara/commit/951d5cc))
+
+
+
+
+
 # [3.0.0-alpha.472](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.471...@barajs/formula@3.0.0-alpha.472) (2019-11-25)
 
 
