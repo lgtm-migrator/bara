@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.474](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.473...@barajs/formula@3.0.0-alpha.474) (2019-11-26)
+
+
+### Features
+
+* **formula:** add delay function ([df51a09](https://github.com/barajs/bara/commit/df51a09))
+
+
+
+
+
 # [3.0.0-alpha.473](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.472...@barajs/formula@3.0.0-alpha.473) (2019-11-25)
 
 
