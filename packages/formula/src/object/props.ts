@@ -139,13 +139,17 @@ export const evolveProp = (propName: string, formula: Formula) => async (
  * @param propName
  * @param modifier
  */
-export const addProp = (propName: string, formula: Formula) => async (
+export const addProp = (propName: string, formula: Formula | any) => async (
   payload: any,
   ...rest: any[]
 ) => {
+  const value: any =
+    typeof formula === 'function'
+      ? await Promise.resolve(formula(payload, ...rest))
+      : (formula as any)
   return {
     ...payload,
-    [propName]: await Promise.resolve(formula(payload, ...rest)),
+    [propName]: value,
   }
 }
 // const a = addProp('b', () => 'world')({a: 'hello'})
