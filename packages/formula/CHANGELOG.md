@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.476](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.475...@barajs/formula@3.0.0-alpha.476) (2019-11-26)
+
+
+### Bug Fixes
+
+* **formula:** report now return exactly what it takes from payload ([c768975](https://github.com/barajs/bara/commit/c768975))
+
+
+### Features
+
+* **formula:** addProp now accept primitives value ([1202774](https://github.com/barajs/bara/commit/1202774))
+
+
+
+
+
 # [3.0.0-alpha.475](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.474...@barajs/formula@3.0.0-alpha.475) (2019-11-26)
 
 
