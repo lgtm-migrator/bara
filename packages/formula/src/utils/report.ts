@@ -17,7 +17,7 @@ export const report = (
   message: string,
   adapter: any = console,
   loggerMethod: string = 'log',
-) => (payload: any, ...rest: any[]) => {
+) => (payload: any) => {
   const replacer = message.replace(
     /\{([A-Za-z0-9._]+)\}/g,
     (_: string, prop: string) =>
@@ -26,7 +26,7 @@ export const report = (
         : lensProp(prop)(payload) || `[${prop}]`,
   )
   adapter[loggerMethod](replacer)
-  return [payload, ...rest]
+  return payload
 }
 
 // Prototype
