@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.475](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.474...@barajs/formula@3.0.0-alpha.475) (2019-11-26)
+
+
+### Bug Fixes
+
+* **formula:** attempt function handle error should return value for multi chain ([4dd7817](https://github.com/barajs/bara/commit/4dd7817))
+
+
+
+
+
 # [3.0.0-alpha.474](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.473...@barajs/formula@3.0.0-alpha.474) (2019-11-26)
 
 
