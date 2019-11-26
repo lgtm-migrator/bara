@@ -18,7 +18,7 @@ export const attempt = (attemptConfig: AttemptProp) => async (
     return await Promise.resolve(to(payload, ...rest))
   } catch (error) {
     if (handle) {
-      handle({ payload, error }, ...rest)
+      return await Promise.resolve(handle({ payload, error }, ...rest))
     }
     if (!silent) {
       throw error
