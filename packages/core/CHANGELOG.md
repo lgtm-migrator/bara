@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.430](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.429...@barajs/core@3.0.0-alpha.430) (2019-11-27)
+
+
+### Bug Fixes
+
+* **core:** flow import events cause need of @types/node ([f93672c](https://github.com/barajs/bara/commit/f93672c))
+
+
+
+
+
 # [3.0.0-alpha.429](https://github.com/barajs/bara/compare/@barajs/core@3.0.0-alpha.428...@barajs/core@3.0.0-alpha.429) (2019-11-21)
 
 
