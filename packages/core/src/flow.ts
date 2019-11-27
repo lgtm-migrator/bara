@@ -1,7 +1,4 @@
-import { EventEmitter } from 'events'
 import xs, { Listener, Stream } from 'xstream'
-
-import consola from './consola'
 
 import { BaraContext } from './context'
 import { initializeStream } from './stream'
@@ -36,7 +33,6 @@ export interface FlowSemiConfig<T, C> {
   bara: BaraType
   context: C
   subStream: Stream<T>
-  awaitAction: EventEmitter
   seep?: BaraSeep<T>
 }
 
@@ -68,7 +64,6 @@ export const flow = <T, C, M>(
   const { bootstrap, seep } = payload
 
   // TODO create separated awaitableFlow operator
-  const awaitAction = new EventEmitter()
   const func = (flowUserPayload: FlowUserPayload<T, C, M>) => {
     const bootstrapPayload = { ...flowUserPayload }
     // Setup Flow Emitter Action
@@ -77,12 +72,6 @@ export const flow = <T, C, M>(
     }
 
     const actionRef = (data: T | any) => Promise.resolve(data)
-
-    const awaitable = (data: T | any) => {
-      // Emit data object to some stream
-      awaitAction.emit(data)
-      return xs.fromPromise(actionRef(data))
-    }
 
     const subStream = xs.createWithMemory<T>({
       start: listener => {
@@ -98,16 +87,12 @@ export const flow = <T, C, M>(
       },
     })
 
-    // Assign to bootstrapPayload
-    bootstrapPayload.awaitable = awaitable
-
     initializeStream(subStream, bootstrapPayload, bootstrap)
 
     return {
       bara: BaraType.Flow,
       context: flowUserPayload.context,
       subStream,
-      awaitAction,
       seep,
     }
   }
