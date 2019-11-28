@@ -1,5 +1,4 @@
 import { lensProp } from '../object'
-import { isCyclic } from './cyclic'
 /**
  * Report a message with the help of string templating
  * and nested prop.
@@ -17,14 +16,13 @@ export const report = (
   message: string,
   adapter: any = console,
   loggerMethod: string = 'log',
+  formatter = JSON.stringify,
 ) => (payload: any) => {
   const replacer = message.replace(
     /\{([A-Za-z0-9._]+)\}/g,
     (_: string, prop: string) =>
       prop === '.'
-        ? isCyclic(payload)
-          ? payload
-          : JSON.stringify(payload)
+        ? formatter(payload)
         : lensProp(prop)(payload) || `[${prop}]`,
   )
   adapter[loggerMethod](replacer)
