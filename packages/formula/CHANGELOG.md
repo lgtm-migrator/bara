@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.478](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.477...@barajs/formula@3.0.0-alpha.478) (2019-11-28)
+
+
+### Bug Fixes
+
+* **formula:** report function would take the formatter for dynamically root parser ([b4f25f6](https://github.com/barajs/bara/commit/b4f25f6))
+
+
+
+
+
 # [3.0.0-alpha.477](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.476...@barajs/formula@3.0.0-alpha.477) (2019-11-28)
 
 
