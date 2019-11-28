@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.477](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.476...@barajs/formula@3.0.0-alpha.477) (2019-11-28)
+
+
+### Features
+
+* **formula:** report function now support Circular object ([d8301ce](https://github.com/barajs/bara/commit/d8301ce))
+
+
+
+
+
 # [3.0.0-alpha.476](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.475...@barajs/formula@3.0.0-alpha.476) (2019-11-26)
 
 
