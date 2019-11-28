@@ -1,5 +1,5 @@
 import { lensProp } from '../object'
-
+import { isCyclic } from './cyclic'
 /**
  * Report a message with the help of string templating
  * and nested prop.
@@ -22,7 +22,9 @@ export const report = (
     /\{([A-Za-z0-9._]+)\}/g,
     (_: string, prop: string) =>
       prop === '.'
-        ? JSON.stringify(payload)
+        ? isCyclic(payload)
+          ? payload
+          : JSON.stringify(payload)
         : lensProp(prop)(payload) || `[${prop}]`,
   )
   adapter[loggerMethod](replacer)
@@ -30,6 +32,10 @@ export const report = (
 }
 
 // Prototype
+// const c = { text: 'gau' }
+// const b = { text: 'meo' }
+// c.b = b
+// b.c = c
 // const result = report(
 //   `{hello}, this message come from {from}. {nested.chi_ld}`,
 // )({
@@ -39,5 +45,8 @@ export const report = (
 // })
 // result
 
-// const result = report(`This is the primitive {.}`)('value')
-// result // ?
+// const result2 = report(`This is the circular {.}`)(c)
+// result2 // ?
+
+// const result3 = report(`This is the primitive object {.}`)({ meo: 'gau' })
+// result3 // ?
