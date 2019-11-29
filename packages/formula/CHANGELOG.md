@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.479](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.478...@barajs/formula@3.0.0-alpha.479) (2019-11-29)
+
+
+### Features
+
+* **formula:** add assume function ([b49b12a](https://github.com/barajs/bara/commit/b49b12a))
+
+
+
+
+
 # [3.0.0-alpha.478](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.477...@barajs/formula@3.0.0-alpha.478) (2019-11-28)
 
 
