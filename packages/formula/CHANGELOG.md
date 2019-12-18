@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.480](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.479...@barajs/formula@3.0.0-alpha.480) (2019-12-18)
+
+
+### Features
+
+* **formula:** add invoke function ([a3ce159](https://github.com/barajs/bara/commit/a3ce159))
+
+
+
+
+
 # [3.0.0-alpha.479](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.478...@barajs/formula@3.0.0-alpha.479) (2019-11-29)
 
 
