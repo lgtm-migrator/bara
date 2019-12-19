@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.481](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.480...@barajs/formula@3.0.0-alpha.481) (2019-12-19)
+
+
+### Features
+
+* **formula:** assume can take extra isDebug flag to enable the mock data to be flowed ([2fc10b9](https://github.com/barajs/bara/commit/2fc10b9))
+
+
+
+
+
 # [3.0.0-alpha.480](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.479...@barajs/formula@3.0.0-alpha.480) (2019-12-18)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@barajs/formula",
-  "version": "3.0.0-alpha.480",
+  "version": "3.0.0-alpha.481",
   "description": "BaraJS Formula - Curry Functional Programming Kit for Bara application",
   "license": "MIT",
   "main": "dist/index.js",
