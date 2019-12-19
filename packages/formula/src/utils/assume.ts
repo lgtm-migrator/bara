@@ -5,6 +5,7 @@
  *
  * @param data Mock data suppose to be input
  */
-export const assume = (data: any) => (payload: any) => {
+export const assume = (data: any, isDebug = false) => (payload: any) => {
+  if (isDebug) return data
   return payload !== undefined ? payload : data
 }
