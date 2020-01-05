@@ -14,7 +14,8 @@
     "release": "yarn compile && lerna publish --yes --conventional-commits",
     "release:canary": "lerna publish --yes --conventional-commits --canary --registry https://npm.pkg.github.com/",
     "cli": "yarn workspace bara-cli",
-    "release:docs": "cd website && npx now"
+    "release:docs": "cd website && npx now",
+    "build": "yarn release:docs"
   },
   "workspaces": [
     "packages/*"
