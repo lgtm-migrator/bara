@@ -13,7 +13,8 @@
     "test:watch": "lerna run test:watch --stream",
     "release": "yarn compile && lerna publish --yes --conventional-commits",
     "release:canary": "lerna publish --yes --conventional-commits --canary --registry https://npm.pkg.github.com/",
-    "cli": "yarn workspace bara-cli"
+    "cli": "yarn workspace bara-cli",
+    "release:docs": "cd website && npx now"
   },
   "workspaces": [
     "packages/*"
