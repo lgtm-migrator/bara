@@ -9,3 +9,5 @@ export * from './side'
 export * from './cyclic'
 export * from './assume'
 export * from './invoke'
+
+export * from './alias'

@@ -41,6 +41,8 @@ export const gatherReduce = (
  *  hello: () => 'world',
  *  year: (a: number, b: number) => a + b,
  * })(2000, 19) // {hello: 'world', year: 2019}
+ *
+ * @deprecated Please use the `cull` function instead
  */
 export const gather = (actions: { [k: string]: Formula | any }) => async (
   payload: any,

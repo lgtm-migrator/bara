@@ -3,6 +3,7 @@ import { Formula } from '../types'
 /**
  * Pipe multiple formular together to make the execution in sequence
  * @param actions Multiple Fomulars
+ * @deprecated Please use the `s` function instead
  */
 export const pipe = (...actions: Formula[]) => async (
   payload: any,
