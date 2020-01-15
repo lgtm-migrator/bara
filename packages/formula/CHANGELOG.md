@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.482](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.481...@barajs/formula@3.0.0-alpha.482) (2020-01-15)
+
+
+### Bug Fixes
+
+* **formula:** deprecated pipe, side, gather in favor of s, p, cull ([4a4ade5](https://github.com/barajs/bara/commit/4a4ade5))
+
+
+
+
+
 # [3.0.0-alpha.481](https://github.com/barajs/bara/compare/@barajs/formula@3.0.0-alpha.480...@barajs/formula@3.0.0-alpha.481) (2019-12-19)
 
 
